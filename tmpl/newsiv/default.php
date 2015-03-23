@@ -216,8 +216,9 @@ switch ($columns)
                                                  if (@$listItems[$j]->thumb != '' && $showimglist)
                                                  {
                                                      ?>
+                                                     <?php $thumbUrl = modZTNewsHelper::getThumbnailLink($listItems[$j]->thumb, $thumblistwidth, $thumblistheight); ?>
                                                 <a class="linkimg" href="<?php echo $listItems[$j]->link; ?>">
-                                                    <img src="<?php echo JURI::root() . 'modules/mod_zt_news/timthumb.php?src=' . $listItems[$j]->thumb . '&amp;h=' . $thumblistheight . '&amp;w=' . $thumblistwidth; ?>" alt="<?php echo $listItems[$j]->title; ?>" 
+                                                    <img src="<?php echo $thumbUrl; ?>" alt="<?php echo $listItems[$j]->title; ?>" 
                                                          title="<?php echo $listItems[$j]->title; ?>"/>
                                                 </a>
                                             <?php } ?>								
