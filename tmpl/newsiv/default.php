@@ -100,6 +100,7 @@ switch ($columns)
                                 }
                                 ?>
                             <?php } ?> 
+						</div>
                         <?php } ?>
                         <?php
                         if ($showsubcat)
@@ -144,55 +145,59 @@ switch ($columns)
                             for ($j = 0; $j < $lead; $j++) :
                                 ?>
                                 <div class="zt-article-item">
-                                    <?php
-                                    if (@$listItems[$j]->thumb != '' && $params->get('is_image', 1) == 1)
-                                    {
-                                        ?>
-                                        <?php $thumbUrl = modZTNewsHelper::getThumbnailLink($listItems[$j]->thumb, $thumbmainwidth, $thumbmainheight); ?>
-                                        <a href="<?php echo $listItems[$j]->link; ?>" title="<?php echo $listItems[$j]->title; ?>">
-                                            <img src="<?php echo $thumbUrl; ?>" alt="<?php echo $listItems[$j]->title; ?>" 
-                                                 title="<?php echo $listItems[$j]->title; ?>"/>
-                                        </a> 
-                                    <?php } ?>
-                                    <?php
-                                    if ($showtitle)
-                                    {
-                                        ?>
-                                        <h3>
-                                            <a href="<?php echo $listItems[$j]->link; ?>" title="<?php echo $listItems[$j]->title; ?>">
-                                                <?php echo $listItems[$j]->title; ?>
-                                            </a>
-                                        </h3>
-                                    <?php } ?>
-                                    <?php
-                                    if ($created)
-                                    {
-                                        ?>
-                                        <span class="created"><?php echo JHTML::_('date', $listItems[$j]->created, JText::_('DATE_FORMAT_LC3')); ?> - <?php
-                                            echo $listItems[$j]->hits;
-                                            echo JText::_(' Views');
-                                            ?></span>
-                                    <?php } ?>
-                                    <?php
-                                    if ($showintro)
-                                    {
-                                        ?>
-                                        <?php
-                                        if ($listItems[$j]->introtext != false)
-                                        {
-                                            ?>
-                                            <p class="zt-introtext"><?php echo ($listItems[$j]->introtext); ?></p>
-                                        <?php } ?>
-                                    <?php } ?> 
-                                    <?php
-                                    if ($params->get('show_readmore') == 1)
-                                    {
-                                        ?>
-                                        <p class="zt-news-readmore">
-                                            <a class="readmore" href="<?php echo $listItems[$j]->link; ?>"><?php echo JTEXT::_('READ MORE'); ?></a>
-                                        </p>
-                                    <?php } ?>
-                                </div>
+									<div class="image">
+										<?php
+										if (@$listItems[$j]->thumb != '' && $params->get('is_image', 1) == 1)
+										{
+											?>
+											<?php $thumbUrl = modZTNewsHelper::getThumbnailLink($listItems[$j]->thumb, $thumbmainwidth, $thumbmainheight); ?>
+											<a href="<?php echo $listItems[$j]->link; ?>" title="<?php echo $listItems[$j]->title; ?>">
+												<img src="<?php echo $thumbUrl; ?>" alt="<?php echo $listItems[$j]->title; ?>" 
+													 title="<?php echo $listItems[$j]->title; ?>"/>
+											</a> 
+										<?php } ?>
+									</div>
+									<div class="content">
+										<?php
+										if ($showtitle)
+										{
+											?>
+											<h3>
+												<a href="<?php echo $listItems[$j]->link; ?>" title="<?php echo $listItems[$j]->title; ?>">
+													<?php echo $listItems[$j]->title; ?>
+												</a>
+											</h3>
+										<?php } ?>
+										<?php
+										if ($created)
+										{
+											?>
+											<span class="created"><?php echo JHTML::_('date', $listItems[$j]->created, JText::_('DATE_FORMAT_LC3')); ?> - <?php
+												echo $listItems[$j]->hits;
+												echo JText::_(' Views');
+												?></span>
+										<?php } ?>
+										<?php
+										if ($showintro)
+										{
+											?>
+											<?php
+											if ($listItems[$j]->introtext != false)
+											{
+												?>
+												<p class="zt-introtext"><?php echo ($listItems[$j]->introtext); ?></p>
+											<?php } ?>
+										<?php } ?> 
+										<?php
+										if ($params->get('show_readmore') == 1)
+										{
+											?>
+											<p class="zt-news-readmore">
+												<a class="readmore" href="<?php echo $listItems[$j]->link; ?>"><?php echo JTEXT::_('READ MORE'); ?></a>
+											</p>
+										<?php } ?>
+									</div>
+								</div>
                             <?php endfor; ?>
                             <?php
                             if ($lead < count($listItems))
@@ -252,6 +257,6 @@ switch ($columns)
                     </div>
                 </div>
             <?php } ?>
-        </div>   
+    
         <div class="clearfix"></div>
     </div>
