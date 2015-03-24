@@ -90,6 +90,7 @@ switch ($columns)
                             }
                             ?>
                         <?php } ?> 
+                    </div>
                     <?php } ?>
                     <?php
                     if ($showsubcat)
@@ -243,6 +244,6 @@ switch ($columns)
                 </div>
             </div>
         <?php } ?>
-    </div>   
+ 
     <div class="clearfix"></div>
 </div>
