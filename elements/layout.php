@@ -63,6 +63,13 @@ class JFormFieldLayout extends JFormField
         {
             $html .= '<div class="layout-item newsiv" data-layout="newsiv"></div>';
         }
+        if ($layout == 'headline')
+        {
+            $html .= '<div class="layout-item headline selected" data-layout="headline"></div>';
+        } else
+        {
+            $html .= '<div class="layout-item headline" data-layout="headline"></div>';
+        }
         $html .= '</div>';
         if (ZT_JNVersion == '25')
         {
