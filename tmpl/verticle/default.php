@@ -52,7 +52,6 @@ switch ($columns)
         $width = '49';
 }
 ?>
-<div style="display: none;"><a href="http://www.joomvision.com" title="Joomla Templates">Joomla Templates</a> and Joomla Extensions by JoomVision.Com</div>
 <div class="zt_news_wrap"> 
     <div class="zt-frame-cat">
         <?php

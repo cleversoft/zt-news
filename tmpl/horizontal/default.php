@@ -30,7 +30,6 @@ $showintro = $params->get('show_intro', 1);
 $source = $params->get('source');
 $breakpoint = $params->get('breakpoint');
 ?>
-<div style="display: none;"><a href="http://www.joomvision.com" title="Joomla Templates">Joomla Templates</a> and Joomla Extensions by JoomVision.Com</div>
 <div class="zt_news_wrap"> 
     <div class="zt-newsiv-frame-cat">
         <div id="zt-news-scroll-<?php echo $moduleId; ?>" class="zt-category">

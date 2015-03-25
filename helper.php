@@ -427,7 +427,7 @@ class modZTNewsHelper
             {
                 $imager = new ZtNewsImager('gd');
                 $imager->loadFile($src);
-                $imager->thumbnail($width, $height);
+                $imager->resize($width, $height);
                 if ($imager->saveToFile($cacheFile))
                 {
                     return str_replace(JPATH_ROOT, rtrim(JUri::root(), '/'), $cacheFile);
@@ -545,6 +545,50 @@ class modZTNewsHelper
         return $results;
     }
 
+    public function getCategory($catids, $source) {
+        $category = array();
+        $category[] = '<div class="title_category">';
+                            
+        if(isset($catids)) {
+            if ($source == 'category')
+            {
+                $catdetail = $this->getCategoryDetail($catids);
+                $link = JRoute::_(ContentHelperRoute::getCategoryRoute($catids));
+                $title = $catdetail->title;
+            } else
+            {
+                $catdetail = $this->getK2CategoryDetail($catids);
+                $link = urldecode(JRoute::_(K2HelperRoute::getCategoryRoute($catdetail->id . ':' . urlencode($catdetail->alias))));
+                $title = $catdetail->name;
+            }
+          
+            $category[] = '<a href="'.$link.'" alt="'.$title.'">'.$title.'</a>';
+        }
+        $category[] = '</div>';
+
+        return implode($category); 
+    }
+
+    public function getProducts(array $listCategories){
+        $products = array(); 
+        foreach ($listCategories as $category) {
+            if(isset($category[0])) {
+                $listItems = $this->getItemsByCatId($category[0]);
+                if(count($listItems) > 0) {
+                    foreach ($listItems as $item) {
+                        $key = $item->alias;
+                        while(isset($products[$key])) {
+                            $key = $key.'1';
+                        }
+                        $products[$key][] = $item;
+                        $products[$key][] = $category[0];
+                    }
+                }
+            }
+        }
+        ksort($products);
+        return $products;
+    }
 }
 
 ?>
