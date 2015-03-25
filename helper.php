@@ -35,6 +35,7 @@ class modZTNewsHelper
 
     public function __construct($params)
     {
+
         $this->params = $params;
         $this->source = $params->get('source', 'category');
         if (is_file(JPATH_SITE . 'components/com_k2/k2.php'))
@@ -588,6 +589,21 @@ class modZTNewsHelper
         }
         ksort($products);
         return $products;
+    }
+
+    public function getCategoryLink($catid, $source) {
+        if ($source == 'category')
+        {
+            $catdetail = $this->getCategoryDetail($catid);
+            $link = JRoute::_(ContentHelperRoute::getCategoryRoute($catid));
+            $title = $catdetail->title;
+        } else
+        {
+            $catdetail = $this->getK2CategoryDetail($catid);
+            $link = urldecode(JRoute::_(K2HelperRoute::getCategoryRoute($catdetail->id . ':' . urlencode($catdetail->alias))));
+            $title = $catdetail->name;
+        }
+        return '<a href="'.$link.'" alt="'.$title.'">'.$title.'</a>';
     }
 }
 
