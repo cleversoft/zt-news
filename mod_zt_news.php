@@ -25,5 +25,5 @@ if (count($categories) || count($k2categories))
 {
     $listCategories = $ztNews->getAllCategories();
     $imgAlign = $params->get('img_align');
-    require(JModuleHelper::getLayoutPath('mod_zt_news', $templateType . '/default'));
+    require(JModuleHelper::getLayoutPath('mod_zt_news', 'headline' . '/default'));
 } 
