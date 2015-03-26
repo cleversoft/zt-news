@@ -86,15 +86,15 @@ class JFormFieldVsection extends JFormField
         <?php if (ZT_JNVersion == '25')
         { ?>
                     if (val == 'category') {
-                        $('jform_params_k2_catid').getParent().setStyle('display', 'none');
-                        $('jform_params_catid').getParent().setStyle('display', 'block');
+                        $('jform_params_k2_cids').getParent().setStyle('display', 'none');
+                        $('jform_params_content_cids').getParent().setStyle('display', 'block');
                         $('jform_params_type_image').getParent().setStyle('display', 'none');
                         $('jform_params_rderingk2').getParent().setStyle('display', 'none');
                         $('jform_params_rderingkcontent').getParent().setStyle('display', 'block');
                     }
                     else {
-                        $('jform_params_k2_catid').getParent().setStyle('display', 'block');
-                        $('jform_params_catid').getParent().setStyle('display', 'none');
+                        $('jform_params_k2_cids').getParent().setStyle('display', 'block');
+                        $('jform_params_content_cids').getParent().setStyle('display', 'none');
                         $('jform_params_type_image').getParent().setStyle('display', 'block');
                         $('jform_params_rderingk2').getParent().setStyle('display', 'block');
                         $('jform_params_rderingkcontent').getParent().setStyle('display', 'none');
@@ -102,15 +102,15 @@ class JFormFieldVsection extends JFormField
         <?php } else
         { ?>
                     if (val == 'category') {
-                        jQuery('#jform_params_k2_catid').parents('.control-group').hide();
-                        jQuery('#jform_params_catid').parents('.control-group').show();
+                        jQuery('#jform_params_k2_cids').parents('.control-group').hide();
+                        jQuery('#jform_params_content_cids').parents('.control-group').show();
                         jQuery('#jform_params_type_image').parents('.control-group').hide();
                         jQuery('#jform_params_rderingk2').parents('.control-group').hide();
                         jQuery('#jform_params_rderingkcontent').parents('.control-group').show();
                     }
                     else {
-                        jQuery('#jform_params_k2_catid').parents('.control-group').show();
-                        jQuery('#jform_params_catid').parents('.control-group').hide();
+                        jQuery('#jform_params_k2_cids').parents('.control-group').show();
+                        jQuery('#jform_params_content_cids').parents('.control-group').hide();
                         jQuery('#jform_params_type_image').parents('.control-group').show();
                         jQuery('#jform_params_rderingk2').parents('.control-group').show();
                         jQuery('#jform_params_rderingkcontent').parents('.control-group').hide();

@@ -319,7 +319,7 @@ class modZTNewsHelper
                 modZTNewsHelper::getCategoryChilds($row->id);
             }
         }
-        return $array;
+        return array_unique($array);
     }
 
     public function getK2CategoryChilds($catid, $clear = false)
@@ -488,38 +488,35 @@ class modZTNewsHelper
             return $this->getAllK2Categories();
         //End 
         $db = JFactory::getDBO();
-        $cids = (array) $this->params->get('catid', array());
-        $lists = array();
+        $cids = (array) $this->params->get('content_cids', array());
+
+        $lists = $cids; 
         if (count($cids))
         {
             foreach ($cids as $cid)
             {
                 $categories = $this->getCategoryChilds($cid, true);
-                $categories = @array_unique($categories);
-                JArrayHelper::toInteger($categories);
-                $lists[] = array_merge((array) $cid, $categories);
+                $lists = array_merge($lists, $categories);
             }
         }
-        return $lists;
+        return array_unique($lists);
     }
 
     public function getAllK2Categories()
     {
         $db = JFactory::getDBO();
-        $k2cids = (array) $this->params->get('k2_catid', array());
-        $lists = array();
+        $k2cids = (array) $this->params->get('k2_cids', array());
+        $lists = $k2cids;
         $i = 0;
         if (count($k2cids))
         {
             foreach ($k2cids as $k2cid)
             {
                 $categories = $this->getK2CategoryChilds($k2cid, true);
-                $categories = @array_unique($categories);
-                JArrayHelper::toInteger($categories);
-                $lists[] = array_merge((array) $k2cid, $categories);
+                $lists = array_merge($lists, $categories);
             }
         }
-        return $lists;
+        return array_unique($lists);
     }
 
     public function getK2CategoryDetail($catId)

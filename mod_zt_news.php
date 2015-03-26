@@ -17,8 +17,8 @@ defined('_JEXEC') or die('Restricted access');
 require_once(dirname(__FILE__) . '/helper.php');
 global $moduleId;
 $moduleId = $module->id;
-$categories = (array) $params->get('catid', array());
-$k2categories = (array) $params->get('k2_catid', array());
+$categories = (array) $params->get('content_cids', array());
+$k2categories = (array) $params->get('k2_cids', array());
 $templateType = $params->get('template_type', 'default');
 $ztNews = new modZTNewsHelper($params);
 if (count($categories) || count($k2categories))
