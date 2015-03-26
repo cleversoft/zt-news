@@ -54,18 +54,12 @@ if (!class_exists('ZtNewsSourceContent'))
             {
                 if ($images->image_intro)
                 {
-                    $item->thumb = JURI::root() . $images->image_intro;
-                    $item->subThumb = '';
+                    $item->thumb = modZTNewsHelper::getThumbnailLink($images->image_intro, $this->params->get('thumb_main_width'), $this->params->get('thumb_main_height'));
+                    $item->subThumb = modZTNewsHelper::getThumbnailLink($images->image_intro, $this->params->get('thumb_list_width'), $this->params->get('thumb_list_height'));
                 } else if ($images->image_fulltext)
                 {
-                    $item->thumb = JURI::root() . $images->image_fulltext;
-                    $item->subThumb = '';
-                } else
-                {
-//                        if ($this->checkImage($item->introtext))
-//                        {
-//                            $items[$i]->thumb = $this->getThumb($item->introtext);
-//                        }
+                    $item->thumb = modZTNewsHelper::getThumbnailLink($images->image_fulltext, $this->params->get('thumb_main_width'), $this->params->get('thumb_main_height'));
+                    $item->subThumb = modZTNewsHelper::getThumbnailLink($images->image_fulltext, $this->params->get('thumb_list_width'), $this->params->get('thumb_list_height'));
                 }
             }
             return $item;

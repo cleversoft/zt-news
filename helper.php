@@ -440,22 +440,24 @@ class modZTNewsHelper
         }
     }
 
-    public static function getThumbnailLink($src, $width, $height)
+    public static function getThumbnailLink($src, $width, $height, $method = 'resize')
     {
-        $src = str_replace(JUri::root(), JPATH_ROOT . '/', $src);
+        $src = JPATH_ROOT . '/' . $src;
         if (JFile::exists($src))
         {
             require_once __DIR__ . '/lib/imager.php';
             require_once __DIR__ . '/lib/imager/abstract.php';
             require_once __DIR__ . '/lib/imager/gd.php';
             require_once __DIR__ . '/lib/imager/sizer.php';
+
             $ext = JFile::getExt($src);
             $cacheFile = JPATH_ROOT . '/cache/' . md5($src) . '.' . $ext;
+
             if (!JFile::exists($cacheFile))
             {
                 $imager = new ZtNewsImager('gd');
                 $imager->loadFile($src);
-                $imager->resize($width, $height);
+                $imager->$method($width, $height);
                 if ($imager->saveToFile($cacheFile))
                 {
                     return str_replace(JPATH_ROOT, rtrim(JUri::root(), '/'), $cacheFile);
