@@ -55,7 +55,14 @@ if (!class_exists('ZtNewsSourceAbstract'))
          */
         public function getCategories()
         {
-            return $this->_params->get($this->_source . '_cids');
+            $categories = $this->_params->get($this->_source . '_cids');
+            if ($this->_params->get('get_children'))
+            {
+                return $this->getChildrenCategories();
+            } else
+            {
+                return $categories;
+            }
             /**
              * 
              * @todo Get children categories if needed
