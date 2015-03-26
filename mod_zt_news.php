@@ -13,20 +13,13 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
-error_reporting(E_ALL);
+
 require_once(dirname(__FILE__) . '/bootstrap.php');
-global $moduleId;
-$moduleId = $module->id;
-$categories = (array) $params->get('content_cids', array());
-$k2categories = (array) $params->get('k2_cids', array());
-$templateType = $params->get('template_type', 'default');
-$ztNews = new modZTNewsHelper($params);
 
-$articles = modZTNewsHelper::getItems($params);
-
-if (count($categories) || count($k2categories))
-{
-    $listCategories = $ztNews->getAllCategories();
-    $imgAlign = $params->get('img_align');
-    require(JModuleHelper::getLayoutPath('mod_zt_news', 'headline' . '/default'));
-} 
+$items = modZTNewsHelper::getItems($params);
+$showTitle = $params->get('show_title', 1);
+$showCreated = $params->get('show_date', 1);
+$showIntro = $params->get('show_intro', 1);
+$showReadmore = $params->get('show_readmore', 0);
+$showIntroList = $params->get('show_intro_list', 1);
+require(JModuleHelper::getLayoutPath('mod_zt_news', 'headline' . '/default'));

@@ -36,6 +36,7 @@ if (!class_exists('ZtNewsSourceContent'))
         {
             $item->link = JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catslug));
             $item->introtext = JHtml::_('string.truncate', $item->introtext, $this->_params->get('intro_length', 200));
+            $item->cat_link = JRoute::_(ContentHelperRoute::getCategoryRoute($item->catid));
             return $item;
         }
 
@@ -47,14 +48,18 @@ if (!class_exists('ZtNewsSourceContent'))
         protected function _prepareItemImages($item)
         {
             $images = json_decode($item->images);
+            $item->thumb = '';
+            $item->subThumb = '';
             if ($images)
             {
                 if ($images->image_intro)
                 {
                     $item->thumb = JURI::root() . $images->image_intro;
+                    $item->subThumb = '';
                 } else if ($images->image_fulltext)
                 {
                     $item->thumb = JURI::root() . $images->image_fulltext;
+                    $item->subThumb = '';
                 } else
                 {
 //                        if ($this->checkImage($item->introtext))
