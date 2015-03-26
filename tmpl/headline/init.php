@@ -1,8 +1,18 @@
 <?php
 
-$doc = JFactory::getDocument();
-$doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/default.css');
-$doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/headline.css');
+/**
+ * ZT News
+ * 
+ * @package     Joomla
+ * @subpackage  Module
+ * @version     2.0.0
+ * @author      ZooTemplate 
+ * @email       support@zootemplate.com 
+ * @link        http://www.zootemplate.com 
+ * @copyright   Copyright (c) 2015 ZooTemplate
+ * @license     GPL v2
+ */
+defined('_JEXEC') or die('Restricted access');
 
 $totalItemsPerSlide = $params->get('no_intro_items', 1) + $params->get('no_link_items', 4);
 $index = 0;

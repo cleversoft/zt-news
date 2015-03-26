@@ -36,27 +36,8 @@
                 <!-- Source categories selector -->
                 <field name="content_cids" type="category" extension="com_content" multiple="true" size="10" label="CATEGORY" description="CATEGORY_DESC" />
                 <field name="k2_cids" type="k2categories" multiple="true" size="10" label="K2_CATEGORY" description="K2_CATEGORY_DESC" />
-                
-                <field name="type_image" type="list" default="upload" label="Default Image" description="Default image for thumbnail.">
-                    <option value="upload">Image Upload</option>
-                    <option value="content">Image in Content</option>
-                </field>
-                <field name="orderingk2" type="list" default="" label="Ordering" description="">
-                    <option value="">Default</option>
-                    <option value="date">Oldest first (by date created)</option>
-                    <option value="rdate">Most recent first (by date created)</option>
-                    <option value="publishUp">Most recent first (by date publised)</option>
-                    <option value="alpha">Title Alphabetical</option>
-                    <option value="ralpha">Title Reverse-Alphabetical</option>
-                    <option value="order">Ordering</option>
-                    <option value="rorder">Ordering reverse</option>
-                    <option value="hits">Most popular</option>
-                    <option value="best">Highest rated</option>
-                    <option value="comments">Most commented</option>
-                    <option value="modified">Latest modified</option>
-                    <option value="rand">Random ordering</option>
-                </field>
-                <field name="orderingcontent" type="list" default="" label="Ordering" description="">
+                <!-- Ordering -->
+                <field name="ordering" type="list" default="" label="Ordering" description="">
                     <option value="">Default</option>
                     <option value="date">Oldest first (by date created)</option>
                     <option value="rdate">Most recent first (by date created)</option>
@@ -69,6 +50,7 @@
                     <option value="modified">Latest modified</option>
                     <option value="rand">Random ordering</option>
                 </field>
+                <field name="max_items" type="text" default="20" label="Max items" description="" />                                        
                 <field name="v_section" type="vsection" label="" description="" />
             </fieldset>
             <fieldset name="show">
@@ -149,6 +131,10 @@
             </fieldset>
             <!-- Thumbnail configuration -->
             <fieldset name="thumbnail">
+                <field name="thubmnail" type="list" default="upload" label="Default Image" description="Default image for thumbnail.">
+                    <option value="upload">Image Upload</option>
+                    <option value="content">Image in Content</option>
+                </field>    
                 <field name="thubmnail_cache" type="text" default="900" label="Thumbnail cache" description="" />
                 <field name="thumbnail_width" type="text" default="200" label="Thumbnail width" description="" filter="integer" />
                 <field name="thumbnail_height" type="text" default="200" label="Thumbnail height" description="" filter="integer" />

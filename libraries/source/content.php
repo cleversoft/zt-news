@@ -16,6 +16,11 @@ defined('_JEXEC') or die('Restricted access');
 
 if (!class_exists('ZtNewsSourceContent'))
 {
+// com_content route
+    if (is_file(JPATH_SITE . '/components/com_content/helpers/route.php'))
+    {
+        require_once(JPATH_SITE . '/components/com_content/helpers/route.php');
+    }
 
     /**
      * Joomla content source
@@ -26,6 +31,15 @@ if (!class_exists('ZtNewsSourceContent'))
         protected $_source = 'content';
         protected $_table_items = '#__content';
         protected $_table_categories = '#__categories';
+
+        /**
+         * Basic required WHERE
+         * @return string
+         */
+        protected function _buildWhere()
+        {
+            return ' `a`.`state` = 1';
+        }
 
         /**
          * 
@@ -48,18 +62,16 @@ if (!class_exists('ZtNewsSourceContent'))
         protected function _prepareItemImages($item)
         {
             $images = json_decode($item->images);
-            $item->thumb = '';
-            $item->subThumb = '';
             if ($images)
             {
                 if ($images->image_intro)
                 {
-                    $item->thumb = modZTNewsHelper::getThumbnailLink($images->image_intro, $this->params->get('thumb_main_width'), $this->params->get('thumb_main_height'));
-                    $item->subThumb = modZTNewsHelper::getThumbnailLink($images->image_intro, $this->params->get('thumb_list_width'), $this->params->get('thumb_list_height'));
+                    $item->thumb = modZTNewsHelper::getThumbnailLink($images->image_intro, $this->_params->get('thumb_main_width'), $this->_params->get('thumb_main_height'));
+                    $item->subThumb = modZTNewsHelper::getThumbnailLink($images->image_intro, $this->_params->get('thumb_list_width'), $this->_params->get('thumb_list_height'));
                 } else if ($images->image_fulltext)
                 {
-                    $item->thumb = modZTNewsHelper::getThumbnailLink($images->image_fulltext, $this->params->get('thumb_main_width'), $this->params->get('thumb_main_height'));
-                    $item->subThumb = modZTNewsHelper::getThumbnailLink($images->image_fulltext, $this->params->get('thumb_list_width'), $this->params->get('thumb_list_height'));
+                    $item->thumb = modZTNewsHelper::getThumbnailLink($images->image_fulltext, $this->_params->get('thumb_main_width'), $this->_params->get('thumb_main_height'));
+                    $item->subThumb = modZTNewsHelper::getThumbnailLink($images->image_fulltext, $this->_params->get('thumb_list_width'), $this->_params->get('thumb_list_height'));
                 }
             }
             return $item;
@@ -68,37 +80,26 @@ if (!class_exists('ZtNewsSourceContent'))
         /**
          * Recursive to get all children categories of joomla article
          */
-        public function getContentCategoryChilds($catid)
-        {
-            $cateArray = array();
-
-            $catid = (int)$catid;
-            $db = JFactory::getDBO();
-            $query = "SELECT * FROM #__categories WHERE parent_id=" . $catid . " AND published=1 ORDER BY id";
-
-            $db->setQuery($query);
-            $rows = $db->loadObjectList();
-
-            foreach ($rows as $row) {
-                array_push($cateArray, $row->id);
-                if ($this->hasContentCategoryChilds($row->id)) {
-                    $this->getContentCategoryChilds($row->id);
-                }
-            }
-            return $cateArray;
-        }
-
-        protected function hasContentCategoryChilds($id)
+        protected function _getChildrenCategories($cids)
         {
             $db = JFactory::getDBO();
-            $query = "SELECT * FROM #__categories WHERE parent_id={$id} AND published=1";
+            $query = ' SELECT id '
+                    . ' FROM #__categories '
+                    . ' WHERE parent_id IN ( ' . implode(',', $cids) . ' ) '
+                    . ' AND published = 1 '
+                    . ' AND parent_id != 0 '
+                    . ' ORDER BY id '
+            ;
             $db->setQuery($query);
-            $rows = $db->loadObjectList();
-            if (count($rows)) {
-                return true;
-            } else {
-                return false;
+
+            $rows = $db->loadColumn();
+            $this->_categories = array_merge($this->_categories, $rows);
+            if (count($rows) > 0)
+            {
+                $this->_getChildrenCategories($rows);
             }
+            $this->_categories = array_unique($this->_categories);
+            return $this->_categories;
         }
 
     }

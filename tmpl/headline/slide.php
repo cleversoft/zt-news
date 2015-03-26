@@ -12,13 +12,13 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
-
+// Slice had items
 $listItems = array_slice($slide, $params->get('no_intro_items', 1));
 ?>
 <div class="zt-category headline">
     <div class="row">
         <?php $index = 0; ?>
-        <?php foreach ($slide as $key => $item) : ?>
+        <?php foreach ($slide as $key => $item) : ?>         
             <?php if ($index < $params->get('no_intro_items', 1)) : ?>
                 <div class="col-md-6 zt-item head">
                     <div class="link-category">
@@ -26,12 +26,16 @@ $listItems = array_slice($slide, $params->get('no_intro_items', 1));
                             <a href="<?php echo $item->cat_link; ?>" alt="<?php echo $item->cat_title; ?>"><?php echo $item->cat_title; ?></a>
                         </div>                        
                     </div>
-                    <!-- Thumbnail -->
+                    <!-- Head Thumbnail -->
                     <a href="<?php echo $item->link; ?>" title="">
-                        <img class="thumbnail" 
-                             src="<?php echo ($key == 0) ? $item->thumb : $item->subThumb; ?>" 
-                             alt="<?php echo $item->title; ?>"
-                             title="<?php echo $item->title; ?>"/>
+                        <?php if (!empty($item->thumb)) : ?>
+                            <img class="thumbnail" 
+                                 src="<?php echo $item->thumb; ?>" 
+                                 alt="<?php echo $item->title; ?>"
+                                 title="<?php echo $item->title; ?>"
+                                 />
+                             <?php endif; ?>
+
                     </a>
                     <div class="zt-article_content">
                         <!-- Item title -->
@@ -69,16 +73,20 @@ $listItems = array_slice($slide, $params->get('no_intro_items', 1));
 
         <div class="col-md-6">
             <div class="row">
-                <?php foreach ($listItems as $item) : ?>
+                <?php foreach ($listItems as $key => $item) : ?>
                     <div class="col-md-6 zt-item">
                         <div class="">
                             <a href="<?php echo $item->cat_link; ?>" alt="<?php echo $item->cat_title; ?>"><?php echo $item->cat_title; ?></a>
                         </div>                       
                         <a href="<?php echo $item->link; ?>" title="">
-                            <img class="thumbnail" 
-                                 src="<?php echo ($key == 0) ? $item->thumb : $item->subThumb; ?>" 
-                                 alt="<?php echo $item->title; ?>"
-                                 title="<?php echo $item->title; ?>"/>
+                            <!-- List thumbnail -->
+                            <?php if (!empty($item->subThumb)) : ?>
+                                <img class="thumbnail" 
+                                     src="<?php echo $item->subThumb; ?>" 
+                                     alt="<?php echo $item->title; ?>"
+                                     title="<?php echo $item->title; ?>"
+                                     />
+                                 <?php endif; ?>
                         </a>
                         <div class="zt-article_content">
                             <?php if ($showTitle) : ?>

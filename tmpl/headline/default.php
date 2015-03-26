@@ -31,7 +31,6 @@ require __DIR__ . '/init.php';
                     </div>
                 <?php endforeach; ?>               
             </div>
-
             <!-- Controls -->
             <div class="owl-buttons">
                 <a class="carousel-control control-left" href="#carousel-example-generic" role="button" data-slide="prev">

@@ -17,6 +17,12 @@ defined('_JEXEC') or die('Restricted access');
 if (!class_exists('ZtNewsSourceK2'))
 {
 
+// k2 route
+    if (is_file(JPATH_SITE . '/components/com_k2/helpers/route.php'))
+    {
+        require_once(JPATH_SITE . '/components/com_k2/helpers/route.php');
+    }
+
     /**
      * Joomla content source
      */
@@ -28,14 +34,36 @@ if (!class_exists('ZtNewsSourceK2'))
         protected $_table_categories = '#__k2_categories';
 
         /**
+         * Build query to getItems
+         * @return string
+         */
+        protected function _buildQuery()
+        {
+            $query = ' SELECT a.*, cc.name as cat_title,' .
+                    ' CASE WHEN CHAR_LENGTH(a.alias) THEN CONCAT_WS(":", a.id, a.alias) ELSE a.id END as slug,' .
+                    ' CASE WHEN CHAR_LENGTH(cc.alias) THEN CONCAT_WS(":", cc.id, cc.alias) ELSE cc.id END as catslug' .
+                    ' FROM ' . $this->_table_items . ' AS a' .
+                    ' INNER JOIN ' . $this->_table_categories . ' AS cc ON cc.id = a.catid' .
+                    ' WHERE ' . $this->_buildWhere() . $this->_buildWhereExtend() .
+                    ' AND cc.published = 1' .
+                    ' ORDER BY ' . $this->_buildOrder() .
+                    ' LIMIT ' . $this->_params->get('max_items', 10);
+            return $query;
+        }
+
+        protected function _buildWhere()
+        {
+            return ' `a`.`published` = 1';
+        }
+
+        /**
          * Prepare item properties
          */
         protected function _prepareItem($item)
         {
-            $k2CateDetail = $this->getK2CategoryDetail($item->catid);
             $item->link = JRoute::_(K2HelperRoute::getItemRoute($item->id, $item->catid));
             $item->introtext = JHtml::_('string.truncate', $item->introtext, $this->_params->get('intro_length', 200));
-            $item->cat_link = urldecode(JRoute::_(K2HelperRoute::getCategoryRoute($k2CateDetail->id . ':' . urlencode($k2CateDetail->alias))));
+            $item->cat_link = urldecode(JRoute::_(K2HelperRoute::getCategoryRoute($item->catid . ':' . urlencode($item->catslug))));
             return $item;
         }
 
@@ -44,55 +72,39 @@ if (!class_exists('ZtNewsSourceK2'))
          */
         protected function _prepareItemImages($item)
         {
-
+            $srcDir = JPATH_SITE . DS . 'media' . DS . 'k2' . DS . 'items' . DS . 'src';
+            $originalImage = $srcDir . '/' . md5("Image" . $item->id);
+            if (JFile::exists($originalImage))
+            {
+                $item->thumb = modZTNewsHelper::getThumbnailLink($originalImage, $this->_params->get('thumb_main_width'), $this->_params->get('thumb_main_height'));
+                $item->subThumb = modZTNewsHelper::getThumbnailLink($originalImage, $this->_params->get('thumb_list_width'), $this->_params->get('thumb_list_height'));
+            }
             return $item;
         }
 
-        protected function getK2CategoryDetail($catId)
-        {
-            $db = JFactory::getDBO();
-            $sql = "SELECT c.id,c.name,c.alias
-				FROM #__k2_categories AS c " .
-                " WHERE c.published = 1 AND c.id =" . $catId .
-                " ORDER BY c.name ASC";
-            $db->setQuery($sql);
-            $results = $db->loadObject();
-            return $results;
-        }
-
         /**
-         * Recursive to get all children categories of k2 component
+         * Recursive to get all children categories of joomla article
          */
-        protected function getK2CategoryChilds($catid)
+        protected function _getChildrenCategories($cids)
         {
-            $cateArray = array();
-
-            $catid = (int)$catid;
             $db = JFactory::getDBO();
-            $query = "SELECT * FROM #__k2_categories WHERE parent=" . $catid . " AND published=1 ORDER BY id";
+            $query = ' SELECT id '
+                    . ' FROM #__k2_categories '
+                    . ' WHERE parent IN ( ' . implode(',', $cids) . ' ) '
+                    . ' AND published = 1 '
+                    . ' AND parent != 0 '
+                    . ' ORDER BY id '
+            ;
             $db->setQuery($query);
-            $rows = $db->loadObjectList();
-            foreach ($rows as $row) {
-                array_push($cateArray, $row->id);
-                if ($this->hasK2CategoryChilds($row->id)) {
-                    $this->getK2CategoryChilds($row->id);
-                }
-            }
-            return $cateArray;
-        }
 
-        protected function hasK2CategoryChilds($id)
-        {
-            $id = (int)$id;
-            $db = JFactory::getDBO();
-            $query = "SELECT * FROM #__k2_categories WHERE parent={$id} AND published=1";
-            $db->setQuery($query);
-            $rows = $db->loadObjectList();
-            if (count($rows)) {
-                return true;
-            } else {
-                return false;
+            $rows = $db->loadColumn();
+            $this->_categories = array_merge($this->_categories, $rows);
+            if (count($rows) > 0)
+            {
+                $this->_getChildrenCategories($rows);
             }
+            $this->_categories = array_unique($this->_categories);
+            return $this->_categories;
         }
 
     }
