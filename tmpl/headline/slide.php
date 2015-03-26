@@ -12,6 +12,7 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
+
 $listItems = array_slice($slide, $params->get('no_intro_items', 1));
 ?>
 <div class="zt-category headline">
@@ -19,7 +20,7 @@ $listItems = array_slice($slide, $params->get('no_intro_items', 1));
         <?php $index = 0; ?>
         <?php foreach ($slide as $key => $item) : ?>
             <?php if ($index < $params->get('no_intro_items', 1)) : ?>
-                <div class="col-md-6 zt-article-items">
+                <div class="col-md-6 zt-item head">
                     <div class="link-category">
                         <div class="">
                             <a href="<?php echo $item->cat_link; ?>" alt="<?php echo $item->cat_title; ?>"><?php echo $item->cat_title; ?></a>
@@ -62,13 +63,14 @@ $listItems = array_slice($slide, $params->get('no_intro_items', 1));
                         <?php endif; ?>
                     </div>
                 </div>
-            <?php endif; ?>            
+            <?php endif; ?>      
+            <?php $index++; ?>
         <?php endforeach; ?>
 
         <div class="col-md-6">
             <div class="row">
                 <?php foreach ($listItems as $item) : ?>
-                    <div class="col-md-6 zt-article-items">
+                    <div class="col-md-6 zt-item">
                         <div class="">
                             <a href="<?php echo $item->cat_link; ?>" alt="<?php echo $item->cat_title; ?>"><?php echo $item->cat_title; ?></a>
                         </div>                       
