@@ -75,7 +75,7 @@ class modZTNewsHelper
     public function getItemsByCatId($cid)
     {
         //Check source
-        if ($this->source == 'k2_category' && $this->k2)
+        if ($this->source == 'k2' && $this->k2)
             return $this->getItemsByK2CatId($cid);
         //End
 
@@ -511,7 +511,7 @@ class modZTNewsHelper
     public function getAllCategories()
     {
         //Check source
-        if ($this->source == 'k2_category' && $this->k2)
+        if ($this->source == 'k2' && $this->k2)
             return $this->getAllK2Categories();
         //End 
         $db = JFactory::getDBO();
@@ -580,7 +580,7 @@ class modZTNewsHelper
 
         if (isset($catids))
         {
-            if ($source == 'category')
+            if ($source == 'content')
             {
                 $catdetail = $this->getCategoryDetail($catids);
                 $link = JRoute::_(ContentHelperRoute::getCategoryRoute($catids));
@@ -628,7 +628,7 @@ class modZTNewsHelper
 
     public function getCategoryLink($catid, $source)
     {
-        if ($source == 'category')
+        if ($source == 'content')
         {
             $catdetail = $this->getCategoryDetail($catid);
             $link = JRoute::_(ContentHelperRoute::getCategoryRoute($catid));

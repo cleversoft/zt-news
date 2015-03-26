@@ -29,7 +29,7 @@
     <config addfieldpath="/modules/mod_zt_news/elements/">
         <fields name="params">
             <fieldset name="basic">
-                <field name="source" type="list" default="category" label="SOURCE_FROM" description="SOURCE_FROM_DESC">
+                <field name="source" type="list" default="content" label="SOURCE_FROM" description="SOURCE_FROM_DESC">
                     <option value="content">CATEGORY</option>
                     <option value="k2">K2_CATEGORY</option>
                 </field>
