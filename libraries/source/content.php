@@ -17,6 +17,9 @@ defined('_JEXEC') or die('Restricted access');
 if (!class_exists('ZtNewsSourceContent'))
 {
 
+    /**
+     * Joomla content source
+     */
     class ZtNewsSourceContent extends ZtNewsSourceAbstract
     {
 
@@ -24,6 +27,11 @@ if (!class_exists('ZtNewsSourceContent'))
         protected $_table_items = '#__content';
         protected $_table_categories = '#__categories';
 
+        /**
+         * 
+         * @param object $item
+         * @return object
+         */
         protected function _prepareItem($item)
         {
             $item->link = JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catslug));
@@ -31,6 +39,11 @@ if (!class_exists('ZtNewsSourceContent'))
             return $item;
         }
 
+        /**
+         * 
+         * @param object $item
+         * @return object
+         */
         protected function _prepareItemImages($item)
         {
             $images = json_decode($item->images);

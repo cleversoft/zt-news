@@ -20,9 +20,28 @@ if (!class_exists('ZtNewsSourceAbstract'))
     abstract class ZtNewsSourceAbstract
     {
 
+        /**
+         * Source name
+         * @var string
+         */
         protected $_source = 'content';
+
+        /**
+         * Plugin params
+         * @var JRegistry
+         */
         protected $_params;
+
+        /**
+         * Items table name
+         * @var string
+         */
         protected $_table_items = '#__content';
+
+        /**
+         * Categories table name
+         * @var string
+         */
         protected $_table_categories = '#__categories';
 
         public function __construct($params)
@@ -30,6 +49,10 @@ if (!class_exists('ZtNewsSourceAbstract'))
             $this->_params = $params;
         }
 
+        /**
+         * Get array of request categories
+         * @return array
+         */
         public function getCategories()
         {
             return $this->_params->get($this->_source . '_cids');
@@ -39,13 +62,16 @@ if (!class_exists('ZtNewsSourceAbstract'))
              */
         }
 
+        /**
+         * Recursive to get all children categories
+         */
         public function getChildrenCategories()
         {
             
         }
 
         /**
-         * 
+         * Get items in categories
          * @return type
          */
         public function getItems()
@@ -124,6 +150,11 @@ if (!class_exists('ZtNewsSourceAbstract'))
             return $this->_prepareItems($list);
         }
 
+        /**
+         * 
+         * @param array $list
+         * @return array
+         */
         protected function _prepareItems($list)
         {
             $items = array();
@@ -136,8 +167,14 @@ if (!class_exists('ZtNewsSourceAbstract'))
             return $items;
         }
 
+        /**
+         * Prepare item properties
+         */
         abstract protected function _prepareItem($item);
 
+        /**
+         * Prepare images for item
+         */
         abstract protected function _prepareItemImages($item);
     }
 
