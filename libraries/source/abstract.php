@@ -2,20 +2,19 @@
 
 /**
  * ZT News
- * 
+ *
  * @package     Joomla
  * @subpackage  Module
  * @version     2.0.0
- * @author      ZooTemplate 
- * @email       support@zootemplate.com 
- * @link        http://www.zootemplate.com 
+ * @author      ZooTemplate
+ * @email       support@zootemplate.com
+ * @link        http://www.zootemplate.com
  * @copyright   Copyright (c) 2015 ZooTemplate
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
 
-if (!class_exists('ZtNewsSourceAbstract'))
-{
+if (!class_exists('ZtNewsSourceAbstract')) {
 
     abstract class ZtNewsSourceAbstract
     {
@@ -56,15 +55,13 @@ if (!class_exists('ZtNewsSourceAbstract'))
         public function getCategories()
         {
             $categories = $this->_params->get($this->_source . '_cids');
-            if ($this->_params->get('get_children'))
-            {
+            if ($this->_params->get('get_children')) {
                 return $this->getChildrenCategories();
-            } else
-            {
+            } else {
                 return $categories;
             }
             /**
-             * 
+             *
              * @todo Get children categories if needed
              */
         }
@@ -74,7 +71,92 @@ if (!class_exists('ZtNewsSourceAbstract'))
          */
         public function getChildrenCategories()
         {
-            
+            $cids = $this->_params->get($this->_source . '_cids');
+            $lists = $cids;
+            if (count($cids)) {
+                foreach ($cids as $cid) {
+
+                    $functionName = 'get'.ucfirst($this->_source).'CategoryChilds';
+
+                    $categories = call_user_func(array($this, $functionName));
+
+                    JArrayHelper::toInteger($categories);
+
+                    $lists = array_merge($lists, array_unique($categories));
+                }
+            }
+            return $lists;
+        }
+
+        /**
+         * Recursive to get all children categories of joomla article
+         */
+        public function getContentCategoryChilds($catid)
+        {
+            $cateArray = array();
+
+            $catid = (int)$catid;
+            $db = JFactory::getDBO();
+            $query = "SELECT * FROM #__categories WHERE parent_id=" . $catid . " AND published=1 ORDER BY id";
+
+            $db->setQuery($query);
+            $rows = $db->loadObjectList();
+
+            foreach ($rows as $row) {
+                array_push($cateArray, $row->id);
+                if ($this->hasContentCategoryChilds($row->id)) {
+                    $this->getContentCategoryChilds($row->id);
+                }
+            }
+            return $cateArray;
+        }
+
+        /**
+         * Recursive to get all children categories of k2 component
+         */
+        protected function getK2CategoryChilds($catid)
+        {
+            $cateArray = array();
+
+            $catid = (int)$catid;
+            $db = JFactory::getDBO();
+            $query = "SELECT * FROM #__k2_categories WHERE parent=" . $catid . " AND published=1 ORDER BY id";
+            $db->setQuery($query);
+            $rows = $db->loadObjectList();
+            foreach ($rows as $row) {
+                array_push($cateArray, $row->id);
+                if ($this->hasK2CategoryChilds($row->id)) {
+                    $this->getK2CategoryChilds($row->id);
+                }
+            }
+            return $cateArray;
+        }
+
+        protected function hasK2CategoryChilds($id)
+        {
+            $id = (int)$id;
+            $db = JFactory::getDBO();
+            $query = "SELECT * FROM #__k2_categories WHERE parent={$id} AND published=1";
+            $db->setQuery($query);
+            $rows = $db->loadObjectList();
+            if (count($rows)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        protected function hasContentCategoryChilds($id)
+        {
+            $db = JFactory::getDBO();
+            $query = "SELECT * FROM #__categories WHERE parent_id={$id} AND published=1";
+            $db->setQuery($query);
+            $rows = $db->loadObjectList();
+            if (count($rows)) {
+                return true;
+            } else {
+                return false;
+            }
         }
 
         /**
@@ -90,27 +172,25 @@ if (!class_exists('ZtNewsSourceAbstract'))
             $now = $date->toSQL();
             $nullDate = $db->getNullDate();
             $user = JFactory::getUser();
-            $userId = (int) $user->get('id');
+            $userId = (int)$user->get('id');
 
             // Base WHERE
             $where = 'a.state = 1'
-                    . ' AND(a.publish_up = ' . $db->Quote($nullDate) . ' OR a.publish_up <= ' . $db->Quote($now) . ')'
-                    . ' AND(a.publish_down = ' . $db->Quote($nullDate) . ' OR a.publish_down >= ' . $db->Quote($now) . ')';
+                . ' AND(a.publish_up = ' . $db->Quote($nullDate) . ' OR a.publish_up <= ' . $db->Quote($now) . ')'
+                . ' AND(a.publish_down = ' . $db->Quote($nullDate) . ' OR a.publish_down >= ' . $db->Quote($now) . ')';
             // Filter by categories
             $where .= ' AND ' . $db->quoteName('a') . '.' . $db->quoteName('catid') . ' IN ' . ' ( ' . implode(',', $categories) . ' ) ';
             // User Filter
-            switch ($this->_params->get('user_id'))
-            {
+            switch ($this->_params->get('user_id')) {
                 case 'by_me':
-                    $where .= ' AND ( ' . $db->quoteName('created_by') . ' = ' . (int) $userId . ' OR ' . $db->quoteName('modified_by') . ' = ' . (int) $userId . ')';
+                    $where .= ' AND ( ' . $db->quoteName('created_by') . ' = ' . (int)$userId . ' OR ' . $db->quoteName('modified_by') . ' = ' . (int)$userId . ')';
                     break;
                 case 'not_me':
-                    $where .= ' AND ( ' . $db->quoteName('created_by') . ' <> ' . (int) $userId . ' AND ' . $db->quoteName('modified_by') . ' <> ' . (int) $userId . ')';
+                    $where .= ' AND ( ' . $db->quoteName('created_by') . ' <> ' . (int)$userId . ' AND ' . $db->quoteName('modified_by') . ' <> ' . (int)$userId . ')';
                     break;
             }
             // Ordering
-            switch ($this->_params->get('rderingkcontent'))
-            {
+            switch ($this->_params->get('rderingkcontent')) {
                 case 'date':
                     $orderby = 'a.created ASC';
                     break;
@@ -143,13 +223,13 @@ if (!class_exists('ZtNewsSourceAbstract'))
                     break;
             }
             $query = ' SELECT a.*, cc.title as cat_title,' .
-                    ' CASE WHEN CHAR_LENGTH(a.alias) THEN CONCAT_WS(":", a.id, a.alias) ELSE a.id END as slug,' .
-                    ' CASE WHEN CHAR_LENGTH(cc.alias) THEN CONCAT_WS(":", cc.id, cc.alias) ELSE cc.id END as catslug' .
-                    ' FROM ' . $this->_table_items . ' AS a' .
-                    ' INNER JOIN ' . $this->_table_categories . ' AS cc ON cc.id = a.catid' .
-                    ' WHERE ' . $where . '' .
-                    ' AND cc.published = 1' .
-                    ' ORDER BY ' . $orderby;
+                ' CASE WHEN CHAR_LENGTH(a.alias) THEN CONCAT_WS(":", a.id, a.alias) ELSE a.id END as slug,' .
+                ' CASE WHEN CHAR_LENGTH(cc.alias) THEN CONCAT_WS(":", cc.id, cc.alias) ELSE cc.id END as catslug' .
+                ' FROM ' . $this->_table_items . ' AS a' .
+                ' INNER JOIN ' . $this->_table_categories . ' AS cc ON cc.id = a.catid' .
+                ' WHERE ' . $where . '' .
+                ' AND cc.published = 1' .
+                ' ORDER BY ' . $orderby;
 
 
             $db->setQuery($query);
@@ -158,15 +238,14 @@ if (!class_exists('ZtNewsSourceAbstract'))
         }
 
         /**
-         * 
+         *
          * @param array $list
          * @return array
          */
         protected function _prepareItems($list)
         {
             $items = array();
-            foreach ($list as $index => $item)
-            {
+            foreach ($list as $index => $item) {
                 $item = $this->_prepareItem($item);
                 $item = $this->_prepareItemImages($item);
                 $items[$index] = $item;

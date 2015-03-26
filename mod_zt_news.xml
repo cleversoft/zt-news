@@ -35,7 +35,7 @@
                 </field>
                 <!-- Source categories selector -->
                 <field name="content_cids" type="category" extension="com_content" multiple="true" size="10" label="CATEGORY" description="CATEGORY_DESC" />
-                <field name="k2_catids" type="k2categories" multiple="true" size="10" label="K2_CATEGORY" description="K2_CATEGORY_DESC" />
+                <field name="k2_cids" type="k2categories" multiple="true" size="10" label="K2_CATEGORY" description="K2_CATEGORY_DESC" />
                 
                 <field name="type_image" type="list" default="upload" label="Default Image" description="Default image for thumbnail.">
                     <option value="upload">Image Upload</option>
