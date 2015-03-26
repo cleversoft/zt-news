@@ -17,6 +17,7 @@ defined('_JEXEC') or die('Restricted access');
 require_once __DIR__ . '/helper.php';
 
 JLoader::discover('ZtNews', __DIR__ . '/libraries');
+JLoader::discover('ZtNewsSource', __DIR__ . '/libraries/source');
 JLoader::discover('ZtNewsHelper', __DIR__ . '/helper');
 
 

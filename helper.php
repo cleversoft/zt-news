@@ -45,6 +45,33 @@ class modZTNewsHelper
         }
     }
 
+    /**
+     * Get source object class
+     * @staticvar className $sources
+     * @param type $params
+     * @return \className
+     */
+    public static function getSource($params)
+    {
+        static $sources;
+        if (!isset($sources[$params->get('source')]))
+        {
+            $className = 'ZtNewsSource' . ucfirst($params->get('source'));
+            $sources[$params->get('source')] = new $className($params);
+        }
+        return $sources[$params->get('source')];
+    }
+
+    /**
+     * Get all items
+     * @param type $params
+     * @return type
+     */
+    public static function getItems($params)
+    {
+        return self::getSource($params)->getItems();
+    }
+
     public function getItemsByCatId($cid)
     {
         //Check source
@@ -468,7 +495,7 @@ class modZTNewsHelper
         return true;
     }
 
-    public function checkImage($file)
+    public static function checkImage($file)
     {
         preg_match("/\<img.+?src=\"(.+?)\".+?\/>/", $file, $matches);
 
@@ -546,11 +573,13 @@ class modZTNewsHelper
         return $results;
     }
 
-    public function getCategory($catids, $source) {
+    public function getCategory($catids, $source)
+    {
         $category = array();
         $category[] = '<div class="title_category">';
-                            
-        if(isset($catids)) {
+
+        if (isset($catids))
+        {
             if ($source == 'category')
             {
                 $catdetail = $this->getCategoryDetail($catids);
@@ -562,24 +591,30 @@ class modZTNewsHelper
                 $link = urldecode(JRoute::_(K2HelperRoute::getCategoryRoute($catdetail->id . ':' . urlencode($catdetail->alias))));
                 $title = $catdetail->name;
             }
-          
-            $category[] = '<a href="'.$link.'" alt="'.$title.'">'.$title.'</a>';
+
+            $category[] = '<a href="' . $link . '" alt="' . $title . '">' . $title . '</a>';
         }
         $category[] = '</div>';
 
-        return implode($category); 
+        return implode($category);
     }
 
-    public function getProducts(array $listCategories){
-        $products = array(); 
-        foreach ($listCategories as $category) {
-            if(isset($category[0])) {
+    public function getProducts(array $listCategories)
+    {
+        $products = array();
+        foreach ($listCategories as $category)
+        {
+            if (isset($category[0]))
+            {
                 $listItems = $this->getItemsByCatId($category[0]);
-                if(count($listItems) > 0) {
-                    foreach ($listItems as $item) {
+                if (count($listItems) > 0)
+                {
+                    foreach ($listItems as $item)
+                    {
                         $key = $item->alias;
-                        while(isset($products[$key])) {
-                            $key = $key.'1';
+                        while (isset($products[$key]))
+                        {
+                            $key = $key . '1';
                         }
                         $products[$key][] = $item;
                         $products[$key][] = $category[0];
@@ -591,7 +626,8 @@ class modZTNewsHelper
         return $products;
     }
 
-    public function getCategoryLink($catid, $source) {
+    public function getCategoryLink($catid, $source)
+    {
         if ($source == 'category')
         {
             $catdetail = $this->getCategoryDetail($catid);
@@ -603,8 +639,9 @@ class modZTNewsHelper
             $link = urldecode(JRoute::_(K2HelperRoute::getCategoryRoute($catdetail->id . ':' . urlencode($catdetail->alias))));
             $title = $catdetail->name;
         }
-        return '<a href="'.$link.'" alt="'.$title.'">'.$title.'</a>';
+        return '<a href="' . $link . '" alt="' . $title . '">' . $title . '</a>';
     }
+
 }
 
 ?>
