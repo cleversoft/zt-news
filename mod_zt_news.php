@@ -13,12 +13,12 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
-
+error_reporting(E_ALL);
 require_once(dirname(__FILE__) . '/bootstrap.php');
 global $moduleId;
 $moduleId = $module->id;
-$categories = (array) $params->get('catid', array());
-$k2categories = (array) $params->get('k2_catid', array());
+$categories = (array) $params->get('content_cids', array());
+$k2categories = (array) $params->get('k2_cids', array());
 $templateType = $params->get('template_type', 'default');
 $ztNews = new modZTNewsHelper($params);
 
