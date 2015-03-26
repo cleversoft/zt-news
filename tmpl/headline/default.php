@@ -11,6 +11,7 @@
  * @copyright   Copyright (c) 2015 ZooTemplate
  * @license     GPL v2
  */
+error_reporting(E_ALL);
 defined('_JEXEC') or die('Restricted access');
 require __DIR__ . '/init.php';
 ?>
