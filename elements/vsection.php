@@ -46,7 +46,7 @@ class JFormFieldVsection extends JFormField
         $db->setQuery($sql);
         $data = $db->loadResult();
         $params = new JRegistry($data);
-        $source = $params->get('source', 'category');
+        $source = $params->get('source', 'content');
         $layout = $params->get('template_type');
         ?>	
         <script type="text/javascript">
@@ -85,7 +85,7 @@ class JFormFieldVsection extends JFormField
             function sourceChange(val) {
         <?php if (ZT_JNVersion == '25')
         { ?>
-                    if (val == 'category') {
+                    if (val == 'content') {
                         $('jform_params_k2_cids').getParent().setStyle('display', 'none');
                         $('jform_params_content_cids').getParent().setStyle('display', 'block');
                         $('jform_params_type_image').getParent().setStyle('display', 'none');
@@ -101,7 +101,7 @@ class JFormFieldVsection extends JFormField
                     }
         <?php } else
         { ?>
-                    if (val == 'category') {
+                    if (val == 'content') {
                         jQuery('#jform_params_k2_cids').parents('.control-group').hide();
                         jQuery('#jform_params_content_cids').parents('.control-group').show();
                         jQuery('#jform_params_type_image').parents('.control-group').hide();
