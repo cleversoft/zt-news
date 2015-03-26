@@ -14,13 +14,16 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-require_once(dirname(__FILE__) . '/helper.php');
+require_once(dirname(__FILE__) . '/bootstrap.php');
 global $moduleId;
 $moduleId = $module->id;
 $categories = (array) $params->get('catid', array());
 $k2categories = (array) $params->get('k2_catid', array());
 $templateType = $params->get('template_type', 'default');
 $ztNews = new modZTNewsHelper($params);
+
+$articles = modZTNewsHelper::getItems($params);
+
 if (count($categories) || count($k2categories))
 {
     $listCategories = $ztNews->getAllCategories();
