@@ -35,64 +35,45 @@ $breakpoint = $params->get('breakpoint');
         <div id="zt-news-scroll-<?php echo $moduleId; ?>" class="zt-category">
             <?php $cats = array(); ?>
             <?php
-            for ($i = 0; $i < count($listCategories); $i++)
-            {
-                ?>
+                for ($i = 0; $i < count($listCategories); $i++):
+            ?>
                 <?php $cats[$i] = $listCategories[$i][0]; ?>
-            <?php } ?>
+            <?php endfor; ?>
             <?php
             $listItems = $ztNews->getItemsByCatId($cats);
             for ($j = 0; $j < count($listItems); $j++) :
                 ?>
                 <div class="item zt-article-item">
-                    <?php
-                    if (@$listItems[$j]->thumb != '' && $params->get('is_image', 1) == 1)
-                    {
-                        ?>
+                    <?php if (@$listItems[$j]->thumb != '' && $params->get('is_image', 1) == 1): ?>
                         <?php $thumbUrl = modZTNewsHelper::getThumbnailLink($listItems[$j]->thumb, $thumbmainwidth, $thumbmainheight); ?>
                         <a href="<?php echo $listItems[$j]->link; ?>" title="<?php echo $listItems[$j]->title; ?>">
                             <img alt="<?php echo $listItems[$j]->title; ?>"
                                  title="<?php echo $listItems[$j]->title; ?>" class="lazyOwl" data-src="<?php echo $thumbUrl; ?>"/>
                         </a>
-                    <?php } ?>
-                    <?php
-                    if ($showtitle)
-                    {
-                        ?>
+                    <?php endif; ?>
+                    <?php if ($showtitle): ?>
                         <h3>
                             <a href="<?php echo $listItems[$j]->link; ?>" title="<?php echo $listItems[$j]->title; ?>">
                                 <?php echo $listItems[$j]->title; ?>
                             </a>
                         </h3>
-                    <?php } ?>
-                    <?php
-                    if ($created)
-                    {
-                        ?>
+                    <?php endif; ?>
+                    <?php if ($created): ?>
                         <span class="created"><?php echo JHTML::_('date', $listItems[$j]->created, JText::_('DATE_FORMAT_LC3')); ?> - <?php
                             echo $listItems[$j]->hits;
                             echo JText::_(' Views');
                             ?></span>
-                    <?php } ?>
-                    <?php
-                    if ($showintro)
-                    {
-                        ?>
-                        <?php
-                        if ($listItems[$j]->introtext != false)
-                        {
-                            ?>
+                    <?php endif; ?>
+                    <?php if ($showintro): ?>
+                        <?php  if ($listItems[$j]->introtext != false): ?>
                             <p class="zt-introtext"><?php echo ($listItems[$j]->introtext); ?></p>
-                        <?php } ?>
-                    <?php } ?>
-                    <?php
-                    if ($params->get('show_readmore') == 1)
-                    {
-                        ?>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                    <?php if ($params->get('show_readmore') == 1): ?>
                         <p class="zt-news-readmore">
                             <a class="readmore" href="<?php echo $listItems[$j]->link; ?>"><?php echo JTEXT::_('READ MORE'); ?></a>
                         </p>
-                    <?php } ?>
+                    <?php endif; ?>
                 </div>
             <?php endfor; ?>
         </div>
