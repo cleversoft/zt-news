@@ -89,15 +89,15 @@ class JFormFieldVsection extends JFormField
                         $('jform_params_k2_cids').getParent().setStyle('display', 'none');
                         $('jform_params_content_cids').getParent().setStyle('display', 'block');
                         $('jform_params_type_image').getParent().setStyle('display', 'none');
-                        $('jform_params_rderingk2').getParent().setStyle('display', 'none');
-                        $('jform_params_rderingkcontent').getParent().setStyle('display', 'block');
+                        $('jform_params_orderingk2').getParent().setStyle('display', 'none');
+                        $('jform_params_orderingcontent').getParent().setStyle('display', 'block');
                     }
                     else {
                         $('jform_params_k2_cids').getParent().setStyle('display', 'block');
                         $('jform_params_content_cids').getParent().setStyle('display', 'none');
                         $('jform_params_type_image').getParent().setStyle('display', 'block');
-                        $('jform_params_rderingk2').getParent().setStyle('display', 'block');
-                        $('jform_params_rderingkcontent').getParent().setStyle('display', 'none');
+                        $('jform_params_orderingk2').getParent().setStyle('display', 'block');
+                        $('jform_params_orderingcontent').getParent().setStyle('display', 'none');
                     }
         <?php } else
         { ?>
@@ -105,15 +105,15 @@ class JFormFieldVsection extends JFormField
                         jQuery('#jform_params_k2_cids').parents('.control-group').hide();
                         jQuery('#jform_params_content_cids').parents('.control-group').show();
                         jQuery('#jform_params_type_image').parents('.control-group').hide();
-                        jQuery('#jform_params_rderingk2').parents('.control-group').hide();
-                        jQuery('#jform_params_rderingkcontent').parents('.control-group').show();
+                        jQuery('#jform_params_orderingk2').parents('.control-group').hide();
+                        jQuery('#jform_params_rderingcontent').parents('.control-group').show();
                     }
                     else {
                         jQuery('#jform_params_k2_cids').parents('.control-group').show();
                         jQuery('#jform_params_content_cids').parents('.control-group').hide();
                         jQuery('#jform_params_type_image').parents('.control-group').show();
-                        jQuery('#jform_params_rderingk2').parents('.control-group').show();
-                        jQuery('#jform_params_rderingkcontent').parents('.control-group').hide();
+                        jQuery('#jform_params_orderingk2').parents('.control-group').show();
+                        jQuery('#jform_params_orderingcontent').parents('.control-group').hide();
                     }
         <?php } ?>
             }

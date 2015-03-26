@@ -89,77 +89,6 @@ if (!class_exists('ZtNewsSourceAbstract')) {
         }
 
         /**
-         * Recursive to get all children categories of joomla article
-         */
-        public function getContentCategoryChilds($catid)
-        {
-            $cateArray = array();
-
-            $catid = (int)$catid;
-            $db = JFactory::getDBO();
-            $query = "SELECT * FROM #__categories WHERE parent_id=" . $catid . " AND published=1 ORDER BY id";
-
-            $db->setQuery($query);
-            $rows = $db->loadObjectList();
-
-            foreach ($rows as $row) {
-                array_push($cateArray, $row->id);
-                if ($this->hasContentCategoryChilds($row->id)) {
-                    $this->getContentCategoryChilds($row->id);
-                }
-            }
-            return $cateArray;
-        }
-
-        /**
-         * Recursive to get all children categories of k2 component
-         */
-        protected function getK2CategoryChilds($catid)
-        {
-            $cateArray = array();
-
-            $catid = (int)$catid;
-            $db = JFactory::getDBO();
-            $query = "SELECT * FROM #__k2_categories WHERE parent=" . $catid . " AND published=1 ORDER BY id";
-            $db->setQuery($query);
-            $rows = $db->loadObjectList();
-            foreach ($rows as $row) {
-                array_push($cateArray, $row->id);
-                if ($this->hasK2CategoryChilds($row->id)) {
-                    $this->getK2CategoryChilds($row->id);
-                }
-            }
-            return $cateArray;
-        }
-
-        protected function hasK2CategoryChilds($id)
-        {
-            $id = (int)$id;
-            $db = JFactory::getDBO();
-            $query = "SELECT * FROM #__k2_categories WHERE parent={$id} AND published=1";
-            $db->setQuery($query);
-            $rows = $db->loadObjectList();
-            if (count($rows)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-
-        protected function hasContentCategoryChilds($id)
-        {
-            $db = JFactory::getDBO();
-            $query = "SELECT * FROM #__categories WHERE parent_id={$id} AND published=1";
-            $db->setQuery($query);
-            $rows = $db->loadObjectList();
-            if (count($rows)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-
-        /**
          * Get items in categories
          * @return type
          */
@@ -175,7 +104,8 @@ if (!class_exists('ZtNewsSourceAbstract')) {
             $userId = (int)$user->get('id');
 
             // Base WHERE
-            $where = 'a.state = 1'
+            $stateCondition = ($this->_source == 'content') ? 'a.state = 1' : 'a.published = 1';
+            $where = $stateCondition
                 . ' AND(a.publish_up = ' . $db->Quote($nullDate) . ' OR a.publish_up <= ' . $db->Quote($now) . ')'
                 . ' AND(a.publish_down = ' . $db->Quote($nullDate) . ' OR a.publish_down >= ' . $db->Quote($now) . ')';
             // Filter by categories
@@ -190,7 +120,8 @@ if (!class_exists('ZtNewsSourceAbstract')) {
                     break;
             }
             // Ordering
-            switch ($this->_params->get('rderingkcontent')) {
+            switch ($this->_source)
+            {
                 case 'date':
                     $orderby = 'a.created ASC';
                     break;
@@ -215,6 +146,12 @@ if (!class_exists('ZtNewsSourceAbstract')) {
                 case 'rand':
                     $orderby = 'RAND()';
                     break;
+                case 'best':
+                    $orderby = 'rating DESC';
+                    break;
+                case 'comments':
+                    $orderby = 'numOfComments DESC';
+                    break;
                 case 'modified':
                     $orderby = 'a.modified DESC';
                     break;
@@ -222,7 +159,8 @@ if (!class_exists('ZtNewsSourceAbstract')) {
                     $orderby = 'a.id DESC';
                     break;
             }
-            $query = ' SELECT a.*, cc.title as cat_title,' .
+            $catTitleQuery = ($this->_source == 'content') ? 'cc.title' : 'cc.name';
+            $query = ' SELECT a.*, '.$catTitleQuery.' as cat_title,' .
                 ' CASE WHEN CHAR_LENGTH(a.alias) THEN CONCAT_WS(":", a.id, a.alias) ELSE a.id END as slug,' .
                 ' CASE WHEN CHAR_LENGTH(cc.alias) THEN CONCAT_WS(":", cc.id, cc.alias) ELSE cc.id END as catslug' .
                 ' FROM ' . $this->_table_items . ' AS a' .

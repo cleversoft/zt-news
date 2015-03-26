@@ -65,6 +65,42 @@ if (!class_exists('ZtNewsSourceContent'))
             return $item;
         }
 
+        /**
+         * Recursive to get all children categories of joomla article
+         */
+        public function getContentCategoryChilds($catid)
+        {
+            $cateArray = array();
+
+            $catid = (int)$catid;
+            $db = JFactory::getDBO();
+            $query = "SELECT * FROM #__categories WHERE parent_id=" . $catid . " AND published=1 ORDER BY id";
+
+            $db->setQuery($query);
+            $rows = $db->loadObjectList();
+
+            foreach ($rows as $row) {
+                array_push($cateArray, $row->id);
+                if ($this->hasContentCategoryChilds($row->id)) {
+                    $this->getContentCategoryChilds($row->id);
+                }
+            }
+            return $cateArray;
+        }
+
+        protected function hasContentCategoryChilds($id)
+        {
+            $db = JFactory::getDBO();
+            $query = "SELECT * FROM #__categories WHERE parent_id={$id} AND published=1";
+            $db->setQuery($query);
+            $rows = $db->loadObjectList();
+            if (count($rows)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
     }
 
 }

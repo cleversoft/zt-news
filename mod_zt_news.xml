@@ -41,7 +41,7 @@
                     <option value="upload">Image Upload</option>
                     <option value="content">Image in Content</option>
                 </field>
-                <field name="rderingk2" type="list" default="" label="Ordering" description="">
+                <field name="orderingk2" type="list" default="" label="Ordering" description="">
                     <option value="">Default</option>
                     <option value="date">Oldest first (by date created)</option>
                     <option value="rdate">Most recent first (by date created)</option>
@@ -56,7 +56,7 @@
                     <option value="modified">Latest modified</option>
                     <option value="rand">Random ordering</option>
                 </field>
-                <field name="rderingkcontent" type="list" default="" label="Ordering" description="">
+                <field name="orderingcontent" type="list" default="" label="Ordering" description="">
                     <option value="">Default</option>
                     <option value="date">Oldest first (by date created)</option>
                     <option value="rdate">Most recent first (by date created)</option>
