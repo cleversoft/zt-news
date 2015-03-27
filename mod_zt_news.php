@@ -32,6 +32,7 @@ $thumbListHeight = $params->get('thumb_list_height');
 $showTitleCategory = $params->get('showtitlecat', 1);
 $showCreatedOnList = $params->get('show_date_list', 1);
 $showTitleOnList = $params->get('show_title_list', 1);
+$isImage = $params->get('is_image', 1);
 $showImageOnList = $params->get('is_image_list', 1);
 $showSubCategory = $params->get('is_subcat', 1);
 $breakpoint = $params->get('breakpoint');
