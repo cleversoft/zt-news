@@ -13,7 +13,7 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
-
+jimport( 'joomla.application.module.helper' );
 // Rerequire bootstrap file for init
 require_once(dirname(__FILE__) . '/bootstrap.php');
 // Variables
@@ -39,8 +39,11 @@ $breakpoint = $params->get('breakpoint');
 // Get items
 $items = modZTNewsHelper::getItems($params);
 
+
 // Get Category
 $listCategories = modZTNewsHelper::getCategories($params);
+
+
 
 // Get column and width
 $columns = ($params->get('columns', 2) > count($listCategories)) ? count($listCategories) : $params->get('columns', 2);
@@ -65,6 +68,7 @@ switch ($columns)
         $width = '49';
 }
 
+
 // Render
 $templateType = $params->get('template_type');
-require(JModuleHelper::getLayoutPath('mod_zt_news', $templateType . '/default'));
+require (JPATH_ROOT . '/modules/mod_zt_news/tmpl/' . $templateType . '/default.php');
