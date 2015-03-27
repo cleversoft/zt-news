@@ -21,6 +21,10 @@ $doc->addScript(JUri::root() . 'modules/mod_zt_news/assets/js/owl_carousel/owl.c
 $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/owl_carousel/owl.carousel.css');
 $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/owl_carousel/owl.theme.css');
 $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/owl_carousel/owl.transitions.css');
+
+// Get items
+$items = modZTNewsHelper::getItems($params);
+
 ?>
 <div class="zt_news_wrap">
     <div class="zt-newsiv-frame-cat">

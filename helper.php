@@ -45,9 +45,9 @@ if (!class_exists('modZTNewsHelper'))
          * @param type $params
          * @return type
          */
-        public static function getItems($params)
+        public static function getItems($params, $groupByCategories = false)
         {
-            return self::getSource($params)->getItems();
+            return self::getSource($params)->getItems($groupByCategories);
         }
 
         /**

@@ -37,39 +37,6 @@ $showImageOnList = $params->get('is_image_list', 1);
 $showSubCategory = $params->get('is_subcat', 1);
 $breakpoint = $params->get('breakpoint');
 
-// Get items
-$items = modZTNewsHelper::getItems($params);
-
-
-// Get Category
-$listCategories = modZTNewsHelper::getCategories($params);
-
-
-
-// Get column and width
-$columns = ($params->get('columns', 2) > count($listCategories)) ? count($listCategories) : $params->get('columns', 2);
-switch ($columns)
-{
-    case '1':
-        $width = '100';
-        break;
-    case '2':
-        $width = '49';
-        break;
-    case '3':
-        $width = '32.9';
-        break;
-    case '4':
-        $width = '24.5';
-        break;
-    case '5':
-        $width = '19.5';
-        break;
-    default:
-        $width = '49';
-}
-
-
 // Render
 $templateType = $params->get('template_type');
 require (JPATH_ROOT . '/modules/mod_zt_news/tmpl/' . $templateType . '/default.php');
