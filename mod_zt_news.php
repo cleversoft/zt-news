@@ -66,4 +66,5 @@ switch ($columns)
 }
 
 // Render
-require(JModuleHelper::getLayoutPath('mod_zt_news', 'headline' . '/default'));
+$templateType = $params->get('template_type');
+require(JModuleHelper::getLayoutPath('mod_zt_news', $templateType . '/default'));
