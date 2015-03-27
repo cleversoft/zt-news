@@ -85,13 +85,23 @@ if (!class_exists('ZtNewsSourceAbstract'))
          * Get items in categories
          * @return array
          */
-        public function getItems()
+        public function getItems($groupByCategories = false)
         {
             $db = JFactory::getDbo();
             $query = $this->_buildQuery();
             $db->setQuery($query);
             $list = $db->loadObjectList();
-            return $this->_prepareItems($list);
+            $list = $this->_prepareItems($list);
+            // Group items by categories
+            if ($groupByCategories)
+            {
+                foreach ($list as $item)
+                {
+                    $newList[$item->catid][] = $item;
+                }
+                $list = $newList;
+            }
+            return $list;
         }
 
         /**
@@ -118,7 +128,7 @@ if (!class_exists('ZtNewsSourceAbstract'))
          */
         protected function _buildWhere()
         {
-           
+            
         }
 
         /**
