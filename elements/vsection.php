@@ -125,7 +125,7 @@ class JFormFieldVsection extends JFormField
                         $('jform_params_showtitlecat').getParent().setStyle('display', 'none');
                         $('jform_params_is_subcat').getParent().setStyle('display', 'none');
                         $('jform_params_is_all').getParent().setStyle('display', 'none');
-                        $('jform_params_no_link_items').getParent().setStyle('display', 'none');
+                        $('jform_params_number_link_items').getParent().setStyle('display', 'none');
                         $('jform_params_columns').getParent().setStyle('display', 'none');
                         $('jform_params_thumb_list_width').getParent().setStyle('display', 'none');
                         $('jform_params_thumb_list_height').getParent().setStyle('display', 'none');
@@ -139,7 +139,7 @@ class JFormFieldVsection extends JFormField
                         jQuery('#jform_params_showtitlecat').parents('.control-group').hide();
                         jQuery('#jform_params_is_subcat').parents('.control-group').hide();
                         jQuery('#jform_params_is_all').parents('.control-group').hide();
-                        jQuery('#jform_params_no_link_items').parents('.control-group').hide();
+                        jQuery('#jform_params_number_link_items').parents('.control-group').hide();
                         jQuery('#jform_params_columns').parents('.control-group').hide();
                         jQuery('#jform_params_thumb_list_width').parents('.control-group').hide();
                         jQuery('#jform_params_thumb_list_height').parents('.control-group').hide();
@@ -155,7 +155,7 @@ class JFormFieldVsection extends JFormField
                         $('jform_params_showtitlecat').getParent().setStyle('display', 'block');
                         $('jform_params_is_subcat').getParent().setStyle('display', 'block');
                         $('jform_params_is_all').getParent().setStyle('display', 'block');
-                        $('jform_params_no_link_items').getParent().setStyle('display', 'block');
+                        $('jform_params_number_link_items').getParent().setStyle('display', 'block');
                         $('jform_params_columns').getParent().setStyle('display', 'block');
                         $('jform_params_thumb_list_width').getParent().setStyle('display', 'block');
                         $('jform_params_thumb_list_height').getParent().setStyle('display', 'block');
@@ -169,7 +169,7 @@ class JFormFieldVsection extends JFormField
                         jQuery('#jform_params_showtitlecat').parents('.control-group').show();
                         jQuery('#jform_params_is_subcat').parents('.control-group').show();
                         jQuery('#jform_params_is_all').parents('.control-group').show();
-                        jQuery('#jform_params_no_link_items').parents('.control-group').show();
+                        jQuery('#jform_params_number_link_items').parents('.control-group').show();
                         jQuery('#jform_params_columns').parents('.control-group').show();
                         jQuery('#jform_params_thumb_list_width').parents('.control-group').show();
                         jQuery('#jform_params_thumb_list_height').parents('.control-group').show();

@@ -50,6 +50,16 @@ if (!class_exists('modZTNewsHelper'))
             return self::getSource($params)->getItems();
         }
 
+        /**
+         * Get all Category
+         * @param type $params
+         * @return type
+         */
+        public static function getCategories($params)
+        {
+            return self::getSource($params)->getCategories();
+        }
+
         public static function getThumbnailLink($src, $width, $height, $method = 'resize')
         {
             $src = JPATH_ROOT . '/' . $src;

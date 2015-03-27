@@ -14,7 +14,7 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-$totalItemsPerSlide = $params->get('no_intro_items', 1) + $params->get('no_link_items', 4);
+$totalItemsPerSlide = $numberIntroItems + $numberLinkItems;
 $index = 0;
 $count = 0;
 foreach ($items as $item)

@@ -13,13 +13,13 @@
  */
 defined('_JEXEC') or die('Restricted access');
 // Slice had items
-$listItems = array_slice($slide, $params->get('no_intro_items', 1));
+$listItems = array_slice($slide, $numberIntroItems);
 ?>
 <div class="zt-category headline">
     <div class="row">
         <?php $index = 0; ?>
         <?php foreach ($slide as $key => $item) : ?>         
-            <?php if ($index < $params->get('no_intro_items', 1)) : ?>
+            <?php if ($index < $numberIntroItems) : ?>
                 <div class="col-md-6 zt-item head">
                     <div class="link-category">
                         <div class="">
