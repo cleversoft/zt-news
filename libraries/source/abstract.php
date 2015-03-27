@@ -97,7 +97,11 @@ if (!class_exists('ZtNewsSourceAbstract'))
             {
                 foreach ($list as $item)
                 {
-                    $newList[$item->catid][] = $item;
+                    $newList[$item->catid]['items'] = $item;
+                    $category = new JObject();
+                    $category->title = $item->title;
+                    $category->link = $item->cat_link;
+                    $newList[$item->catid]['category'] = $category;
                 }
                 $list = $newList;
             }
