@@ -70,8 +70,8 @@
                     <option value="0">Hide</option>
                     <option value="1">Show</option>
                 </field>
-                <field name="no_intro_items" type="text" default="1" label="Number Of Main Items" description="Number Of Main Items" />
-                <field name="no_link_items" type="text" default="2" label="Number Of List Items" description="Number Of List Items" /> 
+                <field name="number_intro_items" type="text" default="1" label="Number Of Main Items" description="Number Of Main Items" />
+                <field name="number_link_items" type="text" default="2" label="Number Of List Items" description="Number Of List Items" />
                 <field name="columns" type="list" default="2" label="Number Of Column" description="Number Of Column">
                     <option value="1">1</option>
                     <option value="2">2</option>
