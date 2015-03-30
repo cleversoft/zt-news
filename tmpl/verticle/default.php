@@ -108,9 +108,9 @@ switch ($columns) {
                                 echo 'last-item';
                             endif;
                             ?>">
-                                <?php if (@$item->thumb != '' && $showImageOnList): ?>
+                                <?php if ($item->subThumb != '' && $showImageOnList): ?>
                                     <a class="linkimg" href="<?php echo $item->link; ?>">
-                                        <img src="<?php echo $item->thumb; ?>" alt="<?php echo $item->title; ?>"
+                                        <img src="<?php echo $item->subThumb; ?>" alt="<?php echo $item->title; ?>"
                                              title="<?php echo $item->title; ?>"/>
                                     </a>
                                 <?php endif; ?>
