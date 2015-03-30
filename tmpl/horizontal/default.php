@@ -55,7 +55,7 @@ $items = modZTNewsHelper::getItems($params);
                     <?php endif; ?>
                     <?php if ($showIntro): ?>
                         <?php if ($item->introtext != false): ?>
-                            <p class="zt-introtext"><?php echo($item->introtext); ?></p>
+                            <div class="zt-introtext"><?php echo($item->introtext); ?></div>
                         <?php endif; ?>
                     <?php endif; ?>
                     <?php if ($showReadmore == 1): ?>

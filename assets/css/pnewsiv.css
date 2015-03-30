@@ -30,7 +30,7 @@ h2.title{float: left; margin: 0;line-height: 40px;}
 .more_item{width: 100%; float: left; padding: 10px 0;} 
 .more_item.last-item{ background: 0; } 
 .more_item .linkimg {  margin: 0 10px 0 0; float: left;}
-.more_item img{  background: #ffffff; padding: 3px; border:1px solid #dcdcdc; height:48px;  float:left;}
+.more_item img{  background: #ffffff; padding: 3px; border:1px solid #dcdcdc; float:left;}
 .more_item_thumb{ float: left; margin: 0; width: 85%; }
 .more-item-datetime{margin: 0; color: #999999; float: left; font-size: 95%;  width: 100%; line-height: 100%;}
 .mainitem1 { width: 42%; float:left;}

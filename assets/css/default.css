@@ -40,11 +40,3 @@ h2.title{float: left; margin: 0;line-height: 40px;}
 /*
 Style 1
 */
-.zt-category .zt-article-item{
-	width: 38%;
-	float: left;
-}
-.zt-category .article-item{
-	width: 58%;
-	float: right;
-}

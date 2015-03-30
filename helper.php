@@ -86,7 +86,7 @@ if (!class_exists('modZTNewsHelper'))
                         $imager->$method($width, $height);
                     }
 
-                    if ($imager->saveToFile($cacheFile, null, $params->get('thumbnail_quality', 100)))
+                    if ($imager->saveToFile($cacheFile))
                     {
                         return str_replace(JPATH_ROOT, rtrim(JUri::root(), '/'), $cacheFile);
                     }

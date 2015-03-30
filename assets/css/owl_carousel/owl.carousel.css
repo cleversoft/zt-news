@@ -73,7 +73,7 @@
 Style 2
 */
 .owl-wrapper-outer .owl-item .item {
-	margin: 0 10px;
+	padding	: 0 10px;
 }
 .owl-item .item h3{
 	margin: 10px 0;

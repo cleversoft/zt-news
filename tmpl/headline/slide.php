@@ -59,7 +59,7 @@ $listItems = array_slice($slide, $numberIntroItems);
                         <?php endif; ?>
                         <!-- Intro text -->
                         <?php if ($showIntro && $item->introtext != false) : ?>
-                            <p class="zt-introtext"><?php echo ($item->introtext); ?></p>
+                            <div class="zt-introtext"><?php echo ($item->introtext); ?></div>
                         <?php endif; ?> 
                         <!-- Readmore -->
                         <?php if ($showReadmore) : ?>                     
@@ -111,7 +111,7 @@ $listItems = array_slice($slide, $numberIntroItems);
                             <?php endif; ?>
                             <!-- Intro text -->
                             <?php if ($showIntroList && $item->introtext != false) : ?>
-                                <p class="zt-introtext"><?php echo ($item->introtext); ?></p>
+                                <div class="zt-introtext"><?php echo substr($item->introtext, 0, 90); ?></div>
                             <?php endif; ?> 
                             <!-- Readmore -->
                             <?php if ($showReadmore) : ?>                     

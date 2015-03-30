@@ -100,3 +100,8 @@ p.zt-introtext {
 .link-category a {
   color: #fff;
 }
+
+.zt-introtext p{
+  margin: 0;
+}
+.carousel-indicators{display: none; }
