@@ -66,12 +66,12 @@ if (!class_exists('ZtNewsSourceContent'))
             {
                 if ($images->image_intro)
                 {
-                    $item->thumb = modZTNewsHelper::getThumbnailLink($images->image_intro, $this->_params->get('thumb_main_width'), $this->_params->get('thumb_main_height'));
-                    $item->subThumb = modZTNewsHelper::getThumbnailLink($images->image_intro, $this->_params->get('thumb_list_width'), $this->_params->get('thumb_list_height'));
+                    $item->thumb = modZTNewsHelper::getThumbnailLink($images->image_intro, $this->_params->get('thumb_main_width'), $this->_params->get('thumb_main_height'), $this->_params);
+                    $item->subThumb = modZTNewsHelper::getThumbnailLink($images->image_intro, $this->_params->get('thumb_list_width'), $this->_params->get('thumb_list_height'), $this->_params);
                 } else if ($images->image_fulltext)
                 {
-                    $item->thumb = modZTNewsHelper::getThumbnailLink($images->image_fulltext, $this->_params->get('thumb_main_width'), $this->_params->get('thumb_main_height'));
-                    $item->subThumb = modZTNewsHelper::getThumbnailLink($images->image_fulltext, $this->_params->get('thumb_list_width'), $this->_params->get('thumb_list_height'));
+                    $item->thumb = modZTNewsHelper::getThumbnailLink($images->image_fulltext, $this->_params->get('thumb_main_width'), $this->_params->get('thumb_main_height'), $this->_params);
+                    $item->subThumb = modZTNewsHelper::getThumbnailLink($images->image_fulltext, $this->_params->get('thumb_list_width'), $this->_params->get('thumb_list_height'), $this->_params);
                 }
             }
             return $item;
