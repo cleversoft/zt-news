@@ -71,7 +71,7 @@ if (!class_exists('modZTNewsHelper'))
                 require_once __DIR__ . '/libraries/imager/sizer.php';
 
                 $ext = JFile::getExt($src);
-                $cacheFile = JPATH_ROOT . '/cache/' . md5($src) . '.' . $ext;
+                $cacheFile = JPATH_ROOT . '/cache/' . $width . '_' . $height . '_' . md5($src) . '.' . $ext;
 
                 if (!JFile::exists($cacheFile))
                 {
