@@ -60,7 +60,7 @@ if (!class_exists('modZTNewsHelper'))
             return self::getSource($params)->getCategories();
         }
 
-        public static function getThumbnailLink($src, $width, $height, $method = 'resize')
+        public static function getThumbnailLink($src, $width, $height, $params)
         {
             $src = JPATH_ROOT . '/' . $src;
             if (JFile::exists($src))
@@ -71,13 +71,21 @@ if (!class_exists('modZTNewsHelper'))
                 require_once __DIR__ . '/libraries/imager/sizer.php';
 
                 $ext = JFile::getExt($src);
-                $cacheFile = JPATH_ROOT . '/cache/' . md5($src) . '.' . $ext;
+                $cacheFile = JPATH_ROOT . '/cache/' . $width . '_' . $height . '_' . md5($src) . '.' . $ext;
 
                 if (!JFile::exists($cacheFile))
                 {
                     $imager = new ZtNewsImager('gd');
                     $imager->loadFile($src);
-                    $imager->$method($width, $height);
+                    $method = $params->get('thumbnail_method', 'resize');
+                    if ($method == 'crop')
+                    {
+                        $imager->crop($width, $height, array('position' => $params->get('thumbnail_crop_position', 'center')));
+                    } else
+                    {
+                        $imager->$method($width, $height);
+                    }
+
                     if ($imager->saveToFile($cacheFile))
                     {
                         return str_replace(JPATH_ROOT, rtrim(JUri::root(), '/'), $cacheFile);
