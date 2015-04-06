@@ -18,11 +18,11 @@
         <folder>admin</folder>
         <folder>assets</folder>
         <folder>elements</folder>	
-        <folder>lib</folder>
+        <folder>libraries</folder>
         <folder>tmpl</folder>
     </files>
 	 
-    <languages>
+    <languages folder="language">
         <language tag="en-GB">languages/en-GB.mod_zt_news.ini</language>
         <language tag="en-GB">languages/en-GB.mod_zt_news.sys.ini</language>
     </languages>
