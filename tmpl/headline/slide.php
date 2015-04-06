@@ -21,24 +21,25 @@ $listItems = array_slice($slide, $numberIntroItems);
         <?php foreach ($slide as $key => $item) : ?>         
             <?php if ($index < $numberIntroItems) : ?>
                 <div class="col-md-6 zt-item head">
-                    <div class="link-category">
-                        <div class="">
+                    <?php if($showTitleCategory):?>
+                        <div class="link-category">
                             <a href="<?php echo $item->cat_link; ?>" alt="<?php echo $item->cat_title; ?>"><?php echo $item->cat_title; ?></a>
-                        </div>                        
-                    </div>
+                        </div> 
+                    <?php endif;?>
                     <!-- Head Thumbnail -->
-                    <div class="post-thumnail">
-                        <a href="<?php echo $item->link; ?>" title="">
-                            <?php if (!empty($item->thumb)) : ?>
-                                <img class="thumbnail" 
-                                     src="<?php echo $item->thumb; ?>" 
-                                     alt="<?php echo $item->title; ?>"
-                                     title="<?php echo $item->title; ?>"
-                                     />
-                                 <?php endif; ?>
-
-                        </a>
-                    </div>
+                    <?php if($isImage):?>
+                        <div class="post-thumnail">
+                            <a href="<?php echo $item->link; ?>" title="">
+                                <?php if (!empty($item->thumb)) : ?>
+                                    <img class="thumbnail" 
+                                         src="<?php echo $item->thumb; ?>" 
+                                         alt="<?php echo $item->title; ?>"
+                                         title="<?php echo $item->title; ?>"
+                                         />
+                                <?php endif; ?>
+                            </a>
+                        </div>
+                    <?php endif; ?>
                     <div class="zt-article_content">
                         <!-- Item title -->
                         <?php if ($showTitle) : ?>
@@ -77,21 +78,25 @@ $listItems = array_slice($slide, $numberIntroItems);
             <div class="row">
                 <?php foreach ($listItems as $key => $item) : ?>
                     <div class="col-md-6 zt-item">
-                        <div class="link-category">
-                            <a href="<?php echo $item->cat_link; ?>" alt="<?php echo $item->cat_title; ?>"><?php echo $item->cat_title; ?></a>
-                        </div> 
-                        <div class="post-thumnail">                      
-                            <a href="<?php echo $item->link; ?>" title="">
-                                <!-- List thumbnail -->
-                                <?php if (!empty($item->subThumb)) : ?>
-                                    <img class="thumbnail" 
-                                         src="<?php echo $item->subThumb; ?>" 
-                                         alt="<?php echo $item->title; ?>"
-                                         title="<?php echo $item->title; ?>"
-                                         />
+                        <?php if($showTitleCategory):?>
+                            <div class="link-category">
+                                <a href="<?php echo $item->cat_link; ?>" alt="<?php echo $item->cat_title; ?>"><?php echo $item->cat_title; ?></a>
+                            </div> 
+                        <?php endif;?>
+                        <?php if($showImageOnList):?>
+                            <div class="post-thumnail">                      
+                                <a href="<?php echo $item->link; ?>" title="">
+                                        <!-- List thumbnail -->
+                                    <?php if (!empty($item->subThumb)) : ?>
+                                        <img class="thumbnail" 
+                                             src="<?php echo $item->subThumb; ?>" 
+                                             alt="<?php echo $item->title; ?>"
+                                             title="<?php echo $item->title; ?>"
+                                             />
                                      <?php endif; ?>
-                            </a>
-                        </div>
+                                </a>
+                            </div>
+                        <?php endif;?>
                         <div class="zt-article_content">
                             <?php if ($showTitle) : ?>
                                 <h3>

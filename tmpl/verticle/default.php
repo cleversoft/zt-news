@@ -45,7 +45,7 @@ $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/styles.css');
                     <?php foreach ($slide as $key => $item) : ?>         
                         <?php if ($index < $numberIntroItems) : ?>
                             <div class="col-md-6 zt-item main">
-
+                                <?php if($isImage):?>
                                 <!-- Head Thumbnail -->
                                 <div class="post-thumnail">
                                     <a href="<?php echo $item->link; ?>" title="">
@@ -59,6 +59,7 @@ $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/styles.css');
 
                                     </a>
                                 </div>
+                            <?php endif;?>
                                 <div class="zt-article_content">
                                     <!-- Item title -->
                                     <?php if ($showTitle) : ?>
@@ -97,18 +98,20 @@ $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/styles.css');
                         <div class="row">
                             <?php foreach ($listItems as $key => $item) : ?>
                                 <div class="col-md-12 zt-item">
-                                    <div class="post-thumnail">                      
-                                        <a href="<?php echo $item->link; ?>" title="">
-                                            <!-- List thumbnail -->
-                                            <?php if (!empty($item->subThumb)) : ?>
-                                                <img class="thumbnail" 
-                                                     src="<?php echo $item->subThumb; ?>" 
-                                                     alt="<?php echo $item->title; ?>"
-                                                     title="<?php echo $item->title; ?>"
-                                                     />
-                                                 <?php endif; ?>
-                                        </a>
-                                    </div>
+                                     <?php if ($showImageOnList):?>
+                                        <div class="post-thumnail">                      
+                                            <a href="<?php echo $item->link; ?>" title="">
+                                                <!-- List thumbnail -->
+                                                <?php if (!empty($item->subThumb)) : ?>
+                                                    <img class="thumbnail" 
+                                                         src="<?php echo $item->subThumb; ?>" 
+                                                         alt="<?php echo $item->title; ?>"
+                                                         title="<?php echo $item->title; ?>"
+                                                         />
+                                                     <?php endif; ?>
+                                            </a>
+                                        </div>
+                                    <?php endif;?>
                                     <div class="zt-article_content">
                                         <?php if ($showTitle) : ?>
                                             <h3>

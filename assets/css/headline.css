@@ -1,4 +1,4 @@
-.zt-category.headline .zt-article_content {
+.zt-category.headline .post-thumnail ~ .zt-article_content {
   position: absolute;
   transition: all 0.5s ease-in-out 0s;
   padding: 15px 15px;

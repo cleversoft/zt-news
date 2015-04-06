@@ -45,20 +45,21 @@ $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/styles.css');
                     <?php foreach ($slide as $key => $item) : ?>         
                         <?php if ($index < $numberIntroItems) : ?>
                             <div class="col-md-12 zt-item main">
+                                <?php if($isImage):?>
+                                    <!-- Head Thumbnail -->
+                                    <div class="post-thumnail">
+                                        <a href="<?php echo $item->link; ?>" title="">
+                                            <?php if (!empty($item->thumb)) : ?>
+                                                <img class="thumbnail" 
+                                                     src="<?php echo $item->thumb; ?>" 
+                                                     alt="<?php echo $item->title; ?>"
+                                                     title="<?php echo $item->title; ?>"
+                                                     />
+                                                 <?php endif; ?>
 
-                                <!-- Head Thumbnail -->
-                                <div class="post-thumnail">
-                                    <a href="<?php echo $item->link; ?>" title="">
-                                        <?php if (!empty($item->thumb)) : ?>
-                                            <img class="thumbnail" 
-                                                 src="<?php echo $item->thumb; ?>" 
-                                                 alt="<?php echo $item->title; ?>"
-                                                 title="<?php echo $item->title; ?>"
-                                                 />
-                                             <?php endif; ?>
-
-                                    </a>
-                                </div>
+                                        </a>
+                                    </div>
+                                <?Php endif;?>
                                 <div class="zt-article_content">
                                     <!-- Item title -->
                                     <?php if ($showTitle) : ?>

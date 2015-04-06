@@ -39,4 +39,4 @@ $breakpoint = $params->get('breakpoint');
 
 // Render
 $templateType = $params->get('template_type');
-require (JPATH_ROOT . '/modules/mod_zt_news/tmpl/' . $templateType . '/default.php');
+require JModuleHelper::getLayoutPath('mod_zt_news', $params->get('template_type') . '/default');
