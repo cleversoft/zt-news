@@ -2,7 +2,7 @@
 <extension type="module" version="3.4" client="site" method="upgrade">
     <name>ZT News</name>
     <author>ZooTemplate</author>
-    <creationDate>Mar 23, 2015</creationDate>
+    <creationDate>Apr 06, 2015</creationDate>
     <copyright>ZooTemplate.Com</copyright>
     <authorEmail>support@ZooTemplate.com</authorEmail>
     <authorUrl>www.ZooTemplate.com</authorUrl>
@@ -23,8 +23,8 @@
     </files>
 	 
     <languages folder="language">
-        <language tag="en-GB">languages/en-GB.mod_zt_news.ini</language>
-        <language tag="en-GB">languages/en-GB.mod_zt_news.sys.ini</language>
+        <language tag="en-GB">languages/en-GB/en-GB.mod_zt_news.ini</language>
+        <language tag="en-GB">languages/en-GB/en-GB.mod_zt_news.sys.ini</language>
     </languages>
 	 
     <config addfieldpath="/modules/mod_zt_news/elements/">
