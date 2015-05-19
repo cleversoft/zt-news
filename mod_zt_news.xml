@@ -2,7 +2,7 @@
 <extension type="module" version="3.4" client="site" method="upgrade">
     <name>ZT News</name>
     <author>ZooTemplate</author>
-    <creationDate>Apr 06, 2015</creationDate>
+    <creationDate>May 19, 2015</creationDate>
     <copyright>ZooTemplate.Com</copyright>
     <authorEmail>support@ZooTemplate.com</authorEmail>
     <authorUrl>www.ZooTemplate.com</authorUrl>
