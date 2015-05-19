@@ -38,11 +38,11 @@ require __DIR__ . '/init.php';
             <div class="owl-buttons">
                 <a class="carousel-control control-left" href="#carousel-example-generic" role="button" data-slide="prev">
                     <i class="fa fa-angle-left"></i>
-                    <span class="sr-only"><?php echo JText::_('Previous');?></span>
+                    <span class="sr-only"><?php echo JText::_('MOD_ZTNEWS_PREVIOUS');?></span>
                 </a>
                 <a class="carousel-control control-right" href="#carousel-example-generic" role="button" data-slide="next">
                     <i class="fa fa-angle-right"></i>
-                    <span class="sr-only"><?php echo JText::_('Next');?></span>
+                    <span class="sr-only"><?php echo JText::_('MOD_ZTNEWS_NEXT');?></span>
                 </a>
             </div>
         </div>

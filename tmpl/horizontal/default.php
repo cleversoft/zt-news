@@ -50,7 +50,7 @@ $items = modZTNewsHelper::getItems($params);
                             class="created"><?php echo JHTML::_('date', $item->created, JText::_('DATE_FORMAT_LC3')); ?>
                             - <?php
                             echo $item->hits;
-                            echo JText::_('VIEWS');
+                            echo JText::_('MOD_ZTNEWS_VIEWS');
                             ?></span>
                     <?php endif; ?>
                     <?php if ($showIntro): ?>
@@ -61,7 +61,7 @@ $items = modZTNewsHelper::getItems($params);
                     <?php if ($showReadmore == 1): ?>
                         <p class="zt-news-readmore">
                             <a class="readmore"
-                               href="<?php echo $item->link; ?>"><?php echo JTEXT::_('READ_MORE'); ?></a>
+                               href="<?php echo $item->link; ?>"><?php echo JTEXT::_('MOD_ZTNEWS_READ_MORE'); ?></a>
                         </p>
                     <?php endif; ?>
                 </div>
