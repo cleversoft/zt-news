@@ -40,3 +40,10 @@ h2.title{float: left; margin: 0;line-height: 40px;}
 /*
 Style 1
 */
+
+.zt-introtext{
+	display: block;clear: both;
+}
+.zt-news-readmore{
+	clear: both;
+}

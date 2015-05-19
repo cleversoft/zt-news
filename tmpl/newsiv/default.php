@@ -15,7 +15,7 @@ defined('_JEXEC') or die('Restricted access');
 
 // Get items
 $items = modZTNewsHelper::getItems($params);
-
+$intro_legnth= $params->get('intro_length');
 $totalItemsPerSlide = $numberIntroItems + $numberLinkItems;
 $index = 0;
 $count = 0;
@@ -74,18 +74,18 @@ $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/styles.css');
                                         <span class="created">
                                             <?php echo JHTML::_('date', $item->created, JText::_('DATE_FORMAT_LC3')); ?> - <?php
                                             echo $item->hits;
-                                            echo JText::_(' Views');
+                                            echo JText::_('VIEWS');
                                             ?>
                                         </span>
                                     <?php endif; ?>
                                     <!-- Intro text -->
                                     <?php if ($showIntro && $item->introtext != false) : ?>
-                                        <div class="zt-introtext"><?php echo ($item->introtext); ?></div>
+                                        <div class="zt-introtext"><?php echo substr($item->introtext, 0, $intro_legnth); ?></div>
                                     <?php endif; ?> 
                                     <!-- Readmore -->
                                     <?php if ($showReadmore) : ?>                     
                                         <p class="zt-news-readmore">
-                                            <a class="readmore" href="<?php echo $item->link; ?>"><?php echo JTEXT::_('READ MORE'); ?></a>
+                                            <a class="readmore" href="<?php echo $item->link; ?>"><?php echo JTEXT::_('READ_MORE'); ?></a>
                                         </p>
                                     <?php endif; ?>
                                 </div>
@@ -123,18 +123,18 @@ $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/styles.css');
                                             <span class="created">
                                                 <?php echo JHTML::_('date', $item->created, JText::_('DATE_FORMAT_LC3')); ?> - <?php
                                                 echo $item->hits;
-                                                echo JText::_(' Views');
+                                                echo JText::_('VIEWS');
                                                 ?>
                                             </span>
                                         <?php endif; ?>
                                         <!-- Intro text -->
                                         <?php if ($showIntroList && $item->introtext != false) : ?>
-                                            <div class="zt-introtext"><?php echo substr($item->introtext, 0, 90); ?></div>
+                                            <div class="zt-introtext"><?php echo substr($item->introtext, 0, $intro_legnth); ?></div>
                                         <?php endif; ?> 
                                         <!-- Readmore -->
                                         <?php if ($showReadmore) : ?>                     
                                             <p class="zt-news-readmore">
-                                                <a class="readmore" href="<?php echo $item->link; ?>"><?php echo JTEXT::_('READ MORE'); ?></a>
+                                                <a class="readmore" href="<?php echo $item->link; ?>"><?php echo JTEXT::_('READ_MORE'); ?></a>
                                             </p>
                                         <?php endif; ?>
                                     </div>

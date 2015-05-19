@@ -14,6 +14,7 @@
 defined('_JEXEC') or die('Restricted access');
 // Slice had items
 $listItems = array_slice($slide, $numberIntroItems);
+$intro_legnth= $params->get('intro_length');
 ?>
 <div class="zt-category headline">
     <div class="row">
@@ -60,12 +61,12 @@ $listItems = array_slice($slide, $numberIntroItems);
                         <?php endif; ?>
                         <!-- Intro text -->
                         <?php if ($showIntro && $item->introtext != false) : ?>
-                            <div class="zt-introtext"><?php echo ($item->introtext); ?></div>
+                            <div class="zt-introtext"><?php echo substr($item->introtext, 0, $intro_legnth); ?></div>
                         <?php endif; ?> 
                         <!-- Readmore -->
                         <?php if ($showReadmore) : ?>                     
                             <p class="zt-news-readmore">
-                                <a class="readmore" href="<?php echo $item->link; ?>"><?php echo JTEXT::_('READ MORE'); ?></a>
+                                <a class="readmore" href="<?php echo $item->link; ?>"><?php echo JTEXT::_('READ_MORE'); ?></a>
                             </p>
                         <?php endif; ?>
                     </div>
@@ -110,18 +111,18 @@ $listItems = array_slice($slide, $numberIntroItems);
                                 <span class="created">
                                     <?php echo JHTML::_('date', $item->created, JText::_('DATE_FORMAT_LC3')); ?> - <?php
                                     echo $item->hits;
-                                    echo JText::_(' Views');
+                                    echo JText::_('Views');
                                     ?>
                                 </span>
                             <?php endif; ?>
                             <!-- Intro text -->
                             <?php if ($showIntroList && $item->introtext != false) : ?>
-                                <div class="zt-introtext"><?php echo substr($item->introtext, 0, 90); ?></div>
+                                <div class="zt-introtext"><?php echo substr($item->introtext, 0, $intro_legnth); ?></div>
                             <?php endif; ?> 
                             <!-- Readmore -->
                             <?php if ($showReadmore) : ?>                     
                                 <p class="zt-news-readmore">
-                                    <a class="readmore" href="<?php echo $item->link; ?>"><?php echo JTEXT::_('READ MORE'); ?></a>
+                                    <a class="readmore" href="<?php echo $item->link; ?>"><?php echo JTEXT::_('READ_MORE'); ?></a>
                                 </p>
                             <?php endif; ?>
                         </div>
