@@ -31,13 +31,8 @@ if (!class_exists('modZTNewsHelper'))
          */
         public static function getSource($params)
         {
-            static $sources;
-            if (!isset($sources[$params->get('source')]))
-            {
-                $className = 'ZtNewsSource' . ucfirst($params->get('source'));
-                $sources[$params->get('source')] = new $className($params);
-            }
-            return $sources[$params->get('source')];
+            $className = 'ZtNewsSource' . ucfirst($params->get('source'));
+            return new $className($params);
         }
 
         /**

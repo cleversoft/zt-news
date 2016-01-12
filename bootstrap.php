@@ -21,5 +21,4 @@ JLoader::discover('ZtNewsSource', __DIR__ . '/libraries/source');
 JLoader::discover('ZtNewsHelper', __DIR__ . '/helper');
 
 $doc = JFactory::getDocument();
-$doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/default.css');
-$doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/' . $params->get('template_type', 'default') . '.css');
+$doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/default.css'); 

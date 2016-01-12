@@ -83,8 +83,7 @@ if (!class_exists('ZtNewsSourceContent'))
         protected function _getChildrenCategories($cids)
         {
             $db = JFactory::getDBO();
-            if (count($cids) >= 1 ) {
-                $query = ' SELECT id '
+            $query = ' SELECT id '
                     . ' FROM #__categories '
                     . ' WHERE parent_id IN ( ' . implode(',', $cids) . ' ) '
                     . ' AND published = 1 '
@@ -100,9 +99,7 @@ if (!class_exists('ZtNewsSourceContent'))
                 $this->_getChildrenCategories($rows);
             }
             $this->_categories = array_unique($this->_categories);
-            return $this->_categories;    
-            }
-            return array(0);
+            return $this->_categories;
         }
 
     }
