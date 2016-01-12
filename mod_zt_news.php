@@ -13,9 +13,12 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
+
 jimport( 'joomla.application.module.helper' );
+
 // Rerequire bootstrap file for init
 require_once(dirname(__FILE__) . '/bootstrap.php');
+
 // Variables
 $showTitle = $params->get('show_title', 1);
 $showCreated = $params->get('show_date', 1);
@@ -36,6 +39,8 @@ $isImage = $params->get('is_image', 1);
 $showImageOnList = $params->get('is_image_list', 1);
 $showSubCategory = $params->get('is_subcat', 1);
 $breakpoint = $params->get('breakpoint');
+$columns = $params->get('columns');
+$intro_legnth= $params->get('intro_length');
 
 // Render
 $templateType = $params->get('template_type');

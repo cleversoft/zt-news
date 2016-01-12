@@ -34,7 +34,7 @@ class JFormFieldLayout extends JFormField
     {
         $db = JFactory::getDBO();
         $document = JFactory::getDocument();
-        $cId = JRequest::getVar('id', '');
+        $cId = JRequest::getVar('id', 0);        
         $sql = "SELECT params FROM #__modules WHERE id=$cId";
         $db->setQuery($sql);
         $data = $db->loadResult();
@@ -63,6 +63,21 @@ class JFormFieldLayout extends JFormField
         {
             $html .= '<div class="layout-item newsiv" data-layout="newsiv"></div>';
         }
+        
+        if ($layout == 'newsiv2')
+        {
+            $html .= '<div class="layout-item newsiv2 selected" data-layout="newsiv2"></div>';
+        } else
+        {
+            $html .= '<div class="layout-item newsiv2" data-layout="newsiv2"></div>';
+        }
+        if ($layout == 'newsiv3')
+        {
+            $html .= '<div class="layout-item newsiv3 selected" data-layout="newsiv3"></div>';
+        } else
+        {
+            $html .= '<div class="layout-item newsiv3" data-layout="newsiv3"></div>';
+        }
         if ($layout == 'headline')
         {
             $html .= '<div class="layout-item headline selected" data-layout="headline"></div>';
@@ -71,22 +86,7 @@ class JFormFieldLayout extends JFormField
             $html .= '<div class="layout-item headline" data-layout="headline"></div>';
         }
         $html .= '</div>';
-        if (ZT_JNVersion == '25')
-        {
-            $html .= '<script type="text/javascript">
-                    window.addEvent("load",function(){
-                        $$(".zt-news-layout .layout-item").each(function(el){
-                            $(el).addEvent("click", function(){
-                                $$(".zt-news-layout .layout-item").removeClass("selected");
-                                this.addClass("selected");
-                                $("jform_params_template_type").value = this.getProperty("data-layout");
-                                layoutChange(this.getProperty("data-layout"));
-                            });
-                        });
-                    });
-                  </script>';
-        } else
-        {
+        
             $html .= '<script type="text/javascript">
                     jQuery(document).ready(function(){
                         jQuery(".zt-news-layout .layout-item").each(function(){
@@ -99,7 +99,7 @@ class JFormFieldLayout extends JFormField
                         });
                     });
                   </script>';
-        }
+        
 
         return $html;
     }
