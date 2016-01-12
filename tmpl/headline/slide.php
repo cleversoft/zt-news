@@ -54,7 +54,7 @@ $listItems = array_slice($slide, $numberIntroItems);
                             <span class="created">
                                 <?php echo JHTML::_('date', $item->created, JText::_('DATE_FORMAT_LC3')); ?> - <?php
                                 echo $item->hits;
-                                echo JText::_(' Views');
+                                echo JText::_('MOD_ZTNEWS_VIEWS');
                                 ?>
                             </span>
                         <?php endif; ?>
@@ -110,7 +110,7 @@ $listItems = array_slice($slide, $numberIntroItems);
                                 <span class="created">
                                     <?php echo JHTML::_('date', $item->created, JText::_('DATE_FORMAT_LC3')); ?> - <?php
                                     echo $item->hits;
-                                    echo JText::_(' Views');
+                                    echo JText::_('MOD_ZTNEWS_VIEWS');
                                     ?>
                                 </span>
                             <?php endif; ?>
