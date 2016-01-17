@@ -14,9 +14,12 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
+/**
+ * Make sure this class is not declared
+ */
 if (!class_exists('ZtNewsSourceContent'))
 {
-// com_content route
+    // com_content route
     if (is_file(JPATH_SITE . '/components/com_content/helpers/route.php'))
     {
         require_once(JPATH_SITE . '/components/com_content/helpers/route.php');
@@ -83,12 +86,12 @@ if (!class_exists('ZtNewsSourceContent'))
         protected function _getChildrenCategories($cids)
         {
             $db = JFactory::getDBO();
-            $query = ' SELECT id '
-                    . ' FROM #__categories '
-                    . ' WHERE parent_id IN ( ' . implode(',', $cids) . ' ) '
-                    . ' AND published = 1 '
-                    . ' AND parent_id != 0 '
-                    . ' ORDER BY id '
+            $query = ' SELECT ' . $db->quoteName('id')
+                    . ' FROM ' . $db->quoteName('#__categories')
+                    . ' WHERE ' . $db->quoteName('parent_id') . 'IN ( ' . implode(',', $cids) . ' ) '
+                    . ' AND ' . $db->quoteName('published') . ' = 1 '
+                    . ' AND ' . $db->quoteName('parent_id') . ' != 0 '
+                    . ' ORDER BY ' . $db->quoteName('id')
             ;
             $db->setQuery($query);
 

@@ -44,4 +44,7 @@ $intro_legnth= $params->get('intro_length');
 
 // Render
 $templateType = $params->get('template_type');
+
+// Get items
+$items = modZTNewsHelper::getItems($params);
 require JModuleHelper::getLayoutPath('mod_zt_news', $params->get('template_type') . '/default');

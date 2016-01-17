@@ -13,8 +13,6 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-// Get items
-$items = modZTNewsHelper::getItems($params);
 require __DIR__ . '/init.php';
 ?>
 <div id="zt-headline" class="wrapper">

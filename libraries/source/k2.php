@@ -14,17 +14,20 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
+/**
+ * Make sure class is not declared
+ */
 if (!class_exists('ZtNewsSourceK2'))
 {
 
-// k2 route
+    // k2 route
     if (is_file(JPATH_SITE . '/components/com_k2/helpers/route.php'))
     {
         require_once(JPATH_SITE . '/components/com_k2/helpers/route.php');
     }
 
     /**
-     * Joomla content source
+     * K2 content source
      */
     class ZtNewsSourceK2 extends ZtNewsSourceAbstract
     {
@@ -83,17 +86,17 @@ if (!class_exists('ZtNewsSourceK2'))
         }
 
         /**
-         * Recursive to get all children categories of joomla article
+         * Recursive to get all children categories of k2 items
          */
         protected function _getChildrenCategories($cids)
         {
             $db = JFactory::getDBO();
-            $query = ' SELECT id '
-                    . ' FROM #__k2_categories '
-                    . ' WHERE parent IN ( ' . implode(',', $cids) . ' ) '
-                    . ' AND published = 1 '
-                    . ' AND parent != 0 '
-                    . ' ORDER BY id '
+            $query = ' SELECT ' . $db->quoteName('id')
+                    . ' FROM ' . $db->quoteName('#__k2_categories ')
+                    . ' WHERE ' . $db->quoteName('parent') . ' IN ( ' . implode(',', $cids) . ' ) '
+                    . ' AND ' . $db->quoteName('published') . ' = 1 '
+                    . ' AND ' . $db->quoteName('parent') . ' != 0 '
+                    . ' ORDER BY ' . $db->quoteName('id')
             ;
             $db->setQuery($query);
 

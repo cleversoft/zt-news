@@ -14,16 +14,11 @@
 defined('_JEXEC') or die('Restricted access');
 
 $doc = JFactory::getDocument();
-if (!version_compare(JVERSION, '3.0', 'ge')) {
-    $doc->addScript(JUri::root() . 'modules/mod_zt_news/assets/js/jquery-1.11.1.min.js');
-}
+
 $doc->addScript(JUri::root() . 'modules/mod_zt_news/assets/js/owl_carousel/owl.carousel.min.js');
 $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/owl_carousel/owl.carousel.css');
 $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/owl_carousel/owl.theme.css');
 $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/owl_carousel/owl.transitions.css');
-
-// Get items
-$items = modZTNewsHelper::getItems($params);
 
 ?>
 <div class="zt_news_wrap">
@@ -50,7 +45,7 @@ $items = modZTNewsHelper::getItems($params);
                             class="created"><?php echo JHTML::_('date', $item->created, JText::_('DATE_FORMAT_LC3')); ?>
                             - <?php
                             echo $item->hits;
-                            echo JText::_('MOD_ZTNEWS_VIEWS');
+                            echo JText::_(' Views');
                             ?></span>
                     <?php endif; ?>
                     <?php if ($showIntro): ?>

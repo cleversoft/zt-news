@@ -13,9 +13,6 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-// Get items
-$items = modZTNewsHelper::getItems($params);
-
 $totalItemsPerSlide = $numberIntroItems + $numberLinkItems;
 $index = 0;
 $count = 0;
@@ -74,7 +71,7 @@ $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/styles.css');
                                         <span class="created">
                                             <?php echo JHTML::_('date', $item->created, JText::_('DATE_FORMAT_LC3')); ?> - <?php
                                             echo $item->hits;
-                                            echo JText::_('MOD_ZTNEWS_VIEWS');
+                                            echo JText::_(' Views');
                                             ?>
                                         </span>
                                     <?php endif; ?>
@@ -125,7 +122,7 @@ $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/styles.css');
                                             <span class="created">
                                                 <?php echo JHTML::_('date', $item->created, JText::_('DATE_FORMAT_LC3')); ?> - <?php
                                                 echo $item->hits;
-                                                echo JText::_('MOD_ZTNEWS_VIEWS');
+                                                echo JText::_(' Views');
                                                 ?>
                                             </span>
                                         <?php endif; ?>

@@ -55,6 +55,13 @@ if (!class_exists('modZTNewsHelper'))
             return self::getSource($params)->getCategories();
         }
 
+        /**
+         * @param $src
+         * @param $width
+         * @param $height
+         * @param $params
+         * @return mixed|string
+         */
         public static function getThumbnailLink($src, $width, $height, $params)
         {
             $src = JPATH_ROOT . '/' . $src;
@@ -68,6 +75,7 @@ if (!class_exists('modZTNewsHelper'))
                 $ext = JFile::getExt($src);
                 $cacheFile = JPATH_ROOT . '/cache/' . $width . '_' . $height . '_' . md5($src) . '.' . $ext;
 
+                //  @todo Check cache interval and allow cache clearing
                 if (!JFile::exists($cacheFile))
                 {
                     $imager = new ZtNewsImager('gd');
