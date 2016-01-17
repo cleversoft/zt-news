@@ -2,11 +2,11 @@
 <extension type="module" version="3.4" client="site" method="upgrade">
     <name>ZT News</name>
     <author>ZooTemplate</author>
-    <creationDate>Mar 23, 2015</creationDate>
+    <creationDate>Jan 15, 2015</creationDate>
     <copyright>ZooTemplate.Com</copyright>
     <authorEmail>support@ZooTemplate.com</authorEmail>
-    <authorUrl>www.ZooTemplate.com</authorUrl>
-    <version>2.6.0</version>
+    <authorUrl>http://www.ZooTemplate.com</authorUrl>
+    <version>2.6.2</version>
     <description>ZT News allows you display previews of articles on the front page</description>
 	 
     <files>
@@ -14,6 +14,7 @@
         <filename>helper.php</filename> 		
         <filename>index.html</filename>	
         <filename>mod_zt_news.php</filename>	
+        <filename>bootstrap.php</filename>	
         <folder>admin</folder>
         <folder>assets</folder>
         <folder>elements</folder>	

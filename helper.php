@@ -42,7 +42,20 @@ if (!class_exists('modZTNewsHelper'))
          */
         public static function getItems($params, $groupByCategories = false)
         {
-            return self::getSource($params)->getItems($groupByCategories);
+            $key = md5(serialize($params));
+            $cache = JFactory::getCache('mod_zt_news', '');
+            // Force caching
+            $cache->setCaching(1);
+            // Get cached items
+            $items = $cache->get($key);
+            // If no cached yet than we execute to get items
+            if (!$items)
+            {
+                $items = self::getSource($params)->getItems($groupByCategories);
+                // Store it back
+                $cache->store($items, $key);
+            }
+            return $items;
         }
 
         /**
