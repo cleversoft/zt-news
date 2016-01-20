@@ -18,26 +18,42 @@ jimport('joomla.html.html');
 jimport('joomla.form.formfield');
 jimport('joomla.application.component.helper');
 
+/**
+ * Custom form field
+ * @todo We should check class exists before declare
+ */
 class JFormFieldK2Categories extends JFormFieldList
 {
 
     protected $type = 'K2Categories';
     var $options = array();
 
+    /**
+     * Check if K2 is installed
+     * @return boolean
+     */
     protected function k2Enabled()
     {
         $db = JFactory::getDbo();
-        $db->setQuery("SELECT enabled FROM #__extensions WHERE name = 'com_k2'");
+        $query = ' SELECT ' . $db->quoteName('enabled')
+            . ' FROM ' . $db->quoteName('#__extensions')
+            . ' WHERE ' . $db->quoteName('name') . ' = ' . $db->quote('com_k2');
+        $db->setQuery($query);
         $is_enabled = $db->loadResult();
         return $is_enabled;
     }
 
+    /**
+     * @return string
+     */
     protected function getInput()
     {
+        // If K2 is not exists than return empty
         if (!$this->k2Enabled())
         {
-            return '<input type="hidden" name="' . $this->name . '" id="' . $this->id . '" value=""/>';
+            return '';
         }
+
         $html = array();
         $attr = '';
 
@@ -61,6 +77,9 @@ class JFormFieldK2Categories extends JFormFieldList
         return implode($html);
     }
 
+    /**
+     * @return array|void
+     */
     protected function getOptions()
     {
         if (!$this->k2Enabled())
@@ -72,10 +91,12 @@ class JFormFieldK2Categories extends JFormFieldList
         $db = JFactory::getDBO();
 
         // generating query
+        // @todo Should clean query instead directly like this
         $db->setQuery("SELECT c.name AS name, c.id AS id, c.parent AS parent FROM #__k2_categories AS c WHERE published = 1 AND trash = 0 ORDER BY c.name, c.parent ASC");
         // getting results
         $results = $db->loadObjectList();
 
+        // Recursive
         if (count($results))
         {
             // iterating
@@ -103,7 +124,7 @@ class JFormFieldK2Categories extends JFormFieldList
     }
 
     // bind function to save
-    function bind($array, $ignore = '')
+    public function bind($array, $ignore = '')
     {
         if (key_exists('field-name', $array) && is_array($array['field-name']))
         {
@@ -113,7 +134,13 @@ class JFormFieldK2Categories extends JFormFieldList
         return parent::bind($array, $ignore);
     }
 
-    function recursive_options($temp_options, $level, $parent)
+    /**
+     * @todo Use valid PSR-2 function name
+     * @param $temp_options
+     * @param $level
+     * @param $parent
+     */
+    public function recursive_options($temp_options, $level, $parent)
     {
         foreach ($temp_options as $option)
         {
@@ -127,5 +154,4 @@ class JFormFieldK2Categories extends JFormFieldList
             }
         }
     }
-
 }

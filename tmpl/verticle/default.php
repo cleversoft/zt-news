@@ -27,7 +27,9 @@ foreach ($items as $item)
     }
 
 }
-$doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/styles.css');
+
+// @todo Default assets should be called from entry points ALREADY !
+//$doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/styles.css');
 ?>
 <div id="zt-verticle" class="wrapper">
     <?php foreach ($list as $key => $slide) : ?>    
@@ -82,7 +84,7 @@ $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/styles.css');
                                     <!-- Readmore -->
                                     <?php if ($showReadmore) : ?>                     
                                         <p class="zt-news-readmore">
-                                            <a class="readmore" href="<?php echo $item->link; ?>"><?php echo JTEXT::_('READ MORE'); ?></a>
+                                            <a class="readmore" href="<?php echo $item->link; ?>"><?php echo JTEXT::_('MOD_ZTNEWS_READMORE'); ?></a>
                                         </p>
                                     <?php endif; ?>
                                 </div>
@@ -122,7 +124,7 @@ $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/styles.css');
                                             <span class="created">
                                                 <?php echo JHTML::_('date', $item->created, JText::_('DATE_FORMAT_LC3')); ?> - <?php
                                                 echo $item->hits;
-                                                echo JText::_(' Views');
+                                                echo JText::_('MOD_ZTNEWS_VIEWS');
                                                 ?>
                                             </span>
                                         <?php endif; ?>
@@ -135,7 +137,7 @@ $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/styles.css');
                                        
                                         <?php if ($showReadmore) : ?>                     
                                             <p class="zt-news-readmore">
-                                                <a class="readmore" href="<?php echo $item->link; ?>"><?php echo JTEXT::_('READ MORE'); ?></a>
+                                                <a class="readmore" href="<?php echo $item->link; ?>"><?php echo JTEXT::_('MOD_ZTNEWS_READMORE'); ?></a>
                                             </p>
                                         <?php endif; ?>
                                     </div>

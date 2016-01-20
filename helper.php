@@ -14,6 +14,9 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
+/**
+ * Class exists checking
+ */
 if (!class_exists('modZTNewsHelper'))
 {
 
@@ -44,10 +47,13 @@ if (!class_exists('modZTNewsHelper'))
         {
             $key = md5(serialize($params));
             $cache = JFactory::getCache('mod_zt_news', '');
-            // Force caching
-            $cache->setCaching(1);
+
+            // Force caching but we also allow config it via params if exists
+            $cache->setCaching($params->get('cache',1));
+
             // Get cached items
             $items = $cache->get($key);
+
             // If no cached yet than we execute to get items
             if (!$items)
             {
@@ -65,7 +71,23 @@ if (!class_exists('modZTNewsHelper'))
          */
         public static function getCategories($params)
         {
-            return self::getSource($params)->getCategories();
+            $key = md5(serialize($params));
+            $cache = JFactory::getCache('mod_zt_news', '');
+
+            // Force caching but we also allow config it via params if exists
+            $cache->setCaching($params->get('cache',1));
+
+            // Get cached items
+            $categories = $cache->get($key);
+
+            // If no cached yet than we execute to get categories
+            if (!$categories)
+            {
+                $categories = self::getSource($params)->getCategories();
+                // Store it back
+                $cache->store($categories, $key);
+            }
+            return $categories;
         }
 
         /**
@@ -80,6 +102,7 @@ if (!class_exists('modZTNewsHelper'))
             $src = JPATH_ROOT . '/' . $src;
             if (JFile::exists($src))
             {
+                // @todo Should be autoload inside lib
                 require_once __DIR__ . '/libraries/imager.php';
                 require_once __DIR__ . '/libraries/imager/abstract.php';
                 require_once __DIR__ . '/libraries/imager/gd.php';

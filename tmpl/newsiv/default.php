@@ -27,6 +27,7 @@ foreach ($items as $item)
     }
 
 }
+// @todo Default assets already called from entry point
 $doc = JFactory::getDocument();
 $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/styles.css');
 ?>
@@ -72,7 +73,7 @@ $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/styles.css');
                                         <span class="created">
                                             <?php echo JHTML::_('date', $item->created, JText::_('DATE_FORMAT_LC3')); ?> - <?php
                                             echo $item->hits;
-                                            echo JText::_(' Views');
+                                            echo JText::_('MOD_ZTNEWS_VIEWS');
                                             ?>
                                         </span>
                                     <?php endif; ?>
@@ -83,7 +84,7 @@ $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/styles.css');
                                     <!-- Readmore -->
                                     <?php if ($showReadmore) : ?>                     
                                         <p class="zt-news-readmore">
-                                            <a class="readmore" href="<?php echo $item->link; ?>"><?php echo JTEXT::_('READ MORE'); ?></a>
+                                            <a class="readmore" href="<?php echo $item->link; ?>"><?php echo JTEXT::_('MOD_ZTNEWS_READMORE'); ?></a>
                                         </p>
                                     <?php endif; ?>
                                 </div>
@@ -121,7 +122,7 @@ $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/styles.css');
                                             <span class="created">
                                                 <?php echo JHTML::_('date', $item->created, JText::_('DATE_FORMAT_LC3')); ?> - <?php
                                                 echo $item->hits;
-                                                echo JText::_(' Views');
+                                                echo JText::_('MOD_ZTNEWS_VIEWS');
                                                 ?>
                                             </span>
                                         <?php endif; ?>
@@ -132,7 +133,7 @@ $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/styles.css');
                                         <!-- Readmore -->
                                         <?php if ($showReadmore) : ?>                     
                                             <p class="zt-news-readmore">
-                                                <a class="readmore" href="<?php echo $item->link; ?>"><?php echo JTEXT::_('READ MORE'); ?></a>
+                                                <a class="readmore" href="<?php echo $item->link; ?>"><?php echo JTEXT::_('MOD_ZTNEWS_READMORE'); ?></a>
                                             </p>
                                         <?php endif; ?>
                                     </div>

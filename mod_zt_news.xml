@@ -10,19 +10,23 @@
     <description>ZT News allows you display previews of articles on the front page</description>
 	 
     <files>
-        <filename module="mod_zt_news">mod_zt_news.php</filename>		  
-        <filename>helper.php</filename> 		
-        <filename>index.html</filename>	
-        <filename>mod_zt_news.php</filename>	
-        <filename>bootstrap.php</filename>	
         <folder>admin</folder>
         <folder>assets</folder>
-        <folder>elements</folder>	
+        <folder>elements</folder>
         <folder>libraries</folder>
         <folder>tmpl</folder>
+        <!-- Module entry point file -->
+        <filename module="mod_zt_news">mod_zt_news.php</filename>
+        <filename>bootstrap.php</filename>
+        <filename>helper.php</filename> 		
+        <filename>index.html</filename>
     </files>
-	 
-	 
+
+    <languages>
+        <language tag="en-GB">language/en-GB/en-GB.mod_zt_news.ini</language>
+        <language tag="en-GB">language/en-GB/en-GB.mod_zt_news.sys.ini</language>
+    </languages>
+
     <config addfieldpath="/modules/mod_zt_news/elements/">
         <fields name="params">
             <fieldset name="basic">

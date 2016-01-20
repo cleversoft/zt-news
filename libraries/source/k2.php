@@ -75,7 +75,7 @@ if (!class_exists('ZtNewsSourceK2'))
          */
         protected function _prepareItemImages($item)
         {
-            $srcDir = JPATH_SITE . DS . 'media' . DS . 'k2' . DS . 'items' . DS . 'src';
+            $srcDir = JPATH_SITE . DIRECTORY_SEPARATOR . 'media' . DIRECTORY_SEPARATOR . 'k2' . DIRECTORY_SEPARATOR . 'items' . DIRECTORY_SEPARATOR . 'src';
             $originalImage = $srcDir . '/' . md5("Image" . $item->id);
             if (JFile::exists($originalImage))
             {

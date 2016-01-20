@@ -25,7 +25,6 @@ $showCreated = $params->get('show_date', 1);
 $showIntro = $params->get('show_intro', 1);
 $showReadmore = $params->get('show_readmore', 0);
 $showIntroList = $params->get('show_intro_list', 1);
-$source = $params->get('source');
 $numberIntroItems = (int) $params->get('number_intro_items', 1);
 $numberLinkItems = $params->get('number_link_items', 4);
 $thumbMainWidth = $params->get('thumb_main_width');
@@ -42,9 +41,14 @@ $breakpoint = $params->get('breakpoint');
 $columns = $params->get('columns');
 $intro_legnth= $params->get('intro_length');
 
+// Source
+$source = $params->get('source');
+
 // Render
 $templateType = $params->get('template_type');
 
 // Get items
 $items = modZTNewsHelper::getItems($params);
+
+// Should we also cache rendered layout
 require JModuleHelper::getLayoutPath('mod_zt_news', $params->get('template_type') . '/default');

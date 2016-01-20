@@ -19,6 +19,9 @@ jimport('joomla.html.html');
 jimport('joomla.access.access');
 jimport('joomla.form.formfield');
 
+/**
+ * Class exists checking
+ */
 class JFormFieldLayout extends JFormField
 {
 
@@ -34,7 +37,8 @@ class JFormFieldLayout extends JFormField
     {
         $db = JFactory::getDBO();
         $document = JFactory::getDocument();
-        $cId = JRequest::getVar('id', '');
+        $cId = JRequest::getVar('id', 0);
+        // @todo Do never use like this
         $sql = "SELECT params FROM #__modules WHERE id=$cId";
         $db->setQuery($sql);
         $data = $db->loadResult();
@@ -86,35 +90,20 @@ class JFormFieldLayout extends JFormField
             $html .= '<div class="layout-item headline" data-layout="headline"></div>';
         }
         $html .= '</div>';
-        if (ZT_JNVersion == '25')
-        {
-            $html .= '<script type="text/javascript">
-                    window.addEvent("load",function(){
-                        $$(".zt-news-layout .layout-item").each(function(el){
-                            $(el).addEvent("click", function(){
-                                $$(".zt-news-layout .layout-item").removeClass("selected");
-                                this.addClass("selected");
-                                $("jform_params_template_type").value = this.getProperty("data-layout");
-                                layoutChange(this.getProperty("data-layout"));
-                            });
+
+        // @todo Move this js to javascript file instead
+        $html .= '<script type="text/javascript">
+                jQuery(document).ready(function(){
+                    jQuery(".zt-news-layout .layout-item").each(function(){
+                        jQuery(this).on("click",function(){
+                            jQuery(".zt-news-layout .layout-item").removeClass("selected");
+                            jQuery(this).addClass("selected");
+                            jQuery("#jform_params_template_type").attr("value", jQuery(this).attr("data-layout"));
+                            layoutChange(jQuery(this).attr("data-layout"));
                         });
                     });
-                  </script>';
-        } else
-        {
-            $html .= '<script type="text/javascript">
-                    jQuery(document).ready(function(){
-                        jQuery(".zt-news-layout .layout-item").each(function(){
-                            jQuery(this).on("click",function(){
-                                jQuery(".zt-news-layout .layout-item").removeClass("selected");
-                                jQuery(this).addClass("selected");
-                                jQuery("#jform_params_template_type").attr("value", jQuery(this).attr("data-layout"));
-                                layoutChange(jQuery(this).attr("data-layout"));
-                            });
-                        });
-                    });
-                  </script>';
-        }
+                });
+              </script>';
 
         return $html;
     }
