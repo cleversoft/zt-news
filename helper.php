@@ -51,6 +51,12 @@ if (!class_exists('modZTNewsHelper'))
             // Force caching but we also allow config it via params if exists
             $cache->setCaching($params->get('cache',1));
 
+            //clear cache
+            if ($params->get('clear_cache',0) and $cache->get($key))
+            {
+                $cache->clean();
+            }
+
             // Get cached items
             $items = $cache->get($key);
 
