@@ -31,9 +31,6 @@ class JFormFieldVsection extends JFormField
      */
     protected $type = 'vsection';
 
-    /**
-     *
-     */
     protected function getInput()
     {
         $db = JFactory::getDBO();
@@ -50,57 +47,42 @@ class JFormFieldVsection extends JFormField
         <!-- For these js must be stored in js file instead -->
         <script type="text/javascript">
 
-            /**
-             * jQuery document ready
-             */
             jQuery(document).ready(function () {
-                sourceChange('<?php echo $source; ?>');
+//                sourceChange('<?php //echo $source; ?>//');
                 layoutChange('<?php echo $layout; ?>');
-                jQuery('#jform_params_source').change(function () {
-                    sourceChange(jQuery(this).val());
-                });
+//                jQuery('#jform_params_source').change(function () {
+//                    sourceChange(jQuery(this).val());
+//                });
                 jQuery('#jform_params_template_type').change(function () {
                     layoutChange(jQuery(this).val());
                 });
 
             });
 
-            /**
-             *
-             */
             var jpaneAutoHeight = function () {
                 $$('.jpane-slider').each(function (item) {
                     item.setStyle('height', 'auto');
                 });
             };
 
-            /**
-             *
-             * @param val
-             */
-            function sourceChange(val) {
-
-                if (val == 'content') {
-                    jQuery('#jform_params_k2_cids').parents('.control-group').hide();
-                    jQuery('#jform_params_content_cids').parents('.control-group').show();
-                    jQuery('#jform_params_type_image').parents('.control-group').hide();
-                    jQuery('#jform_params_orderingk2').parents('.control-group').hide();
-                    jQuery('#jform_params_rderingcontent').parents('.control-group').show();
-                }
-                else {
-                    jQuery('#jform_params_k2_cids').parents('.control-group').show();
-                    jQuery('#jform_params_content_cids').parents('.control-group').hide();
-                    jQuery('#jform_params_type_image').parents('.control-group').show();
-                    jQuery('#jform_params_orderingk2').parents('.control-group').show();
-                    jQuery('#jform_params_orderingcontent').parents('.control-group').hide();
-                }
-
-            }
-
-            /**
-             *
-             * @param val
-             */
+//            function sourceChange(val) {
+//
+//                if (val == 'content') {
+//                    jQuery('#jform_params_k2_cids').parents('.control-group').hide();
+//                    jQuery('#jform_params_content_cids').parents('.control-group').show();
+//                    jQuery('#jform_params_type_image').parents('.control-group').hide();
+//                    jQuery('#jform_params_orderingk2').parents('.control-group').hide();
+//                    jQuery('#jform_params_rderingcontent').parents('.control-group').show();
+//                }
+//                else {
+//                    jQuery('#jform_params_k2_cids').parents('.control-group').show();
+//                    jQuery('#jform_params_content_cids').parents('.control-group').hide();
+//                    jQuery('#jform_params_type_image').parents('.control-group').show();
+//                    jQuery('#jform_params_orderingk2').parents('.control-group').show();
+//                    jQuery('#jform_params_orderingcontent').parents('.control-group').hide();
+//                }
+//
+//            }
             function layoutChange(val) {
                 if (val == 'horizontal') {
 
