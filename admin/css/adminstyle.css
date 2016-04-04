@@ -67,22 +67,22 @@ div.panel input {
   color: #555555;
   font-size: 11px;
 }
-#jformparamsk2_selection,
+
 #jformparamscontent_selection {
   width: 190px;
 }
-#k2_selected,
+
 #content_selected {
   width: 170px;
 }
 .jv_catagory_info {
   float: left;
 }
-#paramsk2_selection,
+
 #paramscontent_selection {
   width: 140px;
 }
-#k2_selected,
+
 #content_selected {
   width: 186px;
   padding: 0px;
