@@ -32,11 +32,9 @@
             <fieldset name="basic">
                 <field name="source" type="list" default="content" label="SOURCE_FROM" description="SOURCE_FROM_DESC">
                     <option value="content">CATEGORY</option>
-                    <option value="k2">K2_CATEGORY</option>
                 </field>
                 <!-- Source categories selector -->
                 <field name="content_cids" type="category" extension="com_content" multiple="true" size="10" label="CATEGORY" description="CATEGORY_DESC" />
-                <field name="k2_cids" type="k2categories" multiple="true" size="10" label="K2_CATEGORY" description="K2_CATEGORY_DESC" />
                 <!-- Ordering -->
                 <field name="ordering" type="list" default="" label="Ordering" description="">
                     <option value="">Default</option>
@@ -129,6 +127,10 @@
                     <option value="0">No caching</option>
                 </field>
                 <field name="cache_time" type="text" default="900" label="Cache Time" description="The time before the module is recached" />
+                <field name="clear_cache" type="radio" class="btn-group btn-group-yesno" default="0" label="Clear Cache" description="Clear Cache">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
             </fieldset>
             <!-- Thumbnail configuration -->
             <fieldset name="thumbnail">
