@@ -65,7 +65,7 @@ $listItems = array_slice($slide, $numberIntroItems);
                         <!-- Readmore -->
                         <?php if ($showReadmore) : ?>                     
                             <p class="zt-news-readmore">
-                                <a class="readmore" href="<?php echo $item->link; ?>"><?php echo JTEXT::_('READ MORE'); ?></a>
+                                <a class="readmore" href="<?php echo $item->link; ?>"><?php echo JTEXT::_('MOD_ZTNEWS_READMORE'); ?></a>
                             </p>
                         <?php endif; ?>
                     </div>

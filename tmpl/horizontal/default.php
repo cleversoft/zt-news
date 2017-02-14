@@ -56,7 +56,7 @@ $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/owl_carousel/
                     <?php if ($showReadmore == 1): ?>
                         <p class="zt-news-readmore">
                             <a class="readmore"
-                               href="<?php echo $item->link; ?>"><?php echo JTEXT::_('MOD_ZTNEWS_READ_MORE'); ?></a>
+                               href="<?php echo $item->link; ?>"><?php echo JTEXT::_('MOD_ZTNEWS_READMORE'); ?></a>
                         </p>
                     <?php endif; ?>
                 </div>
