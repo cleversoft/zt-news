@@ -47,6 +47,7 @@ if (!class_exists('ZtNewsSourceAbstract'))
          * @var string
          */
         protected $_table_categories = '#__categories';
+        protected $_table_users = '#__users';
         protected $_categories;
 
         /**
@@ -114,11 +115,12 @@ if (!class_exists('ZtNewsSourceAbstract'))
          */
         protected function _buildQuery()
         {
-            $query = ' SELECT a.*, cc.title as cat_title,' .
+            $query = ' SELECT a.*, cc.title as cat_title, u.name as author,' .
                     ' CASE WHEN CHAR_LENGTH(a.alias) THEN CONCAT_WS(":", a.id, a.alias) ELSE a.id END as slug,' .
                     ' CASE WHEN CHAR_LENGTH(cc.alias) THEN CONCAT_WS(":", cc.id, cc.alias) ELSE cc.id END as catslug' .
                     ' FROM ' . $this->_table_items . ' AS a' .
                     ' INNER JOIN ' . $this->_table_categories . ' AS cc ON cc.id = a.catid' .
+                    ' INNER JOIN ' . $this->_table_users . ' AS u ON u.id = a.created_by' .
                     ' WHERE ' . $this->_buildWhere() . $this->_buildWhereExtend() .
                     ' AND cc.published = 1' .
                     ' ORDER BY ' . $this->_buildOrder() .

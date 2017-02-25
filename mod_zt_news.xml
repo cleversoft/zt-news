@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="module" version="3.4" client="site" method="upgrade">
+<extension type="module" version="3.6" client="site" method="upgrade">
     <name>ZT News</name>
     <author>ZooTemplate</author>
-    <creationDate>April 04, 2016</creationDate>
+    <creationDate>Feb 25, 2017</creationDate>
     <copyright>ZooTemplate.Com</copyright>
     <authorEmail>support@ZooTemplate.com</authorEmail>
     <authorUrl>http://www.ZooTemplate.com</authorUrl>
-    <version>2.6.3</version>
+    <version>2.6.4</version>
     <description>ZT News allows you display previews of articles on the front page</description>
-	 
+     
     <files>
         <folder>admin</folder>
         <folder>assets</folder>
@@ -18,7 +18,7 @@
         <!-- Module entry point file -->
         <filename module="mod_zt_news">mod_zt_news.php</filename>
         <filename>bootstrap.php</filename>
-        <filename>helper.php</filename> 		
+        <filename>helper.php</filename>         
         <filename>index.html</filename>
     </files>
 
@@ -107,12 +107,16 @@
                     <option value="1">Show</option>
                 </field>
                 <field name="intro_length" type="text" default="30" label="Intro Text Length" description="Intro text length" /> 
-					 
+                     
                 <field name="show_date" type="radio" class="btn-group btn-group-yesno" default="1" label="Show Date Main" description="Show Date Main">
                     <option value="0">Hide</option>
                     <option value="1">Show</option>
                 </field>
                 <field name="show_date_list" type="radio" class="btn-group btn-group-yesno" default="1" label="Show Date list" description="Show Date List">
+                    <option value="0">Hide</option>
+                    <option value="1">Show</option>
+                </field>
+                <field name="show_author" type="radio" class="btn-group btn-group-yesno" default="1" label="Show Author" description="Show Author">
                     <option value="0">Hide</option>
                     <option value="1">Show</option>
                 </field>

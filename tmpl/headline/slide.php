@@ -49,6 +49,12 @@ $listItems = array_slice($slide, $numberIntroItems);
                                 </a>
                             </h3>
                         <?php endif; ?>
+                        <!-- Author -->
+                        <?php if ($showAuthor) : ?>     
+                            <span class="author">
+                                <?php echo $item->author; ?>
+                            </span>
+                        <?php endif ?>
                         <!-- Created -->
                         <?php if ($showCreated) : ?>                            
                             <span class="created">
@@ -58,6 +64,10 @@ $listItems = array_slice($slide, $numberIntroItems);
                                 ?>
                             </span>
                         <?php endif; ?>
+                        <!-- Category -->
+                        <?php if ($showTitleCategory) : 
+                                echo JHTML::_('link', $item->cat_link, $item->cat_title, array('class'=>'incategory'));
+                            endif ?>
                         <!-- Intro text -->
                         <?php if ($showIntro && $item->introtext != false) : ?>
                             <div class="zt-introtext"><?php echo ($item->introtext); ?></div>

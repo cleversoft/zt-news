@@ -40,6 +40,13 @@ $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/owl_carousel/
                             </a>
                         </h3>
                     <?php endif; ?>
+                    <!-- Author -->
+                    <?php if ($showAuthor) : ?>     
+                        <span class="author">
+                            <?php echo $item->author; ?>
+                        </span>
+                    <?php endif ?>
+                    <!-- Created -->
                     <?php if ($showCreated): ?>
                         <span
                             class="created"><?php echo JHTML::_('date', $item->created, JText::_('DATE_FORMAT_LC3')); ?>
@@ -48,6 +55,10 @@ $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/owl_carousel/
                             echo JText::_('MOD_ZTNEWS_VIEWS');
                             ?></span>
                     <?php endif; ?>
+                    <!-- Category -->
+                    <?php if ($showTitleCategory) : 
+                            echo JHTML::_('link', $item->cat_link, $item->cat_title, array('class'=>'incategory'));
+                        endif ?>
                     <?php if ($showIntro): ?>
                         <?php if ($item->introtext != false): ?>
                             <div class="zt-introtext"><?php echo($item->introtext); ?></div>

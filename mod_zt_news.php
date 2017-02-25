@@ -22,6 +22,7 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 // Variables
 $showTitle = $params->get('show_title', 1);
 $showCreated = $params->get('show_date', 1);
+$showAuthor = $params->get('show_author', 1);
 $showIntro = $params->get('show_intro', 1);
 $showReadmore = $params->get('show_readmore', 0);
 $showIntroList = $params->get('show_intro_list', 1);
