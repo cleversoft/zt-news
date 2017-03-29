@@ -15,15 +15,14 @@ defined('_JEXEC') or die('Restricted access');
 
 $doc = JFactory::getDocument();
 
-$doc->addScript(JUri::root() . 'modules/mod_zt_news/assets/js/owl_carousel/owl.carousel.min.js');
-$doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/owl_carousel/owl.carousel.css');
-$doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/owl_carousel/owl.theme.css');
-$doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/owl_carousel/owl.transitions.css');
+$doc->addScript(JUri::root() . 'modules/mod_zt_news/assets/js/owl.carousel.min.js');
+$doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/owl_carousel/owl.carousel.min.css');
+$doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/owl_carousel/owl.theme.default.min.css');
 
 ?>
 <div class="zt_news_wrap">
     <div class="zt-newsiv-frame-cat">
-        <div id="zt-news-scroll-<?php echo $module->id; ?>" class="zt-category">
+        <div id="zt-news-scroll-<?php echo $module->id; ?>" class="zt-category owl-carousel owl-theme">
             <?php foreach ($items as $key => $item) : ?>
                 <div class="item zt-article-item">
                     <?php if (@$item->thumb != '' && $isImage == 1): ?>
@@ -76,11 +75,11 @@ $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/owl_carousel/
         <script type="text/javascript">
             jQuery(document).ready(function ($) {
                 $("#zt-news-scroll-<?php echo $module->id; ?>").owlCarousel({
-                    lazyLoad: true,
-                    navigation: true,
-                    pagination: false,
-                    slideSpeed: 500,
-                    itemsCustom: [<?php echo $breakpoint; ?>]
+                    autoplay: true,
+                    nav: true,
+                    dots: true,
+                    smartSpeed: 500,
+                    items: <?php echo $breakpoint; ?>
                 });
             });
         </script>

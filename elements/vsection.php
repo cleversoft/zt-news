@@ -87,9 +87,9 @@ class JFormFieldVsection extends JFormField
                 if (val == 'horizontal') {
 
                     jQuery('#jform_params_breakpoint').parents('.control-group').show();
-                    jQuery('#jform_params_showtitlecat').parents('.control-group').hide();
                     jQuery('#jform_params_is_subcat').parents('.control-group').hide();
                     jQuery('#jform_params_is_all').parents('.control-group').hide();
+                    jQuery('#jform_params_number_intro_items').parents('.control-group').hide();
                     jQuery('#jform_params_number_link_items').parents('.control-group').hide();
                     jQuery('#jform_params_columns').parents('.control-group').hide();
                     jQuery('#jform_params_thumb_list_width').parents('.control-group').hide();
