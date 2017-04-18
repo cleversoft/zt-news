@@ -22,6 +22,7 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 // Variables
 $showTitle = $params->get('show_title', 1);
 $showCreated = $params->get('show_date', 1);
+$dateFormat = $params->get('date_format');
 $showAuthor = $params->get('show_author', 1);
 $showIntro = $params->get('show_intro', 1);
 $showReadmore = $params->get('show_readmore', 0);
@@ -53,4 +54,5 @@ $templateType = $params->get('template_type');
 $items = modZTNewsHelper::getItems($params);
 
 // Should we also cache rendered layout
+
 require JModuleHelper::getLayoutPath('mod_zt_news', $params->get('template_type') . '/default');

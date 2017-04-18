@@ -48,7 +48,7 @@ $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/owl_carousel/
                     <!-- Created -->
                     <?php if ($showCreated): ?>
                         <span
-                            class="created"><?php echo JHTML::_('date', $item->created, JText::_('DATE_FORMAT_LC3')); ?>
+                            class="created"><?php echo JHTML::_('date', $item->created, JText::_($dateFormat)); ?>
                             - <?php
                             echo $item->hits;
                             echo JText::_('MOD_ZTNEWS_VIEWS');

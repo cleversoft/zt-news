@@ -77,7 +77,7 @@ foreach ($items as $item)
                                     <!-- Created -->
                                     <?php if ($showCreated) : ?>                            
                                         <span class="created">
-                                            <?php echo JHTML::_('date', $item->created, JText::_('DATE_FORMAT_LC3')); ?> - <?php
+                                            <?php echo JHTML::_('date', $item->created, JText::_($dateFormat)); ?> - <?php
                                             echo $item->hits;
                                             echo JText::_(' Views');
                                             ?>
@@ -132,7 +132,7 @@ foreach ($items as $item)
                                          <!-- Created -->
                                         <?php if ($showCreated) : ?>                            
                                             <span class="created">
-                                                <?php echo JHTML::_('date', $item->created, JText::_('DATE_FORMAT_LC3')); ?> - <?php
+                                                <?php echo JHTML::_('date', $item->created, JText::_($dateFormat)); ?> - <?php
                                                 echo $item->hits;
                                                 echo JText::_('MOD_ZTNEWS_VIEWS');
                                                 ?>

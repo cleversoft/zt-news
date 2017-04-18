@@ -2,7 +2,7 @@
 <extension type="module" version="3.6" client="site" method="upgrade">
     <name>ZT News</name>
     <author>ZooTemplate</author>
-    <creationDate>Mar 29, 2017</creationDate>
+    <creationDate>Apr 17, 2017</creationDate>
     <copyright>ZooTemplate.Com</copyright>
     <authorEmail>support@ZooTemplate.com</authorEmail>
     <authorUrl>http://www.ZooTemplate.com</authorUrl>
@@ -57,7 +57,7 @@
                 <!--field name="template_type" type="folderlist" label="Select template" description="Select template" directory="/modules/mod_zt_news/tmpl" hide_default="1" hide_none="1" /-->
                 <field name="template_type" type="layout" default="verticle" label="Select template" description="Select template" />
                 <field name="breakpoint" type="text" default="3" label="Number of items in a row" description="Number of items in a row" />
-                <field name="showtitlecat" type="radio" class="btn-group btn-group-yesno" default="1" label="Display title category" description="Display title category">
+                <field name="showtitlecat" type="radio" class="btn-group btn-group-yesno" default="1" label="JCATEGORY" description="Display title category">
                     <option value="0">Hide</option>
                     <option value="1">Show</option>
                 </field>
@@ -98,29 +98,30 @@
                     <option value="0">Hide</option>
                     <option value="1">Show</option>
                 </field>
-                <field name="show_intro" type="radio" class="btn-group btn-group-yesno" default="1" label="Show Intro Main" description="Show Intro main">
+                <field name="show_intro" type="radio" class="btn-group btn-group-yesno" default="1" label="Show Intro Main" description="Show intro main">
                     <option value="0">Hide</option>
                     <option value="1">Show</option>
                 </field>
-                <field name="show_intro_list" type="radio" class="btn-group btn-group-yesno" default="1" label="Show Intro List" description="Show Intro list">
+                <field name="show_intro_list" type="radio" class="btn-group btn-group-yesno" default="1" label="Show Intro List" description="Show intro list">
                     <option value="0">Hide</option>
                     <option value="1">Show</option>
                 </field>
                 <field name="intro_length" type="text" default="30" label="Intro Text Length" description="Intro text length" /> 
                      
-                <field name="show_date" type="radio" class="btn-group btn-group-yesno" default="1" label="Show Date Main" description="Show Date Main">
+                <field name="show_date" type="radio" class="btn-group btn-group-yesno" default="1" label="JDATE" description="Show Date Main">
                     <option value="0">Hide</option>
                     <option value="1">Show</option>
                 </field>
+                <field name="date_format" type="text" default="d F Y" label="Date Format" description="Please enter in a valid date format. See: http://php.net/date for formatting information."/>
                 <field name="show_date_list" type="radio" class="btn-group btn-group-yesno" default="1" label="Show Date list" description="Show Date List">
                     <option value="0">Hide</option>
                     <option value="1">Show</option>
                 </field>
-                <field name="show_author" type="radio" class="btn-group btn-group-yesno" default="1" label="Show Author" description="Show Author">
+                <field name="show_author" type="radio" class="btn-group btn-group-yesno" default="1" label="JAUTHOR" description="Show Author">
                     <option value="0">Hide</option>
                     <option value="1">Show</option>
                 </field>
-                <field name="show_readmore" type="radio" class="btn-group btn-group-yesno" default="0" label="Show Readmore" description="Show Readmore">
+                <field name="show_readmore" type="radio" class="btn-group btn-group-yesno" default="0" label="JGLOBAL_SHOW_READMORE_LABEL" description="JGLOBAL_SHOW_READMORE_DESC">
                     <option value="0">Hide</option>
                     <option value="1">Show</option>
                 </field> 
