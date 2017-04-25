@@ -5,11 +5,11 @@
  * 
  * @package     Joomla
  * @subpackage  Module
- * @version     2.0.0
+ * @version     2.6.6
  * @author      ZooTemplate 
  * @email       support@zootemplate.com 
  * @link        http://www.zootemplate.com 
- * @copyright   Copyright (c) 2015 ZooTemplate
+ * @copyright   Copyright (c) 2017 ZooTemplate
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
@@ -40,7 +40,11 @@ $clearCache = $params->get('clear_cache', 0);
 $isImage = $params->get('is_image', 1);
 $showImageOnList = $params->get('is_image_list', 1);
 $showSubCategory = $params->get('is_subcat', 1);
-$breakpoint = $params->get('breakpoint');
+$breakpoint = $params->get('breakpoint', 3);
+$showNav = $params->get('show_nav', 0);
+$showDots = $params->get('show_dots', 0);
+$autoplay = $params->get('autoplay', 0);
+$responsive = $params->get('responsive', 1);
 $columns = $params->get('columns');
 $intro_legnth= $params->get('intro_length');
 
@@ -48,11 +52,11 @@ $intro_legnth= $params->get('intro_length');
 $source = $params->get('source');
 
 // Render
-$templateType = $params->get('template_type');
+$templateType = $params->get('layout');
 
 // Get items
 $items = modZTNewsHelper::getItems($params);
 
 // Should we also cache rendered layout
 
-require JModuleHelper::getLayoutPath('mod_zt_news', $params->get('template_type') . '/default');
+require JModuleHelper::getLayoutPath('mod_zt_news', $params->get('layout', 'headline'));

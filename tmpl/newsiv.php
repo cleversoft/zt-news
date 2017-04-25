@@ -4,11 +4,11 @@
  * 
  * @package     Joomla
  * @subpackage  Module
- * @version     2.0.0
+ * @version     2.6.6
  * @author      ZooTemplate 
  * @email       support@zootemplate.com 
  * @link        http://www.zootemplate.com 
- * @copyright   Copyright (c) 2015 ZooTemplate
+ * @copyright   Copyright (c) 2017 ZooTemplate
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
@@ -27,24 +27,23 @@ foreach ($items as $item)
     }
 
 }
-
-// @todo Default assets should be called from entry point
+// @todo Default assets already called from entry point
 $doc = JFactory::getDocument();
 $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/styles.css');
 ?>
-<div id="zt-newsiv2" class="wrapper">
+<div id="zt-newsiv" class="wrapper">
     <?php foreach ($list as $key => $slide) : ?>    
         <div class="item">
             <?php 
             $listItems = array_slice($slide, $numberIntroItems);
             ?>
               
-            <div class="zt-category newsiv2">
+            <div class="zt-category newsiv">
                 <div class="row">
                     <?php $index = 0; ?>
                     <?php foreach ($slide as $key => $item) : ?>         
                         <?php if ($index < $numberIntroItems) : ?>
-                            <div class="col-md-6 zt-item zt-main-items">
+                            <div class="col-md-12 zt-item main">
                                 <?php if($isImage):?>
                                     <!-- Head Thumbnail -->
                                     <div class="post-thumnail">
@@ -104,9 +103,10 @@ $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/styles.css');
                         <?php $index++; ?>
                     <?php endforeach; ?>
 
-                    <div class="col-md-6 zt-list-items">
+                    <div class="col-md-12">
+                        <div class="row">
                             <?php foreach ($listItems as $key => $item) : ?>
-                                <div class="zt-item">
+                                <div class="col-md-6 zt-item">
                                     <div class="post-thumnail">                      
                                         <a href="<?php echo $item->link; ?>" title="">
                                             <!-- List thumbnail -->
@@ -149,6 +149,7 @@ $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/styles.css');
                                     </div>
                                 </div>
                             <?php endforeach; ?>
+                        </div>
                     </div>
                 </div>
             </div>

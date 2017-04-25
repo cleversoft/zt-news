@@ -2,11 +2,11 @@
 <extension type="module" version="3.6" client="site" method="upgrade">
     <name>ZT News</name>
     <author>ZooTemplate</author>
-    <creationDate>Apr 17, 2017</creationDate>
+    <creationDate>Apr 25, 2017</creationDate>
     <copyright>ZooTemplate.Com</copyright>
     <authorEmail>support@ZooTemplate.com</authorEmail>
     <authorUrl>http://www.ZooTemplate.com</authorUrl>
-    <version>2.6.5</version>
+    <version>2.6.6</version>
     <description>ZT News allows you display previews of articles on the front page</description>
      
     <files>
@@ -54,9 +54,8 @@
             </fieldset>
             <fieldset name="show">
                 <field name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="PARAMMODULECLASSSUFFIX" />
-                <!--field name="template_type" type="folderlist" label="Select template" description="Select template" directory="/modules/mod_zt_news/tmpl" hide_default="1" hide_none="1" /-->
-                <field name="template_type" type="layout" default="verticle" label="Select template" description="Select template" />
-                <field name="breakpoint" type="text" default="3" label="Number of items in a row" description="Number of items in a row" />
+                <field name="layout" type="modulelayout" default="headline" label="Select layout" description="Select layout" />
+                <field name="preview" type="preview" default="default" label="Layout preview" description="Layout preview" />
                 <field name="showtitlecat" type="radio" class="btn-group btn-group-yesno" default="1" label="JCATEGORY" description="Display title category">
                     <option value="0">Hide</option>
                     <option value="1">Show</option>
@@ -125,6 +124,33 @@
                     <option value="0">Hide</option>
                     <option value="1">Show</option>
                 </field> 
+            </fieldset>
+            <fieldset name="options">
+                <field name="breakpoint" type="text" default="3" label="MOD_ZTNEWS_NUMBER_ITEMS" description="MOD_ZTNEWS_NUMBER_ITEMS_DESC" />
+                <field name="show_nav" type="list" default="0"
+                       label="MOD_ZTNEWS_SHOW_BUTTONS"
+                       description="MOD_ZTNEWS_SHOW_BUTTONS_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="show_dots" type="list" default="0"
+                       label="MOD_ZTNEWS_SHOW_DOTS"
+                       description="MOD_ZTNEWS_SHOW_DOTS_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="autoplay" type="list" default="0"
+                       label="MOD_ZTNEWS_AUTOPLAY"
+                       description="MOD_ZTNEWS_AUTOPLAY_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="responsive" type="list" default="1"
+                       label="MOD_ZTNEWS_RESPONSIVE"
+                       description="MOD_ZTNEWS_RESPONSIVE_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
             </fieldset>
             <fieldset name="advanced">
                 <field name="cache" type="list" default="0" label="Caching" description="Select whether to cache the content of this module">

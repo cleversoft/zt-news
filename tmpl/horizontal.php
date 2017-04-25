@@ -4,11 +4,11 @@
  *
  * @package     Joomla
  * @subpackage  Module
- * @version     2.0.0
+ * @version     2.6.6
  * @author      ZooTemplate
  * @email       support@zootemplate.com
  * @link        http://www.zootemplate.com
- * @copyright   Copyright (c) 2015 ZooTemplate
+ * @copyright   Copyright (c) 2017 ZooTemplate
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
@@ -75,11 +75,26 @@ $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/owl_carousel/
         <script type="text/javascript">
             jQuery(document).ready(function ($) {
                 $("#zt-news-scroll-<?php echo $module->id; ?>").owlCarousel({
-                    autoplay: true,
-                    nav: true,
-                    dots: true,
-                    smartSpeed: 500,
-                    items: <?php echo $breakpoint; ?>
+                    autoplay: <?php echo $autoplay == 1 ? 'true' : 'false' ?>,
+                    nav: <?php echo $showNav == 1 ? 'true' : 'false' ?>,
+                    dots: <?php echo $showDots == 1 ? 'true' : 'false' ?>,
+                    responsive: {
+                        <?php if($responsive == 1) : ?>
+                        0: {
+                            items: 1
+                        },
+                        480: {
+                            items: 2
+                        },
+                        768: {
+                            items: <?php echo $breakpoint; ?>
+                        }
+                        <?php else : ?>
+                        0: {
+                            items: <?php echo $breakpoint; ?>
+                        }
+                        <?php endif ?>
+                    }
                 });
             });
         </script>

@@ -26,8 +26,8 @@ class JFormFieldVsection extends JFormField
     /**
      * Element name
      *
-     * @access	protected
-     * @var		string
+     * @access  protected
+     * @var     string
      */
     protected $type = 'vsection';
 
@@ -42,19 +42,19 @@ class JFormFieldVsection extends JFormField
         $data = $db->loadResult();
         $params = new JRegistry($data);
         $source = $params->get('source', 'content');
-        $layout = $params->get('template_type');
+        $layout = $params->get('layout');
+        $tem = explode(':', $layout);
+        $defaultLayout = isset($tem[1]) ? $tem[1] : 'headline';
         ?>
         <!-- For these js must be stored in js file instead -->
         <script type="text/javascript">
 
             jQuery(document).ready(function () {
-//                sourceChange('<?php //echo $source; ?>//');
-                layoutChange('<?php echo $layout; ?>');
-//                jQuery('#jform_params_source').change(function () {
-//                    sourceChange(jQuery(this).val());
-//                });
-                jQuery('#jform_params_template_type').change(function () {
-                    layoutChange(jQuery(this).val());
+                layoutChange('<?php echo $defaultLayout ?>');
+                jQuery('#jform_params_layout').change(function () {
+                    var layout = jQuery(this).val();
+                    var defaultLayout = layout.split(':')[1];
+                    layoutChange(defaultLayout);
                 });
 
             });
@@ -64,29 +64,9 @@ class JFormFieldVsection extends JFormField
                     item.setStyle('height', 'auto');
                 });
             };
-
-//            function sourceChange(val) {
-//
-//                if (val == 'content') {
-//                    jQuery('#jform_params_k2_cids').parents('.control-group').hide();
-//                    jQuery('#jform_params_content_cids').parents('.control-group').show();
-//                    jQuery('#jform_params_type_image').parents('.control-group').hide();
-//                    jQuery('#jform_params_orderingk2').parents('.control-group').hide();
-//                    jQuery('#jform_params_rderingcontent').parents('.control-group').show();
-//                }
-//                else {
-//                    jQuery('#jform_params_k2_cids').parents('.control-group').show();
-//                    jQuery('#jform_params_content_cids').parents('.control-group').hide();
-//                    jQuery('#jform_params_type_image').parents('.control-group').show();
-//                    jQuery('#jform_params_orderingk2').parents('.control-group').show();
-//                    jQuery('#jform_params_orderingcontent').parents('.control-group').hide();
-//                }
-//
-//            }
-            function layoutChange(val) {
-                if (val == 'horizontal') {
-
-                    jQuery('#jform_params_breakpoint').parents('.control-group').show();
+            function layoutChange(layout) {
+                if (/horizontal/i.test(layout)) {
+                    jQuery('a[href="#attrib-options"]').parent().show();
                     jQuery('#jform_params_is_subcat').parents('.control-group').hide();
                     jQuery('#jform_params_is_all').parents('.control-group').hide();
                     jQuery('#jform_params_number_intro_items').parents('.control-group').hide();
@@ -99,8 +79,7 @@ class JFormFieldVsection extends JFormField
                     jQuery('#jform_params_show_intro_list').parents('.control-group').hide();
                     jQuery('#jform_params_show_date_list').parents('.control-group').hide();
                 } else {
-
-                    jQuery('#jform_params_breakpoint').parents('.control-group').hide();
+                    jQuery('a[href="#attrib-options"]').parent().hide();
                     jQuery('#jform_params_showtitlecat').parents('.control-group').show();
                     jQuery('#jform_params_is_subcat').parents('.control-group').show();
                     jQuery('#jform_params_is_all').parents('.control-group').show();
@@ -112,8 +91,9 @@ class JFormFieldVsection extends JFormField
                     jQuery('#jform_params_is_image_list').parents('.control-group').show();
                     jQuery('#jform_params_show_intro_list').parents('.control-group').show();
                     jQuery('#jform_params_show_date_list').parents('.control-group').show();
-
                 }
+                jQuery('.zt-news-layout .layout-item').removeClass('selected');
+                jQuery('.zt-news-layout .' + layout).addClass('selected');
             }
         </script>
         <?php

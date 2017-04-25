@@ -4,11 +4,11 @@
  * 
  * @package     Joomla
  * @subpackage  Module
- * @version     2.0.0
+ * @version     2.6.6
  * @author      ZooTemplate 
  * @email       support@zootemplate.com 
  * @link        http://www.zootemplate.com 
- * @copyright   Copyright (c) 2015 ZooTemplate
+ * @copyright   Copyright (c) 2017 ZooTemplate
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
@@ -28,37 +28,38 @@ foreach ($items as $item)
 
 }
 
-// @todo Default assets should be called from entry points ALREADY !
-//$doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/styles.css');
+// @todo Default assets should be called from entry point
+$doc = JFactory::getDocument();
+$doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/styles.css');
 ?>
-<div id="zt-verticle" class="wrapper">
+<div id="zt-newsiv2" class="wrapper">
     <?php foreach ($list as $key => $slide) : ?>    
         <div class="item">
             <?php 
             $listItems = array_slice($slide, $numberIntroItems);
             ?>
               
-            <div class="zt-category verticle">
+            <div class="zt-category newsiv2">
                 <div class="row">
                     <?php $index = 0; ?>
                     <?php foreach ($slide as $key => $item) : ?>         
                         <?php if ($index < $numberIntroItems) : ?>
-                            <div class="col-md-6 zt-item main">
+                            <div class="col-md-6 zt-item zt-main-items">
                                 <?php if($isImage):?>
-                                <!-- Head Thumbnail -->
-                                <div class="post-thumnail">
-                                    <a href="<?php echo $item->link; ?>" title="">
-                                        <?php if (!empty($item->thumb)) : ?>
-                                            <img class="thumbnail" 
-                                                 src="<?php echo $item->thumb; ?>" 
-                                                 alt="<?php echo $item->title; ?>"
-                                                 title="<?php echo $item->title; ?>"
-                                                 />
-                                             <?php endif; ?>
+                                    <!-- Head Thumbnail -->
+                                    <div class="post-thumnail">
+                                        <a href="<?php echo $item->link; ?>" title="">
+                                            <?php if (!empty($item->thumb)) : ?>
+                                                <img class="thumbnail" 
+                                                     src="<?php echo $item->thumb; ?>" 
+                                                     alt="<?php echo $item->title; ?>"
+                                                     title="<?php echo $item->title; ?>"
+                                                     />
+                                                 <?php endif; ?>
 
-                                    </a>
-                                </div>
-                            <?php endif;?>
+                                        </a>
+                                    </div>
+                                <?Php endif;?>
                                 <div class="zt-article_content">
                                     <!-- Item title -->
                                     <?php if ($showTitle) : ?>
@@ -79,7 +80,7 @@ foreach ($items as $item)
                                         <span class="created">
                                             <?php echo JHTML::_('date', $item->created, JText::_($dateFormat)); ?> - <?php
                                             echo $item->hits;
-                                            echo JText::_(' Views');
+                                            echo JText::_('MOD_ZTNEWS_VIEWS');
                                             ?>
                                         </span>
                                     <?php endif; ?>
@@ -103,24 +104,21 @@ foreach ($items as $item)
                         <?php $index++; ?>
                     <?php endforeach; ?>
 
-                    <div class="col-md-6">
-                        <div class="row">
+                    <div class="col-md-6 zt-list-items">
                             <?php foreach ($listItems as $key => $item) : ?>
-                                <div class="col-md-12 zt-item">
-                                     <?php if ($showImageOnList):?>
-                                        <div class="post-thumnail">                      
-                                            <a href="<?php echo $item->link; ?>" title="">
-                                                <!-- List thumbnail -->
-                                                <?php if (!empty($item->subThumb)) : ?>
-                                                    <img class="thumbnail" 
-                                                         src="<?php echo $item->subThumb; ?>" 
-                                                         alt="<?php echo $item->title; ?>"
-                                                         title="<?php echo $item->title; ?>"
-                                                         />
-                                                     <?php endif; ?>
-                                            </a>
-                                        </div>
-                                    <?php endif;?>
+                                <div class="zt-item">
+                                    <div class="post-thumnail">                      
+                                        <a href="<?php echo $item->link; ?>" title="">
+                                            <!-- List thumbnail -->
+                                            <?php if (!empty($item->subThumb)) : ?>
+                                                <img class="thumbnail" 
+                                                     src="<?php echo $item->subThumb; ?>" 
+                                                     alt="<?php echo $item->title; ?>"
+                                                     title="<?php echo $item->title; ?>"
+                                                     />
+                                                 <?php endif; ?>
+                                        </a>
+                                    </div>
                                     <div class="zt-article_content">
                                         <?php if ($showTitle) : ?>
                                             <h3>
@@ -129,7 +127,7 @@ foreach ($items as $item)
                                                 </a>
                                             </h3>
                                         <?php endif; ?>
-                                         <!-- Created -->
+                                        <!-- Created -->
                                         <?php if ($showCreated) : ?>                            
                                             <span class="created">
                                                 <?php echo JHTML::_('date', $item->created, JText::_($dateFormat)); ?> - <?php
@@ -138,13 +136,11 @@ foreach ($items as $item)
                                                 ?>
                                             </span>
                                         <?php endif; ?>
-                                        
                                         <!-- Intro text -->
                                         <?php if ($showIntroList && $item->introtext != false) : ?>
                                             <div class="zt-introtext"><?php echo substr($item->introtext, 0, 90); ?></div>
                                         <?php endif; ?> 
                                         <!-- Readmore -->
-                                       
                                         <?php if ($showReadmore) : ?>                     
                                             <p class="zt-news-readmore">
                                                 <a class="readmore" href="<?php echo $item->link; ?>"><?php echo JTEXT::_('MOD_ZTNEWS_READMORE'); ?></a>
@@ -153,7 +149,6 @@ foreach ($items as $item)
                                     </div>
                                 </div>
                             <?php endforeach; ?>
-                        </div>
                     </div>
                 </div>
             </div>
