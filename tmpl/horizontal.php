@@ -29,7 +29,7 @@ $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/owl_carousel/
                         <a href="<?php echo $item->link; ?>" title="<?php echo $item->title; ?>">
                             <img alt="<?php echo $item->title; ?>"
                                  title="<?php echo $item->title; ?>" class="lazyOwl"
-                                 data-src="<?php echo $item->thumb; ?>"/>
+                                 src="<?php echo $item->thumb; ?>"/>
                         </a>
                     <?php endif; ?>
                     <?php if ($showTitle): ?>
