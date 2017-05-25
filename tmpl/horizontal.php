@@ -79,21 +79,15 @@ $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/owl_carousel/
                     nav: <?php echo $showNav == 1 ? 'true' : 'false' ?>,
                     dots: <?php echo $showDots == 1 ? 'true' : 'false' ?>,
                     responsive: {
-                        <?php if($responsive == 1) : ?>
                         0: {
-                            items: 1
-                        },
-                        480: {
-                            items: 2
+                            items: <?php echo $breakpoint_xs; ?>
                         },
                         768: {
-                            items: <?php echo $breakpoint; ?>
+                            items: <?php echo $breakpoint_sm; ?>
+                        },
+                        992: {
+                            items: <?php echo $breakpoint_md; ?>
                         }
-                        <?php else : ?>
-                        0: {
-                            items: <?php echo $breakpoint; ?>
-                        }
-                        <?php endif ?>
                     }
                 });
             });

@@ -126,7 +126,9 @@
                 </field> 
             </fieldset>
             <fieldset name="options">
-                <field name="breakpoint" type="text" default="3" label="MOD_ZTNEWS_NUMBER_ITEMS" description="MOD_ZTNEWS_NUMBER_ITEMS_DESC" />
+                <field name="breakpoint_md" type="text" default="3" label="MOD_ZTNEWS_NUMBER_ITEMS_DESKTOP" description="MOD_ZTNEWS_NUMBER_ITEMS_DESKTOP_DESC" hint="3" />
+                <field name="breakpoint_sm" type="text" default="2" label="MOD_ZTNEWS_NUMBER_ITEMS_TABLET" description="MOD_ZTNEWS_NUMBER_ITEMS_TABLET_DESC" hint="2" />
+                <field name="breakpoint_xs" type="text" default="1" label="MOD_ZTNEWS_NUMBER_ITEMS_MOBILE" description="MOD_ZTNEWS_NUMBER_ITEMS_MOBILE_DESC" hint="1" />
                 <field name="show_nav" type="list" default="0"
                        label="MOD_ZTNEWS_SHOW_BUTTONS"
                        description="MOD_ZTNEWS_SHOW_BUTTONS_DESC">
@@ -142,12 +144,6 @@
                 <field name="autoplay" type="list" default="0"
                        label="MOD_ZTNEWS_AUTOPLAY"
                        description="MOD_ZTNEWS_AUTOPLAY_DESC">
-                    <option value="0">JNO</option>
-                    <option value="1">JYES</option>
-                </field>
-                <field name="responsive" type="list" default="1"
-                       label="MOD_ZTNEWS_RESPONSIVE"
-                       description="MOD_ZTNEWS_RESPONSIVE_DESC">
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>

@@ -40,11 +40,12 @@ $clearCache = $params->get('clear_cache', 0);
 $isImage = $params->get('is_image', 1);
 $showImageOnList = $params->get('is_image_list', 1);
 $showSubCategory = $params->get('is_subcat', 1);
-$breakpoint = $params->get('breakpoint', 3);
+$breakpoint_md = $params->get('breakpoint_md', 3);
+$breakpoint_sm = $params->get('breakpoint_sm', 2);
+$breakpoint_xs = $params->get('breakpoint_xs', 1);
 $showNav = $params->get('show_nav', 0);
 $showDots = $params->get('show_dots', 0);
 $autoplay = $params->get('autoplay', 0);
-$responsive = $params->get('responsive', 1);
 $columns = $params->get('columns');
 $intro_legnth= $params->get('intro_length');
 
