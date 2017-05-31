@@ -64,8 +64,13 @@ if (!class_exists('modZTNewsHelper'))
             if (!$items)
             {
                 $items = self::getSource($params)->getItems($groupByCategories);
+                foreach ($items as $key => $item) {
+                    $item->info_format = self::getNewsInfo($item, $params);
+                    $item->info2_format = self::getNewsInfo($item, $params, 2);
+                }
                 // Store it back
                 $cache->store($items, $key);
+                // var_dump($items);die();
             }
             return $items;
         }
@@ -142,7 +147,34 @@ if (!class_exists('modZTNewsHelper'))
             }
             return $src;
         }
-
+        public static function getNewsInfo($item, $params, $num=1)
+        {
+            $info_format = $num == 1 ? 'info_format' : 'info2_format';
+            $news_info = $params->get($info_format, '%DATE %HITS %CATEGORY %AUTHOR');
+            $news_info = str_replace('%AUTHOR', '<span class="author">' . $item->author . '</span>', $news_info);
+            $date = $params->get('date_publish', 2);
+            switch ($date) {
+                case '0':
+                    $date_publish = $item->created;
+                    break;
+                case '1':
+                    $date_publish = $item->modified;
+                    break;
+                default:
+                    $date_publish = $item->publish_up;
+                    break;
+            }
+            $date_format = $params->get('date_format', 'd F Y');
+            $news_info = str_replace('%DATE', '<span class="date">' .JHTML::_('date', $date_publish, JText::_($date_format)) . '</span>', $news_info);
+            $news_info = str_replace('%HITS', '<span class="hits">' . $item->hits . '</span>', $news_info);
+            $news_info = str_replace('%CATEGORY', '<span class="category">' . JHTML::_('link', $item->cat_link, $item->cat_title) . '</span>', $news_info);
+            // $news_info = str_replace('%STARS', '<span class="stars">' . $item->info_stars . '</span>', $news_info);
+            // $news_info = str_replace('%RATE', '<span class="rate">' . $item->info_rate . '</span>', $news_info);
+            // $news_info = str_replace('%TAGS', '<span class="tags">' . $item->info_tags . '</span>', $news_info);
+            // $news_info = str_replace('%FEATURED', '<span class="featured">' . $item->info_featured . '</span>', $news_info);
+            // var_dump($news_info);die;
+            return $news_info;
+        }
     }
 
 }

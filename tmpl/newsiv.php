@@ -41,16 +41,92 @@ $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/styles.css');
             <div class="zt-category newsiv">
                 <div class="row">
                     <?php $index = 0; ?>
-                    <?php foreach ($slide as $key => $item) : ?>         
+                    <?php foreach ($slide as $key => $item) : ?>  
                         <?php if ($index < $numberIntroItems) : ?>
-                            <div class="col-md-12 zt-item main">
+                            <div class="col-sm-12 zt-item main">
+                                <?php for ($j=0; $j < 6; $j++) : ?>
+                                
+                                <?php if ($image_order == $j) : ?>
+
+                                    <?php if($isImage):?>
+                                        <!-- Head Thumbnail -->
+                                        <div class="post-thumnail">
+                                            <a href="<?php echo $item->link; ?>" title="">
+                                                <?php if (!empty($item->thumb)) : ?>
+                                                    <img class="thumbnail" 
+                                                         src="<?php echo $item->thumb; ?>" 
+                                                         alt="<?php echo $item->title; ?>"
+                                                         title="<?php echo $item->title; ?>"
+                                                         />
+                                                     <?php endif; ?>
+
+                                            </a>
+                                        </div>
+                                    <?Php endif;?>
+
+                                <?php endif ?>
+
+                                <?php if ($title_order == $j) : ?>
+                                    <?php if ($showTitle) : ?>
+                                        <!-- Item title -->
+                                        <h3 class="zt-title">
+                                            <a href="<?php echo $item->link; ?>" title="">
+                                                <?php echo $item->title; ?>
+                                            </a>
+                                        </h3>
+                                    <?php endif; ?>
+                                <?php endif ?>
+
+                                <?php if ($intro_order == $j) : ?>
+                                    <?php if ($showIntro && $item->introtext != false) : ?>
+                                        <!-- Intro text -->
+                                        <div class="zt-introtext"><?php echo ($item->introtext); ?></div>
+
+                                        <?php if ($showReadmore) : ?>                     
+                                            <!-- Readmore -->
+                                            <p class="zt-news-readmore">
+                                                <a class="readmore" href="<?php echo $item->link; ?>"><?php echo JTEXT::_('MOD_ZTNEWS_READMORE'); ?></a>
+                                            </p>
+                                        <?php endif; ?>
+                                    <?php endif; ?> 
+                                <?php endif ?>
+
+                                <?php if ($info_order == $j) : ?>
+                                    <?php if ($showInfo && !empty($item->info_format)) : ?>
+                                        <!-- Information -->
+                                        <div class="zt-newsinfo"><?php echo ($item->info_format); ?></div>
+                                    <?php endif; ?> 
+                                <?php endif ?>
+
+                                <?php if ($info2_order == $j) : ?>
+                                    <?php if ($showInfo2 && !empty($item->info2_format)) : ?>
+                                        <!-- Information 2 -->
+                                        <div class="zt-newsinfo2"><?php echo ($item->info2_format); ?></div>
+                                    <?php endif; ?> 
+                                <?php endif ?>
+
+                                <?php endfor ?>
+
+                            </div>
+                        <?php endif; ?>      
+                        <?php $index++; ?>
+                    <?php endforeach; ?>
+
+                    <div class="zt-list-items">
+
+                    <?php foreach ($listItems as $key => $item) : ?>
+                        <div class="col-sm-6 zt-item">
+                            <?php for ($j=0; $j < 6; $j++) : ?>
+                            
+                            <?php if ($image_order == $j) : ?>
+
                                 <?php if($isImage):?>
                                     <!-- Head Thumbnail -->
                                     <div class="post-thumnail">
                                         <a href="<?php echo $item->link; ?>" title="">
-                                            <?php if (!empty($item->thumb)) : ?>
+                                            <?php if (!empty($item->subThumb)) : ?>
                                                 <img class="thumbnail" 
-                                                     src="<?php echo $item->thumb; ?>" 
+                                                     src="<?php echo $item->subThumb; ?>" 
                                                      alt="<?php echo $item->title; ?>"
                                                      title="<?php echo $item->title; ?>"
                                                      />
@@ -59,101 +135,56 @@ $doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/styles.css');
                                         </a>
                                     </div>
                                 <?Php endif;?>
-                                <div class="zt-article_content">
+
+                            <?php endif ?>
+
+                            <?php if ($title_order == $j) : ?>
+                                <?php if ($showTitle) : ?>
                                     <!-- Item title -->
-                                    <?php if ($showTitle) : ?>
-                                        <h3>
-                                            <a href="<?php echo $item->link; ?>" title="">
-                                                <?php echo $item->title; ?>
-                                            </a>
-                                        </h3>
-                                    <?php endif; ?>
-                                    <!-- Author -->
-                                    <?php if ($showAuthor) : ?>     
-                                        <span class="author">
-                                            <?php echo $item->author; ?>
-                                        </span>
-                                    <?php endif ?>
-                                    <!-- Created -->
-                                    <?php if ($showCreated) : ?>                            
-                                        <span class="created">
-                                            <?php echo JHTML::_('date', $item->created, JText::_($dateFormat)); ?> - <?php
-                                            echo $item->hits;
-                                            echo JText::_('MOD_ZTNEWS_VIEWS');
-                                            ?>
-                                        </span>
-                                    <?php endif; ?>
-                                    <!-- Category -->
-                                    <?php if ($showTitleCategory) : 
-                                            echo JHTML::_('link', $item->cat_link, $item->cat_title, array('class'=>'incategory'));
-                                        endif ?>
+                                    <h4 class="zt-title">
+                                        <a href="<?php echo $item->link; ?>" title="">
+                                            <?php echo $item->title; ?>
+                                        </a>
+                                    </h3>
+                                <?php endif; ?>
+                            <?php endif ?>
+
+                            <?php if ($intro_order == $j) : ?>
+                                <?php if ($showIntro && $item->introtext != false) : ?>
                                     <!-- Intro text -->
-                                    <?php if ($showIntro && $item->introtext != false) : ?>
-                                        <div class="zt-introtext"><?php echo ($item->introtext); ?></div>
-                                    <?php endif; ?> 
-                                    <!-- Readmore -->
+                                    <div class="zt-introtext"><?php echo ($item->introtext); ?></div>
+
                                     <?php if ($showReadmore) : ?>                     
+                                        <!-- Readmore -->
                                         <p class="zt-news-readmore">
                                             <a class="readmore" href="<?php echo $item->link; ?>"><?php echo JTEXT::_('MOD_ZTNEWS_READMORE'); ?></a>
                                         </p>
                                     <?php endif; ?>
-                                </div>
-                            </div>
-                        <?php endif; ?>      
-                        <?php $index++; ?>
+                                <?php endif; ?> 
+                            <?php endif ?>
+
+                            <?php if ($info_order == $j) : ?>
+                                <?php if ($showInfo && !empty($info_format)) : ?>
+                                    <!-- Information -->
+                                    <div class="zt-newsinfo"><?php echo ($info_format); ?></div>
+                                <?php endif; ?> 
+                            <?php endif ?>
+
+                            <?php if ($info2_order == $j) : ?>
+                                <?php if ($showInfo2 && $item->info2_format != false) : ?>
+                                    <!-- Information 2 -->
+                                    <div class="zt-newsinfo2"><?php echo ($item->info2_format); ?></div>
+                                <?php endif; ?> 
+                            <?php endif ?>
+
+                            <?php endfor ?>
+                        </div>
+
                     <?php endforeach; ?>
 
-                    <div class="col-md-12">
-                        <div class="row">
-                            <?php foreach ($listItems as $key => $item) : ?>
-                                <div class="col-md-6 zt-item">
-                                    <div class="post-thumnail">                      
-                                        <a href="<?php echo $item->link; ?>" title="">
-                                            <!-- List thumbnail -->
-                                            <?php if (!empty($item->subThumb)) : ?>
-                                                <img class="thumbnail" 
-                                                     src="<?php echo $item->subThumb; ?>" 
-                                                     alt="<?php echo $item->title; ?>"
-                                                     title="<?php echo $item->title; ?>"
-                                                     />
-                                                 <?php endif; ?>
-                                        </a>
-                                    </div>
-                                    <div class="zt-article_content">
-                                        <?php if ($showTitle) : ?>
-                                            <h3>
-                                                <a href="<?php echo $item->link; ?>" title="">
-                                                    <?php echo $item->title; ?>
-                                                </a>
-                                            </h3>
-                                        <?php endif; ?>
-                                        <!-- Created -->
-                                        <?php if ($showCreated) : ?>                            
-                                            <span class="created">
-                                                <?php echo JHTML::_('date', $item->created, JText::_($dateFormat)); ?> - <?php
-                                                echo $item->hits;
-                                                echo JText::_('MOD_ZTNEWS_VIEWS');
-                                                ?>
-                                            </span>
-                                        <?php endif; ?>
-                                        <!-- Intro text -->
-                                        <?php if ($showIntroList && $item->introtext != false) : ?>
-                                            <div class="zt-introtext"><?php echo substr($item->introtext, 0, 90); ?></div>
-                                        <?php endif; ?> 
-                                        <!-- Readmore -->
-                                        <?php if ($showReadmore) : ?>                     
-                                            <p class="zt-news-readmore">
-                                                <a class="readmore" href="<?php echo $item->link; ?>"><?php echo JTEXT::_('MOD_ZTNEWS_READMORE'); ?></a>
-                                            </p>
-                                        <?php endif; ?>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
                     </div>
                 </div>
             </div>
-
-        </div>
+        </div> <!-- End item -->
     <?php endforeach; ?>               
 </div>

@@ -66,7 +66,8 @@ class JFormFieldVsection extends JFormField
             };
             function layoutChange(layout) {
                 if (/horizontal/i.test(layout)) {
-                    jQuery('a[href="#attrib-options"]').parent().show();
+                    jQuery('a[href="#attrib-slide_options"]').parent().show();
+                    jQuery('a[href="#attrib-links_options"]').parent().hide();
                     jQuery('#jform_params_is_subcat').parents('.control-group').hide();
                     jQuery('#jform_params_is_all').parents('.control-group').hide();
                     jQuery('#jform_params_number_intro_items').parents('.control-group').hide();
@@ -79,7 +80,8 @@ class JFormFieldVsection extends JFormField
                     jQuery('#jform_params_show_intro_list').parents('.control-group').hide();
                     jQuery('#jform_params_show_date_list').parents('.control-group').hide();
                 } else {
-                    jQuery('a[href="#attrib-options"]').parent().hide();
+                    jQuery('a[href="#attrib-slide_options"]').parent().hide();
+                    jQuery('a[href="#attrib-links_options"]').parent().show();
                     jQuery('#jform_params_showtitlecat').parents('.control-group').show();
                     jQuery('#jform_params_is_subcat').parents('.control-group').show();
                     jQuery('#jform_params_is_all').parents('.control-group').show();

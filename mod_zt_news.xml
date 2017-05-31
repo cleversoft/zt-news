@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="module" version="3.6" client="site" method="upgrade">
+<extension type="module" version="3.7.2" client="site" method="upgrade">
     <name>ZT News</name>
     <author>ZooTemplate</author>
-    <creationDate>Apr 25, 2017</creationDate>
+    <creationDate>May 31, 2017</creationDate>
     <copyright>ZooTemplate.Com</copyright>
     <authorEmail>support@ZooTemplate.com</authorEmail>
     <authorUrl>http://www.ZooTemplate.com</authorUrl>
-    <version>2.6.6</version>
+    <version>2.7</version>
     <description>ZT News allows you display previews of articles on the front page</description>
      
     <files>
@@ -52,71 +52,84 @@
                 <field name="max_items" type="text" default="20" label="Max items" description="" />                                        
                 <field name="v_section" type="vsection" label="" description="" />
             </fieldset>
-            <fieldset name="show">
-                <field name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="PARAMMODULECLASSSUFFIX" />
+                
+            <fieldset name="article_layout" label="ARTICLE_LAYOUT_LABEL">
                 <field name="layout" type="modulelayout" default="headline" label="Select layout" description="Select layout" />
                 <field name="preview" type="preview" default="default" label="Layout preview" description="Layout preview" />
-                <field name="showtitlecat" type="radio" class="btn-group btn-group-yesno" default="1" label="JCATEGORY" description="Display title category">
-                    <option value="0">Hide</option>
-                    <option value="1">Show</option>
-                </field>
-                <field name="is_subcat" type="radio" class="btn-group btn-group-yesno" default="1" label="Display title category sub" description="Display title category sub">
-                    <option value="0">Hide</option>
-                    <option value="1">Show</option>
-                </field>
-                <field name="is_all" type="radio" class="btn-group btn-group-yesno" default="1" label="Show item with subcategory" description="Show item with subcategory">
-                    <option value="0">Hide</option>
-                    <option value="1">Show</option>
-                </field>
                 <field name="number_intro_items" type="text" default="1" label="Number Of Main Items" description="Number Of Main Items" />
-                <field name="number_link_items" type="text" default="2" label="Number Of List Items" description="Number Of List Items" />
                 <field name="columns" type="list" default="2" label="Number Of Column" description="Number Of Column">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
-                </field>    
+                </field> 
                 <field name="thumb_main_width" type="text" default="330" label="Thumb Main Width" description="Thumb Main width" />
                 <field name="thumb_main_height" type="text" default="145" label="Thumb Main Height" description ="Thumb Main Height" />
-                <field name="thumb_list_width" type="text" default="49" label="Thumb List Width" description="Thumb List width" />
-                <field name="thumb_list_height" type="text" default="49" label="Thumb List Height" description ="Thumb List Height" />
+                
+                
+                <field name="intro_length" type="text" default="30" label="Intro Text Length" description="Intro text length" /> 
+                     
+                <field name="info_format" type="text" default="%DATE %HITS %CATEGORY %AUTHOR" label="Info format" description="MOD_ZTNEWS_INFO_FORMAT_DESC" />
+                <field name="info2_format" type="text" label="Second info format" description="MOD_ZTNEWS_SECOND_INFO_FORMAT_DESC" />
+                <field name="date_format" type="text" default="d F Y" label="Date Format" description="Please enter in a valid date format. See: http://php.net/date for formatting information."/>
+                <field name="date_publish" type="list" default="2" label="Use date" description="">
+                    <option value="0">Date of Created</option>
+                    <option value="1">Date of Modified</option>
+                    <option value="2">Date of Published</option>
+                </field>
+                <field name="title_order" type="radio" class="btn-group zt-group-layout" default="2" label="MOD_ZTNEWS_TITLE_ORDER">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </field>
                 <field name="show_title" type="radio" class="btn-group btn-group-yesno" default="1" label="Show Title Main" description="Show title main">
                     <option value="0">Hide</option>
                     <option value="1">Show</option>
                 </field>
-                <field name="show_title_list" type="radio" class="btn-group btn-group-yesno" default="1" label="Show Title List" description="Show title list">
-                    <option value="0">Hide</option>
-                    <option value="1">Show</option>
+                <field name="image_order" type="radio" class="btn-group zt-group-layout" default="1" label="MOD_ZTNEWS_IMAGE_ORDER">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
                 </field>
                 <field name="is_image" type="radio" class="btn-group btn-group-yesno" default="1" label="Show Image Main" description="Show image Main">
                     <option value="0">Hide</option>
                     <option value="1">Show</option>
                 </field>
-                <field name="is_image_list" type="radio" class="btn-group btn-group-yesno" default="1" label="Show Image List" description="Show image List">
-                    <option value="0">Hide</option>
-                    <option value="1">Show</option>
+                <field name="intro_order" type="radio" class="btn-group zt-group-layout" default="4" label="MOD_ZTNEWS_INTRO_ORDER">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
                 </field>
                 <field name="show_intro" type="radio" class="btn-group btn-group-yesno" default="1" label="Show Intro Main" description="Show intro main">
                     <option value="0">Hide</option>
                     <option value="1">Show</option>
                 </field>
-                <field name="show_intro_list" type="radio" class="btn-group btn-group-yesno" default="1" label="Show Intro List" description="Show intro list">
+                <field name="info_order" type="radio" class="btn-group zt-group-layout" default="3" label="MOD_ZTNEWS_INFO_ORDER">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </field>
+                <field name="show_info" type="radio" class="btn-group btn-group-yesno" default="1" label="MOD_ZTNEWS_SHOW_INFO" description="MOD_ZTNEWS_SHOW_INFO_DESC">
                     <option value="0">Hide</option>
                     <option value="1">Show</option>
                 </field>
-                <field name="intro_length" type="text" default="30" label="Intro Text Length" description="Intro text length" /> 
-                     
-                <field name="show_date" type="radio" class="btn-group btn-group-yesno" default="1" label="JDATE" description="Show Date Main">
-                    <option value="0">Hide</option>
-                    <option value="1">Show</option>
+                <field name="info2_order" type="radio" class="btn-group zt-group-layout" default="2" label="MOD_ZTNEWS_SECONDINFO_ORDER">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
                 </field>
-                <field name="date_format" type="text" default="d F Y" label="Date Format" description="Please enter in a valid date format. See: http://php.net/date for formatting information."/>
-                <field name="show_date_list" type="radio" class="btn-group btn-group-yesno" default="1" label="Show Date list" description="Show Date List">
-                    <option value="0">Hide</option>
-                    <option value="1">Show</option>
-                </field>
-                <field name="show_author" type="radio" class="btn-group btn-group-yesno" default="1" label="JAUTHOR" description="Show Author">
+                <field name="show_info2" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_ZTNEWS_SHOW_SECOND_INFO" description="MOD_ZTNEWS_SHOW_SECOND_INFO_DESC">
                     <option value="0">Hide</option>
                     <option value="1">Show</option>
                 </field>
@@ -125,30 +138,43 @@
                     <option value="1">Show</option>
                 </field> 
             </fieldset>
-            <fieldset name="options">
+            <fieldset name="links_options" label="LINKS_LAYOUT_LABEL">
+                <field name="number_link_items" type="text" default="2" label="Number Of List Items" description="Number Of List Items" /> 
+                <field name="thumb_list_width" type="text" default="49" label="Thumb List Width" description="Thumb List width" />
+                <field name="thumb_list_height" type="text" default="49" label="Thumb List Height" description ="Thumb List Height" />
+                <field name="show_title_list" type="radio" class="btn-group btn-group-yesno" default="1" label="Show Title List" description="Show title list">
+                    <option value="0">Hide</option>
+                    <option value="1">Show</option>
+                </field>
+                <field name="is_image_list" type="radio" class="btn-group btn-group-yesno" default="1" label="Show Image List" description="Show image List">
+                    <option value="0">Hide</option>
+                    <option value="1">Show</option>
+                </field>
+                <field name="show_intro_list" type="radio" class="btn-group btn-group-yesno" default="1" label="Show Intro List" description="Show intro list">
+                    <option value="0">Hide</option>
+                    <option value="1">Show</option>
+                </field>
+            </fieldset>
+            <fieldset name="slide_options" label="SLIDE_OPTIONS_LABEL">
                 <field name="breakpoint_md" type="text" default="3" label="MOD_ZTNEWS_NUMBER_ITEMS_DESKTOP" description="MOD_ZTNEWS_NUMBER_ITEMS_DESKTOP_DESC" hint="3" />
                 <field name="breakpoint_sm" type="text" default="2" label="MOD_ZTNEWS_NUMBER_ITEMS_TABLET" description="MOD_ZTNEWS_NUMBER_ITEMS_TABLET_DESC" hint="2" />
                 <field name="breakpoint_xs" type="text" default="1" label="MOD_ZTNEWS_NUMBER_ITEMS_MOBILE" description="MOD_ZTNEWS_NUMBER_ITEMS_MOBILE_DESC" hint="1" />
-                <field name="show_nav" type="list" default="0"
-                       label="MOD_ZTNEWS_SHOW_BUTTONS"
-                       description="MOD_ZTNEWS_SHOW_BUTTONS_DESC">
-                    <option value="0">JNO</option>
-                    <option value="1">JYES</option>
+                <field name="space" type="text" default="15" label="MOD_ZTNEWS_SPACE_ITEMS" description="MOD_ZTNEWS_SPACE_ITEMS_DESC"/>
+                <field name="show_nav" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_ZTNEWS_SHOW_BUTTONS" description="MOD_ZTNEWS_SHOW_BUTTONS_DESC">
+                    <option value="0">Hide</option>
+                    <option value="1">Show</option>
                 </field>
-                <field name="show_dots" type="list" default="0"
-                       label="MOD_ZTNEWS_SHOW_DOTS"
-                       description="MOD_ZTNEWS_SHOW_DOTS_DESC">
-                    <option value="0">JNO</option>
-                    <option value="1">JYES</option>
+                <field name="show_dots" type="radio" class="btn-group btn-group-yesno" default="0" label="MOD_ZTNEWS_SHOW_DOTS" description="MOD_ZTNEWS_SHOW_DOTS_DESC">
+                    <option value="0">Hide</option>
+                    <option value="1">Show</option>
                 </field>
-                <field name="autoplay" type="list" default="0"
-                       label="MOD_ZTNEWS_AUTOPLAY"
-                       description="MOD_ZTNEWS_AUTOPLAY_DESC">
-                    <option value="0">JNO</option>
-                    <option value="1">JYES</option>
+                <field name="autoplay" type="radio" class="btn-group btn-group-yesno" default="1" label="MOD_ZTNEWS_AUTOPLAY" description="MOD_ZTNEWS_AUTOPLAY_DESC">
+                    <option value="0">Hide</option>
+                    <option value="1">Show</option>
                 </field>
             </fieldset>
             <fieldset name="advanced">
+                <field name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="PARAMMODULECLASSSUFFIX" />
                 <field name="cache" type="list" default="0" label="Caching" description="Select whether to cache the content of this module">
                     <option value="1">Use global</option>
                     <option value="0">No caching</option>

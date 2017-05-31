@@ -372,7 +372,7 @@ div#custom_list a.modal-img {
 .layout-item.headline {
   background-position: 99% 0;
 }
-.zt-news-layout .layout-item.verticle.selected {
+.zt-news-layout .layout-item.vertical.selected {
   background-position: 0% 100%;
 }
 .zt-news-layout .layout-item.horizontal.selected {

@@ -1,4 +1,7 @@
-.zt-category.verticle .zt-item .post-thumnail{
+.zt-category .zt-item .post-thumnail img {
+	width: auto;
+}
+.zt-category.verticle .zt-item .post-thumnail {
 	float: left;
 	margin-right: 30px;
 	margin-bottom: 30px;
