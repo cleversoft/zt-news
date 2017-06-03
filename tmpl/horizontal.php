@@ -26,7 +26,7 @@ foreach ($items as $key => $item) {
 
     // Get image
     if (@$item->thumb != '' && $isImage == 1) {
-        $img     = '<div clas="post-thumbnail">';
+        $img     = '<div class="post-thumbnail">';
         $img    .=      '<a href="' . $item->link .'" title="' . $item->title . '">';
         $img    .=          '<img alt="' . $item->title . '" title="' . $item->title . '" class="lazyOwl" src="' . $item->thumb . '"/>';
         $img    .=      '</a>';
