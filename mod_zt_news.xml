@@ -2,11 +2,11 @@
 <extension type="module" version="3.7.2" client="site" method="upgrade">
     <name>ZT News</name>
     <author>ZooTemplate</author>
-    <creationDate>May 31, 2017</creationDate>
+    <creationDate>June 03, 2017</creationDate>
     <copyright>ZooTemplate.Com</copyright>
     <authorEmail>support@ZooTemplate.com</authorEmail>
     <authorUrl>http://www.ZooTemplate.com</authorUrl>
-    <version>2.7</version>
+    <version>2.7.1</version>
     <description>ZT News allows you display previews of articles on the front page</description>
      
     <files>
@@ -66,12 +66,13 @@
                 </field> 
                 <field name="thumb_main_width" type="text" default="330" label="Thumb Main Width" description="Thumb Main width" />
                 <field name="thumb_main_height" type="text" default="145" label="Thumb Main Height" description ="Thumb Main Height" />
-                
-                
+                <field name="wrap_content" type="radio" class="btn-group btn-group-yesno" default="1" label="Wrap Conent" description="Create a div tab wrap outter the article content">
+                    <option value="0">Disable</option>
+                    <option value="1">Enable</option>
+                </field>
                 <field name="intro_length" type="text" default="30" label="Intro Text Length" description="Intro text length" /> 
-                     
                 <field name="info_format" type="text" default="%DATE %HITS %CATEGORY %AUTHOR" label="Info format" description="MOD_ZTNEWS_INFO_FORMAT_DESC" />
-                <field name="info2_format" type="text" label="Second info format" description="MOD_ZTNEWS_SECOND_INFO_FORMAT_DESC" />
+                <field name="info2_format" type="text" default="" label="Second info format" description="MOD_ZTNEWS_SECOND_INFO_FORMAT_DESC" />
                 <field name="date_format" type="text" default="d F Y" label="Date Format" description="Please enter in a valid date format. See: http://php.net/date for formatting information."/>
                 <field name="date_publish" type="list" default="2" label="Use date" description="">
                     <option value="0">Date of Created</option>
@@ -151,6 +152,14 @@
                     <option value="1">Show</option>
                 </field>
                 <field name="show_intro_list" type="radio" class="btn-group btn-group-yesno" default="1" label="Show Intro List" description="Show intro list">
+                    <option value="0">Hide</option>
+                    <option value="1">Show</option>
+                </field>
+                <field name="show_info_list" type="radio" class="btn-group btn-group-yesno" default="1" label="Show Info List" description="Show info list of item">
+                    <option value="0">Hide</option>
+                    <option value="1">Show</option>
+                </field>
+                <field name="show_info2_list" type="radio" class="btn-group btn-group-yesno" default="0" label="Show Second Info List" description="Show second info list of item">
                     <option value="0">Hide</option>
                     <option value="1">Show</option>
                 </field>

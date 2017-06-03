@@ -56,7 +56,12 @@ class JFormFieldVsection extends JFormField
                     var defaultLayout = layout.split(':')[1];
                     layoutChange(defaultLayout);
                 });
-
+                var wrap = jQuery('#jform_params_wrap_content').find('input:checked').val();
+                toggleField(wrap);
+                jQuery('#jform_params_wrap_content').change(function () {
+                    var wrap = jQuery(this).find('input:checked').val();
+                    toggleField(wrap);
+                })
             });
 
             var jpaneAutoHeight = function () {
@@ -96,6 +101,12 @@ class JFormFieldVsection extends JFormField
                 }
                 jQuery('.zt-news-layout .layout-item').removeClass('selected');
                 jQuery('.zt-news-layout .' + layout).addClass('selected');
+            }
+            function toggleField(wrap) {
+                if (wrap==1)
+                    jQuery('#jform_params_image_order').parents('.control-group').slideUp();
+                else
+                    jQuery('#jform_params_image_order').parents('.control-group').slideDown();
             }
         </script>
         <?php

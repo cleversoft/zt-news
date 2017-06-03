@@ -23,4 +23,4 @@ JLoader::discover('ZtNewsHelper', __DIR__ . '/helper');
 
 // @todo Should be load default assets . For each template will load inside template
 $doc = JFactory::getDocument();
-$doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/default.css'); 
+$doc->addStyleSheet(JUri::root() . 'modules/mod_zt_news/assets/css/style.css'); 

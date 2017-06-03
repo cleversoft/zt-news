@@ -150,7 +150,7 @@ if (!class_exists('modZTNewsHelper'))
         public static function getNewsInfo($item, $params, $num=1)
         {
             $info_format = $num == 1 ? 'info_format' : 'info2_format';
-            $news_info = $params->get($info_format, '%DATE %HITS %CATEGORY %AUTHOR');
+            $news_info = $params->get($info_format, '');
             $news_info = str_replace('%AUTHOR', '<span class="author">' . $item->author . '</span>', $news_info);
             $date = $params->get('date_publish', 2);
             switch ($date) {

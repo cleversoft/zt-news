@@ -1,0 +1,63 @@
+.zt-news .zt-list-items .zt-item {
+	clear: both;
+}
+.zt-news .post-thumbnail img.thumbnail {
+	width: auto;
+}
+.zt-news .zt-main-item .zt-item .zt-title {
+	font-size: 24px
+}
+.zt-news .zt-main-item .zt-item .newsinfo,
+.zt-news .zt-main-item .zt-item .newsinfo2 {
+	font-size: 14px
+}
+.zt-news .zt-list-items .zt-item .post-thumbnail {
+	float: left;
+	margin-right: 15px
+}
+.zt-news .zt-list-items .zt-item  .zt-title {
+	font-size: 18px
+}
+.zt-news .zt-list-items .zt-item .zt-newsinfo,
+.zt-news .zt-list-items .zt-item .zt-newsinfo2 {
+	font-size: 12px
+}
+
+/* Headline Style */
+.zt-news .headline .zt-list-items {
+}
+
+/* Horizontal Style */
+.zt-news .horizontal .zt-article-item .zt-title {
+	font-size: 24px
+}
+.zt-news .horizontal .zt-article-item .newsinfo,
+.zt-news .horizontal .zt-article-item .newsinfo2 {
+	font-size: 14px
+}
+
+/* Newsiv Style */
+.zt-news .newsiv .zt-list-items {
+	clear: both;
+}
+
+/* Newsiv2 Style */
+.zt-news .newsiv2 .zt-article-item {
+	clear: both;
+}
+
+/* Vertical Style */
+.zt-news .vertical .zt-article-item {
+	clear: both;
+}
+.zt-news .vertical .post-thumbnail img {
+	float: left;
+	margin-right: 15px
+}
+
+.span2 {
+	width: 20%;
+	float: left;
+  padding-left: 15px;
+  padding-right: 15px;
+}
