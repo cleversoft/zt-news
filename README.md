@@ -4,6 +4,10 @@ ZT News module allows you display previews of articles on the Joomla front page.
 
 ## Change Logs
 
+## Version 2.7.1 Release June 04, 2017
+
+* Fix some error display in headline and newsiv layout
+
 ## Version 2.7.1 Release June 03, 2017
 
 * Update style, construct html of layout and add options for backend of module

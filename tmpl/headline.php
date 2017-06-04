@@ -72,16 +72,14 @@ foreach ($list as $key => $slide) {
             } 
 
             // Get infomation    
-            if ($showInfo && !empty($item->info_format)) {
+            if ($showInfo && !empty($item->info_format))
                 $info = '<div class="zt-newsinfo">' . $item->info_format . '</div>';
-            }
                                                 
             // Get second infomation    
-            if ($showInfo2 && !empty($item->info2_format)) {
+            if ($showInfo2 && !empty($item->info2_format))
                 $info = '<div class="zt-newsinfo2">' . $item->info2_format . '</div>';
-            }     
 
-            $output .= '<div class="col-sm-6 zt-main-item">';
+            $output .= '<div class="zt-main-item">';
             $output .= '    <div class="zt-item">';
 
 
@@ -123,7 +121,9 @@ foreach ($list as $key => $slide) {
             $index++;
         }
     }
-    $output .= '<div class="col-sm-6 zt-list-items">';
+    $output .= '<div class="zt-list-items">';
+    if (!empty($listItems))
+        $output .= '<div class="row">';
 
         foreach ($listItems as $key => $item) {
 
@@ -156,7 +156,7 @@ foreach ($list as $key => $slide) {
             if ($showInfo2List && !empty($item->info2_format))
                 $sub_info2 = '<div class="zt-newsinfo2">' . $item->info2_format . '</div>';
 
-            $output .= '<div class="zt-item">';
+            $output .= '<div class="zt-item col-sm-6">';
 
             if ($wrapContent) {
                 if (isset($sub_img))
@@ -191,6 +191,8 @@ foreach ($list as $key => $slide) {
             $output .= '</div>';
         }
 
+    if (!empty($listItems))
+        $output .= '</div>';
     $output .=  '</div>';
     $output .= '</div><!-- End .zt-article-item -->';
 }

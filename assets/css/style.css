@@ -1,6 +1,3 @@
-.zt-news .zt-list-items .zt-item {
-	clear: both;
-}
 .zt-news .post-thumbnail img.thumbnail {
 	width: auto;
 }
@@ -42,12 +39,14 @@
 }
 
 /* Newsiv2 Style */
-.zt-news .newsiv2 .zt-article-item {
+.zt-news .newsiv2 .zt-article-item,
+.zt-news .newsiv2 .zt-list-items .zt-item {
 	clear: both;
 }
 
 /* Vertical Style */
-.zt-news .vertical .zt-article-item {
+.zt-news .vertical .zt-article-item,
+.zt-news .vertical .zt-list-items .zt-item {
 	clear: both;
 }
 .zt-news .vertical .post-thumbnail img {
